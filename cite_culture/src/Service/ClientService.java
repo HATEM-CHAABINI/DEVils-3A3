@@ -8,10 +8,15 @@ package Service;
 import Dao.MyDB;
 import Entity.Client;
 import IServices.IClient;
+import com.google.zxing.WriterException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utilitaire.QRCodeGenerator;
 
 /**
  *
@@ -34,14 +39,40 @@ public class ClientService implements IClient{
     try {
             Statement stl = conn.createStatement();
            int rs =stl.executeUpdate(sql);
-
-                   } catch (SQLException ex) {
+           QRCodeGenerator.generateQRCodeImage(c.getQr(),c.getUsername());
+                   } catch (SQLException |IOException|WriterException ex) {
             System.err.println("SQLException: " + ex.getMessage());
-            System.err.println("SQLState: " + ex.getSQLState());
-            System.err.println("VendorError: " + ex.getErrorCode());
-            System.err.println("sql: " + sql);
+            
         }
            
+    }
+
+    @Override
+    public Client rechercheClient(String qr) {
+         Client c = new Client();
+        
+
+            String sql = "SELECT * FROM fos_user WHERE (qr='" + qr + "');";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    c.setId(rs.getInt("id"));
+                    c.setNom(rs.getString("nom"));
+                    c.setUsername(rs.getString("username"));
+                    c.setPrenom(rs.getString("prenom"));
+                    c.setEmail(rs.getString("email"));
+                    c.setPassword(rs.getString("password"));
+                    c.setAdresse(rs.getString("adresse"));
+                  c.setRoles(rs.getString("roles"));
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return c;
     }
     
 }

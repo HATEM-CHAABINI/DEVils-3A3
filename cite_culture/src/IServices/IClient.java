@@ -13,4 +13,5 @@ import Entity.Client;
  */
 public interface IClient {
  public void ajouterClient(Client c);
+ public Client rechercheClient(String qr);
 }
