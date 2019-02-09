@@ -13,7 +13,8 @@ import utilitaire.cryptpasswords;
  *
  * @author hatem
  */
-public class Client {
+public class Journaliste {
+    
 private int id;
 private String username;
 private String username_canonical;
@@ -46,27 +47,26 @@ private int code_postal;
 private String sexe;
 private int telephone;
 private int cin;
-
-    public Client() {
+    public Journaliste() {
     }
 
-public Client (String username,String email,String password,String image,String nom,String prenom,String ville,Date date_nais,String adresse,int code_postal,String sexe,int telephone,int cin) throws NoSuchAlgorithmException
+public Journaliste (String username,String email,String password,String image,String nom,String prenom,String ville,Date date_nais,String adresse,int code_postal,String sexe,int telephone,int cin) throws NoSuchAlgorithmException
 {       cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
 
     this.username=username;
     this.username_canonical=username;
     this.email=email;
     this.email_canonical=email;
-    this.enabled=1;
+    this.enabled=0;
     this.salt=null;
     this.password=  encryption.cryptme(password);
     this.last_login=null;
-    this.locked=1;
+    this.locked=0;
     this.expired=0;
     this.expires_at=null;
     this.confirmation_token=null;
     this.password_requested_at=null;
-    this.roles= "a:1:{i:0;s:15:\"ROLE_CLIENT\";}" ;
+    this.roles= "a:1:{i:0;s:15:\"ROLE_JOURNALISTE\";}" ;
     this.credentials_expired=0;
     this.credentials_expire_at=null;
     this.departement=null;
@@ -348,5 +348,5 @@ public Client (String username,String email,String password,String image,String 
     public String toString() {
         return "Client{" + "id=" + id + ", username=" + username + ", username_canonical=" + username_canonical + ", email=" + email + ", email_canonical=" + email_canonical + ", enabled=" + enabled + ", salt=" + salt + ", password=" + password + ", last_login=" + last_login + ", locked=" + locked + ", expired=" + expired + ", expires_at=" + expires_at + ", confirmation_token=" + confirmation_token + ", password_requested_at=" + password_requested_at + ", roles=" + roles + ", credentials_expired=" + credentials_expired + ", credentials_expire_at=" + credentials_expire_at + ", departement=" + departement + ", qr=" + qr + ", image=" + image + ", nom=" + nom + ", prenom=" + prenom + ", ville=" + ville + ", date_naissance=" + date_naissance + ", bio=" + bio + ", domaine=" + domaine + ", note=" + note + ", adresse=" + adresse + ", code_postal=" + code_postal + ", sexe=" + sexe + ", telephone=" + telephone + '}';
     }
-
 }
+

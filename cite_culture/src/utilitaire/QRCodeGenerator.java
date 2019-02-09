@@ -18,7 +18,7 @@ public class QRCodeGenerator {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 350, 350);
 
-        Path path = FileSystems.getDefault().getPath("./qr/"+nomqr+".png");
+        Path path = FileSystems.getDefault().getPath(".//qr//"+nomqr+".png");
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
     }
 //

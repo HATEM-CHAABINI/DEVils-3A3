@@ -6,11 +6,11 @@
 package Service;
 
 import Dao.MyDB;
+import Entity.Artiste;
 import Entity.Client;
-import IServices.IClient;
+import IServices.IArtiste;
 import com.google.zxing.WriterException;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,78 +20,47 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utilitaire.QRCodeGenerator;
-import utilitaire.cryptpasswords;
 
 /**
  *
  * @author hatem
  */
-public class ClientService implements IClient{
-    Connection conn;
+public class ArtisteService implements IArtiste{
+        Connection conn;
 
-    public ClientService() throws ClassNotFoundException{
-        this.conn = MyDB.getInstance().getConnexion();
-}
+    public ArtisteService() throws ClassNotFoundException {
+                this.conn = MyDB.getInstance().getConnexion();
+
+    }
+
     @Override
-    public void ajouterClient(Client c) {
+    public void ajouterArtiste(Artiste a) {
    String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
-           + "VALUES ('"+c.getUsername() + "','" + c.getUsername() + "','" + c.getEmail() + "','" + c.getEmail() + "','" +
-c.getEnabled() + "','" + c.getSalt() + "','" + c.getPassword()  + "','" + c.getLocked() + "','" + c.getExpired()  + 
-"','" + c.getConfirmation_token() + "','" +c.getRoles()+ "','" + c.getCredentials_expired() +  "','" + c.getDepartement()+ "','" +
-c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + "','" + c.getVille() + "','" + c.getDate_naissance() + "','" +
-           c.getBio() + "','" + c.getDomaine() + "','" + c.getNote() + "','" + c.getAdresse()+"','" + c.getCode_postal()+
-           "','" + c.getSexe()+"','" + c.getTelephone()+"','" + c.getCin()+"');";
-
+           + "VALUES ('"+a.getUsername() + "','" + a.getUsername() + "','" + a.getEmail() + "','" + a.getEmail() + "','" +
+a.getEnabled() + "','" + a.getSalt() + "','" + a.getPassword()  + "','" + a.getLocked() + "','" + a.getExpired()  + 
+"','" + a.getConfirmation_token() + "','" +a.getRoles()+ "','" + a.getCredentials_expired() +  "','" + a.getDepartement()+ "','" +
+a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getVille() + "','" + a.getDate_naissance() + "','" +
+           a.getBio() + "','" + a.getDomaine() + "','" + a.getNote() + "','" + a.getAdresse()+"','" + a.getCode_postal()+
+           "','" + a.getSexe()+"','" + a.getTelephone()+"','" + a.getCin()+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
             Statement stl = conn.createStatement();
            int rs =stl.executeUpdate(sql);
-           QRCodeGenerator.generateQRCodeImage(c.getQr(),c.getUsername());
+           QRCodeGenerator.generateQRCodeImage(a.getQr(),a.getUsername());
                    } catch (SQLException |IOException|WriterException ex) {
             System.err.println("SQLException: " + ex.getMessage());
             
-        }
-           
-    }
+        }    }
 
     @Override
-    public Client rechercheClientParQr(String qr) {
-         Client c = new Client();
+    public Artiste rechercheArtisteParQr(String qr) {
+ Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE (qr='" + qr + "');";
-
-            try {
-                Statement stl = conn.createStatement();
-                ResultSet rs = stl.executeQuery(sql);
-
-                while (rs.next()) {
-                    c.setId(rs.getInt("id"));
-                    c.setNom(rs.getString("nom"));
-                    c.setUsername(rs.getString("username"));
-                    c.setPrenom(rs.getString("prenom"));
-                    c.setEmail(rs.getString("email"));
-                    c.setPassword(rs.getString("password"));
-                    c.setAdresse(rs.getString("adresse"));
-                  c.setRoles(rs.getString("roles"));
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        return c;
-    }
-
-    @Override
-    public Client rechercheClientParCin(int cin) {
-Client a = new Client();
-        
-//SELECT * FROM fos_user WHERE (roles like "%ROLE_CLIENT%" and cin= 10009484 )
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_CLIENT%'  and cin='" + cin + "';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and qr='" + qr  +"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -111,14 +80,14 @@ Client a = new Client();
             } catch (SQLException ex) {
                 Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return a;     }
+        return a;    }
 
     @Override
-    public Client rechercheClientParUsername(String username) {
-Client a = new Client();
+    public Artiste rechercheArtisteParCin(int cin) {
+Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_CLIENT%' and username='" + username + "';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and cin='" + cin + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -141,19 +110,13 @@ Client a = new Client();
         return a;     }
 
     @Override
-    public Client rechercheClientParUsernameMdp(String username, String mdp) {
-
-Client a = new Client();
-        cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
-        try {
-            String mdpc=encryption.cryptme(mdp);
+    public Artiste rechercheArtisteParUsername(String username) {
+Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_CLIENT%' and username ='" + username + "' and password like '"+ mdpc+"';";
-            System.out.println("///////////////////////");
-            System.out.println(mdpc);
-            System.out.println("///////////////////////");
-           
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "';";
+
+            try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
@@ -167,24 +130,52 @@ Client a = new Client();
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
                 }
-            
-            } catch (SQLException |NoSuchAlgorithmException ex) {
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return a;     }
+
+    @Override
+    public Artiste rechercheArtisteParUsernameMdp(String username, String mdp) {
+
+Artiste a = new Artiste();
+        
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                }
+
+            } catch (SQLException ex) {
                 Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;        }
 
     @Override
-    public List<Client> rechercheClientParNom(String nom) {
-            List<Client> ListClient = new ArrayList<>();
+    public List<Artiste> rechercheArtisteParNom(String nom) {
+            List<Artiste> ListArtiste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_CLIENT%' and username='" + nom +"';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + nom +"';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Client a =new Client();
+                    Artiste a =new Artiste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -193,26 +184,26 @@ Client a = new Client();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListClient.add(a);
+                  ListArtiste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListClient;        }
+        return ListArtiste;        }
 
     @Override
-    public List<Client> tousLesClients() {
-        List<Client> ListClient = new ArrayList<>();
+    public List<Artiste> tousLesArtistes() {
+        List<Artiste> ListArtiste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_CLIENT%';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Client a =new Client();
+                    Artiste a =new Artiste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -221,24 +212,24 @@ Client a = new Client();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListClient.add(a);
+                  ListArtiste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListClient;        }
+        return ListArtiste;        }
 
 
     @Override
-    public void updateClient(Client a) {
+    public void updateArtiste(Artiste a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void SupprimerCompteClient(int cin) {
+    public void SupprimerCompteArtiste(int cin) {
 
-    String sql = "DELETE FROM `fos_user` WHERE roles like '%ROLE_CLIENT%' and cin ='"+cin+"';";
+    String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
@@ -248,5 +239,5 @@ Client a = new Client();
             System.err.println("SQLException: " + ex.getMessage());
             
         }        }
-    
+
 }
