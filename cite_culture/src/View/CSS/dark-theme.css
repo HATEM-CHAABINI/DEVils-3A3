@@ -1,0 +1,29 @@
+/* 
+    Created on : 11 Nov, 2017, 4:42:53 AM
+    Author     : afsal villan
+*/
+
+* {
+    -fx-primary : #FFFFFF;
+    -fx-secondary : #5caceb;
+    -fx-primarytext : #5caceb;
+
+}
+
+
+
+.button{
+    -fx-text-fill: -fx-primarytext;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 12pt;
+}
+
+.button:hover, .button:focus{
+    -fx-border-color: -fx-primary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
+

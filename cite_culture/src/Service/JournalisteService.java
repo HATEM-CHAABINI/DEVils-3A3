@@ -7,7 +7,7 @@ package Service;
 
 import Dao.MyDB;
 import Entity.Journaliste;
-import Entity.Client;
+import Entity.Utilisateur;
 import IServices.IJournaliste;
 import com.google.zxing.WriterException;
 import java.io.IOException;
@@ -50,7 +50,7 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
     try {
             Statement stl = conn.createStatement();
            int rs =stl.executeUpdate(sql);
-           QRCodeGenerator.generateQRCodeImage(a.getQr(),a.getUsername());
+           QRCodeGenerator.generateQRCodeImage(a.getQr(),a.getUsername(),a.getEmail());
                    } catch (SQLException |IOException|WriterException ex) {
             System.err.println("SQLException: " + ex.getMessage());
             
@@ -79,7 +79,7 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;    }
 
@@ -106,7 +106,7 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;     }
 
@@ -133,7 +133,7 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;     }
 
@@ -161,7 +161,7 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;        }
 
@@ -189,7 +189,7 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return ListJournaliste;        }
 
@@ -217,7 +217,7 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return ListJournaliste;        }
 

@@ -5,8 +5,9 @@
  */
 package cite_culture;
 
-import Entity.Client;
-import Service.ClientService;
+import Entity.Utilisateur;
+import Service.UtilisateurService;
+import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utilitaire.QRCodeGenerator;
 import utilitaire.QRCodeReader;
 
 /**
@@ -38,33 +40,34 @@ public class Cite_culture extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws NoSuchAlgorithmException, ClassNotFoundException, IOException 
+    public static void main(String[] args) throws NoSuchAlgorithmException, ClassNotFoundException, IOException, WriterException 
     {
         Date d=new java.sql.Date(2018, 01, 16);
-  Client c=new Client("hatem1", "Hatem1@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,10009484);
-//    Client c1=new Client("hatem2", "Hatem2@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,20009484);
-//    Client c2=new Client("hatem3", "Hatem3@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,30009484);
-//    Client c3=new Client("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
-////        Client c1=new Client("hatem2", "Hatem2@gmail.com", "bb", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
-////        Client c2=new Client("hatem3", "Hatem3@gmail.com", "cc", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
-////        Client c3=new Client("hatem4", "Hatem4@gmail.com", "dd", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
-        ClientService s=new ClientService();
-        List<Client>l=new ArrayList<>();
-        s.SupprimerCompteClient(20009484);
+  Utilisateur c=new Utilisateur("hatem18", "Hatem18@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,18009484);
+//    Utilisateur c1=new Utilisateur("hatem2", "Hatem2@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,20009484);
+//    Utilisateur c2=new Utilisateur("hatem3", "Hatem3@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,30009484);
+//    Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
+////        Utilisateur c1=new Utilisateur("hatem2", "Hatem2@gmail.com", "bb", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
+////        Utilisateur c2=new Utilisateur("hatem3", "Hatem3@gmail.com", "cc", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
+////        Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "dd", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret");
+       // UtilisateurService s=new UtilisateurService();
+        //List<Utilisateur>l=new ArrayList<>();
+     //   s.ajouterUtilisateur(c);
        // System.out.println(l);
-//        s.ajouterClient(c);
-//        s.ajouterClient(c1);
-//        s.ajouterClient(c2);
-//        s.ajouterClient(c3);
+//        s.ajouterUtilisateur(c);
+//        s.ajouterUtilisateur(c1);
+//        s.ajouterUtilisateur(c2);
+//        s.ajouterUtilisateur(c3);
 //        
 
+//QRCodeGenerator.generateQRCodeImage("aaaaaaaaaaaa","ada");
 
-//       String qr= QRCodeReader.ReadQRCodeImage();
+   /*   String qr= QRCodeReader.ReadQRCodeImage();
 //     //  String qq="QR-Code:hatem3,355b1bbfc96725cdce8f4a2708fda310a80e6d13315aec4e5eed2a75fe8032ce";
 //        
-//        String nq=qr.replace("QR-Code:","");
-//        Client cs= s.rechercheClientParQr(nq);
-//   System.out.println(cs.getUsername());
-
+  String nq=qr.replace("QR-Code:","");
+   //  Utilisateur cs= s.rechercheUtilisateurParQr(nq);
+ //  System.out.println(cs.getUsername());
+*/
     }
 }
