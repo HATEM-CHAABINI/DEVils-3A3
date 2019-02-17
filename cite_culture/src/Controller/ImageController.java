@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Controller;
 
-import Entity.Utilisateur;
-import Service.UtilisateurService;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -171,7 +171,7 @@ Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
 
 
 
-FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("inscription.fxml"));
+FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/inscription.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

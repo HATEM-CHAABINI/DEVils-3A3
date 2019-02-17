@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Controller;
 
-import Entity.Utilisateur;
-import Service.UtilisateurService;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
@@ -40,7 +40,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import testfxml.FXMLDocumentController;
 import utilitaire.ControlesaisieJ;
 import utilitaire.UserSession;
 
@@ -345,7 +344,7 @@ int valeur = 1000 + r.nextInt(9999 - 1000);
                   Utilisateur c1=new Utilisateur(Usernameu,EmailU,mdp1,LienIm,NomU,PrenomU,villeBox.getValue(),daten,AdrU,codeposta,SexeU,teli,cin);
 this.uti=UserSession.getInstance(c1).getUser();
   FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("valider.fxml"));
+        loader.setLocation(getClass().getResource("/View/valider.fxml"));
         try{
         loader.load();
         }catch (IOException ex){

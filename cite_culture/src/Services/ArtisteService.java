@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package Services;
 
 import Dao.MyDB;
-import Entity.Employe;
-import Entity.Utilisateur;
-import IServices.IEmploye;
+import Entities.Artiste;
+import Entities.Utilisateur;
+import IServices.IArtiste;
 import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,17 +25,16 @@ import utilitaire.QRCodeGenerator;
  *
  * @author hatem
  */
-public class EmployeService implements IEmploye{
+public class ArtisteService implements IArtiste{
         Connection conn;
 
-    public EmployeService() throws ClassNotFoundException {
+    public ArtisteService() throws ClassNotFoundException {
                 this.conn = MyDB.getInstance().getConnexion();
 
     }
 
     @Override
-    public void ajouterEmploye(Employe a) {
-
+    public void ajouterArtiste(Artiste a) {
    String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
@@ -45,7 +44,7 @@ a.getEnabled() + "','" + a.getSalt() + "','" + a.getPassword()  + "','" + a.getL
 a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getVille() + "','" + a.getDate_naissance() + "','" +
            a.getBio() + "','" + a.getDomaine() + "','" + a.getNote() + "','" + a.getAdresse()+"','" + a.getCode_postal()+
            "','" + a.getSexe()+"','" + a.getTelephone()+"','" + a.getCin()+"');";
-   //String sql = "INSERT INTO fos_user(username) VALUES ('"+a.getUsername()+"');";
+   //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
             Statement stl = conn.createStatement();
@@ -57,11 +56,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         }    }
 
     @Override
-    public Employe rechercheEmployeParQr(String qr) {
- Employe a = new Employe();
+    public Artiste rechercheArtisteParQr(String qr) {
+ Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and qr='" + qr + "');";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and qr='" + qr  +"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -84,11 +83,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         return a;    }
 
     @Override
-    public Employe rechercheEmployeParCin(int cin) {
-Employe a = new Employe();
+    public Artiste rechercheArtisteParCin(int cin) {
+Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and cin='" + cin + "');";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and cin='" + cin + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -111,11 +110,11 @@ Employe a = new Employe();
         return a;     }
 
     @Override
-    public Employe rechercheEmployeParUsername(String username) {
-Employe a = new Employe();
+    public Artiste rechercheArtisteParUsername(String username) {
+Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "');";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -138,12 +137,12 @@ Employe a = new Employe();
         return a;     }
 
     @Override
-    public Employe rechercheEmployeParUsernameMdp(String username, String mdp) {
+    public Artiste rechercheArtisteParUsernameMdp(String username, String mdp) {
 
-Employe a = new Employe();
+Artiste a = new Artiste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "'+ and password ='"+ mdp+"');";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -166,17 +165,17 @@ Employe a = new Employe();
         return a;        }
 
     @Override
-    public List<Employe> rechercheEmployeParNom(String nom) {
-            List<Employe> ListEmploye = new ArrayList<>();
+    public List<Artiste> rechercheArtisteParNom(String nom) {
+            List<Artiste> ListArtiste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + nom +"');";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + nom +"';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Employe a =new Employe();
+                    Artiste a =new Artiste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -185,26 +184,26 @@ Employe a = new Employe();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListEmploye.add(a);
+                  ListArtiste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListEmploye;        }
+        return ListArtiste;        }
 
     @Override
-    public List<Employe> tousLesEmployes() {
-        List<Employe> ListEmploye = new ArrayList<>();
+    public List<Artiste> tousLesArtistes() {
+        List<Artiste> ListArtiste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Employe a =new Employe();
+                    Artiste a =new Artiste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -213,22 +212,22 @@ Employe a = new Employe();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListEmploye.add(a);
+                  ListArtiste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListEmploye;        }
+        return ListArtiste;        }
 
 
     @Override
-    public void updateEmploye(Employe a) {
+    public void updateArtiste(Artiste a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void SupprimerCompteEmploye(int cin) {
+    public void SupprimerCompteArtiste(int cin) {
 
     String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
@@ -240,6 +239,5 @@ Employe a = new Employe();
             System.err.println("SQLException: " + ex.getMessage());
             
         }        }
-
 
 }

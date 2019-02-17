@@ -5,7 +5,7 @@
  */
 package utilitaire;
 
-import Entity.Utilisateur;
+import Entities.Utilisateur;
 
 /**
  *

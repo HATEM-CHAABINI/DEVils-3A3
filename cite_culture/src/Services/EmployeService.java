@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package Services;
 
 import Dao.MyDB;
-import Entity.Journaliste;
-import Entity.Utilisateur;
-import IServices.IJournaliste;
+import Entities.Employe;
+import Entities.Utilisateur;
+import IServices.IEmploye;
 import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,17 +25,17 @@ import utilitaire.QRCodeGenerator;
  *
  * @author hatem
  */
-public class JournalisteService implements IJournaliste{
+public class EmployeService implements IEmploye{
         Connection conn;
 
-    public JournalisteService() throws ClassNotFoundException {
+    public EmployeService() throws ClassNotFoundException {
                 this.conn = MyDB.getInstance().getConnexion();
 
     }
 
     @Override
-    public void ajouterJournaliste(Journaliste a) {
-        
+    public void ajouterEmploye(Employe a) {
+
    String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
@@ -45,7 +45,7 @@ a.getEnabled() + "','" + a.getSalt() + "','" + a.getPassword()  + "','" + a.getL
 a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getVille() + "','" + a.getDate_naissance() + "','" +
            a.getBio() + "','" + a.getDomaine() + "','" + a.getNote() + "','" + a.getAdresse()+"','" + a.getCode_postal()+
            "','" + a.getSexe()+"','" + a.getTelephone()+"','" + a.getCin()+"');";
-   //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
+   //String sql = "INSERT INTO fos_user(username) VALUES ('"+a.getUsername()+"');";
   
     try {
             Statement stl = conn.createStatement();
@@ -57,11 +57,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         }    }
 
     @Override
-    public Journaliste rechercheJournalisteParQr(String qr) {
- Journaliste a = new Journaliste();
+    public Employe rechercheEmployeParQr(String qr) {
+ Employe a = new Employe();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and qr='" + qr + "';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and qr='" + qr + "');";
 
             try {
                 Statement stl = conn.createStatement();
@@ -84,11 +84,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         return a;    }
 
     @Override
-    public Journaliste rechercheJournalisteParCin(int cin) {
-Journaliste a = new Journaliste();
+    public Employe rechercheEmployeParCin(int cin) {
+Employe a = new Employe();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and cin='" + cin + "';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and cin='" + cin + "');";
 
             try {
                 Statement stl = conn.createStatement();
@@ -111,11 +111,11 @@ Journaliste a = new Journaliste();
         return a;     }
 
     @Override
-    public Journaliste rechercheJournalisteParUsername(String username) {
-Journaliste a = new Journaliste();
+    public Employe rechercheEmployeParUsername(String username) {
+Employe a = new Employe();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "');";
 
             try {
                 Statement stl = conn.createStatement();
@@ -138,12 +138,12 @@ Journaliste a = new Journaliste();
         return a;     }
 
     @Override
-    public Journaliste rechercheJournalisteParUsernameMdp(String username, String mdp) {
+    public Employe rechercheEmployeParUsernameMdp(String username, String mdp) {
 
-Journaliste a = new Journaliste();
+Employe a = new Employe();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "'+ and password ='"+ mdp+"');";
 
             try {
                 Statement stl = conn.createStatement();
@@ -166,17 +166,17 @@ Journaliste a = new Journaliste();
         return a;        }
 
     @Override
-    public List<Journaliste> rechercheJournalisteParNom(String nom) {
-            List<Journaliste> ListJournaliste = new ArrayList<>();
+    public List<Employe> rechercheEmployeParNom(String nom) {
+            List<Employe> ListEmploye = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + nom +"';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + nom +"');";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Journaliste a =new Journaliste();
+                    Employe a =new Employe();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -185,26 +185,26 @@ Journaliste a = new Journaliste();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListJournaliste.add(a);
+                  ListEmploye.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListJournaliste;        }
+        return ListEmploye;        }
 
     @Override
-    public List<Journaliste> tousLesJournalistes() {
-        List<Journaliste> ListJournaliste = new ArrayList<>();
+    public List<Employe> tousLesEmployes() {
+        List<Employe> ListEmploye = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Journaliste a =new Journaliste();
+                    Employe a =new Employe();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -213,22 +213,22 @@ Journaliste a = new Journaliste();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListJournaliste.add(a);
+                  ListEmploye.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListJournaliste;        }
+        return ListEmploye;        }
 
 
     @Override
-    public void updateJournaliste(Journaliste a) {
+    public void updateEmploye(Employe a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void SupprimerCompteJournaliste(int cin) {
+    public void SupprimerCompteEmploye(int cin) {
 
     String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";

@@ -5,7 +5,7 @@
  */
 package IServices;
 
-import Entity.Artiste;
+import Entities.Artiste;
 import java.util.List;
 
 /**

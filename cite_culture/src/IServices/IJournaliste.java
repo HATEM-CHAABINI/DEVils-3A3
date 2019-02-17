@@ -5,7 +5,7 @@
  */
 package IServices;
 
-import Entity.Journaliste;
+import Entities.Journaliste;
 import java.util.List;
 
 /**

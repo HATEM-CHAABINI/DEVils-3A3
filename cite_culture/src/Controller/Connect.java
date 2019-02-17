@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Controller;
 
-import Entity.Utilisateur;
-import Service.UtilisateurService;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -24,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import testfxml.FXMLDocumentController;
 import utilitaire.ControlesaisieJ;
 import utilitaire.UserSession;
 
@@ -102,7 +101,7 @@ UserSession.getInstance(u).getUser();
   
 
   FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("UtilistaeursInscription.fxml"));
+        loader.setLocation(getClass().getResource("/View/UtilistaeursInscription.fxml"));
         try{
         loader.load();
         }catch (IOException ex){

@@ -5,8 +5,8 @@
  */
 package cite_culture;
 
-import Entity.Utilisateur;
-import Service.UtilisateurService;
+import Entities.Utilisateur;
+import Services.UtilisateurService;
 import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;

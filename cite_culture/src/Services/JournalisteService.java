@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package Services;
 
 import Dao.MyDB;
-import Entity.Artiste;
-import Entity.Utilisateur;
-import IServices.IArtiste;
+import Entities.Journaliste;
+import Entities.Utilisateur;
+import IServices.IJournaliste;
 import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,16 +25,17 @@ import utilitaire.QRCodeGenerator;
  *
  * @author hatem
  */
-public class ArtisteService implements IArtiste{
+public class JournalisteService implements IJournaliste{
         Connection conn;
 
-    public ArtisteService() throws ClassNotFoundException {
+    public JournalisteService() throws ClassNotFoundException {
                 this.conn = MyDB.getInstance().getConnexion();
 
     }
 
     @Override
-    public void ajouterArtiste(Artiste a) {
+    public void ajouterJournaliste(Journaliste a) {
+        
    String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
@@ -56,11 +57,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         }    }
 
     @Override
-    public Artiste rechercheArtisteParQr(String qr) {
- Artiste a = new Artiste();
+    public Journaliste rechercheJournalisteParQr(String qr) {
+ Journaliste a = new Journaliste();
         
 
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and qr='" + qr  +"';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and qr='" + qr + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -83,11 +84,11 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         return a;    }
 
     @Override
-    public Artiste rechercheArtisteParCin(int cin) {
-Artiste a = new Artiste();
+    public Journaliste rechercheJournalisteParCin(int cin) {
+Journaliste a = new Journaliste();
         
 
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and cin='" + cin + "';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and cin='" + cin + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -110,11 +111,11 @@ Artiste a = new Artiste();
         return a;     }
 
     @Override
-    public Artiste rechercheArtisteParUsername(String username) {
-Artiste a = new Artiste();
+    public Journaliste rechercheJournalisteParUsername(String username) {
+Journaliste a = new Journaliste();
         
 
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -137,12 +138,12 @@ Artiste a = new Artiste();
         return a;     }
 
     @Override
-    public Artiste rechercheArtisteParUsernameMdp(String username, String mdp) {
+    public Journaliste rechercheJournalisteParUsernameMdp(String username, String mdp) {
 
-Artiste a = new Artiste();
+Journaliste a = new Journaliste();
         
 
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_ARTISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -165,17 +166,17 @@ Artiste a = new Artiste();
         return a;        }
 
     @Override
-    public List<Artiste> rechercheArtisteParNom(String nom) {
-            List<Artiste> ListArtiste = new ArrayList<>();
+    public List<Journaliste> rechercheJournalisteParNom(String nom) {
+            List<Journaliste> ListJournaliste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%' and username='" + nom +"';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + nom +"';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Artiste a =new Artiste();
+                    Journaliste a =new Journaliste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -184,26 +185,26 @@ Artiste a = new Artiste();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListArtiste.add(a);
+                  ListJournaliste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListArtiste;        }
+        return ListJournaliste;        }
 
     @Override
-    public List<Artiste> tousLesArtistes() {
-        List<Artiste> ListArtiste = new ArrayList<>();
+    public List<Journaliste> tousLesJournalistes() {
+        List<Journaliste> ListJournaliste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_ARTISTE%';";
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Artiste a =new Artiste();
+                    Journaliste a =new Journaliste();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -212,22 +213,22 @@ Artiste a = new Artiste();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
-                  ListArtiste.add(a);
+                  ListJournaliste.add(a);
                 }
 
             } catch (SQLException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return ListArtiste;        }
+        return ListJournaliste;        }
 
 
     @Override
-    public void updateArtiste(Artiste a) {
+    public void updateJournaliste(Journaliste a) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void SupprimerCompteArtiste(int cin) {
+    public void SupprimerCompteJournaliste(int cin) {
 
     String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
@@ -239,5 +240,6 @@ Artiste a = new Artiste();
             System.err.println("SQLException: " + ex.getMessage());
             
         }        }
+
 
 }

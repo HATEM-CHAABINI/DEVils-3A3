@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package Services;
 
 import Dao.MyDB;
-import Entity.Utilisateur;
+import Entities.Utilisateur;
 import IServices.IUtilisateur;
 import com.google.zxing.WriterException;
 import java.io.IOException;

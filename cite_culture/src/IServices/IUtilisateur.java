@@ -5,7 +5,7 @@
  */
 package IServices;
 
-import Entity.Utilisateur;
+import Entities.Utilisateur;
 import java.util.List;
 import javafx.collections.ObservableList;
 

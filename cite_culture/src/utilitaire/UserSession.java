@@ -5,7 +5,7 @@
  */
 package utilitaire;
 
-import Entity.Utilisateur;
+import Entities.Utilisateur;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
