@@ -27,7 +27,7 @@ public class Testfxml extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+//ss
     /**
      * @param args the command line arguments
      */
