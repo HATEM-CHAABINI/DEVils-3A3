@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="gvbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1006.0" prefWidth="1812.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InfoFilmController">
+   <children>
+      <HBox fx:id="hbox" alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <DatePicker fx:id="date" onAction="#affWhere" />
+         </children>
+         <padding>
+            <Insets right="30.0" top="30.0" />
+         </padding></HBox>
+      <ScrollPane fx:id="tt" prefHeight="900.0" prefWidth="1920.0" />
+   </children>
+</VBox>
