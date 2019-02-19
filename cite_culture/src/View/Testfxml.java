@@ -19,7 +19,7 @@ public class Testfxml extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("infoFilm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SalleInterface.fxml"));
         
         Scene scene = new Scene(root);
         
