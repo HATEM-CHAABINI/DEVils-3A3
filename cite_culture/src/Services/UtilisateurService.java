@@ -37,12 +37,14 @@ public class UtilisateurService implements IUtilisateur{
 }
     @Override
     public void ajouterUtilisateur(Utilisateur c) {
-   String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
+    String role=  "a:1:{i:0;s:15:\"ROLE_UTILISATEUR\";}" ;
+
+        String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
            + "VALUES ('"+c.getUsername() + "','" + c.getUsername() + "','" + c.getEmail() + "','" + c.getEmail() + "','" +
 c.getEnabled() + "','" + c.getSalt() + "','" + c.getPassword()  + "','" + c.getLocked() + "','" + c.getExpired()  + 
-"','" + c.getConfirmation_token() + "','" +c.getRoles()+ "','" + c.getCredentials_expired() +  "','" + c.getDepartement()+ "','" +
+"','" + c.getConfirmation_token() + "','"+ role+"','" + c.getCredentials_expired() +  "','" + c.getDepartement()+ "','" +
 c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + "','" + c.getVille() + "','"+ c.getDate_naissance() +"','" +
            c.getBio() + "','" + c.getDomaine() + "','" + c.getNote() + "','" + c.getAdresse()+"','" + c.getCode_postal()+
            "','" + c.getSexe()+"','" + c.getTelephone()+"','" + c.getCin()+"');";
@@ -82,7 +84,12 @@ c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + 
                 while (rs.next()) {
                     c.setId(rs.getInt("id"));
                     c.setNom(rs.getString("nom"));
+                    c.setImage(rs.getString("image"));
+                    c.setAdresse(rs.getString("adresse"));
                     c.setUsername(rs.getString("username"));
+                    c.setVille(rs.getString("ville"));
+                    c.setCode_postal(rs.getInt("code_postal"));
+                    c.setTelephone(rs.getInt("telephone"));
                     c.setPrenom(rs.getString("prenom"));
                     c.setEmail(rs.getString("email"));
                     c.setPassword(rs.getString("password"));
@@ -159,7 +166,7 @@ Utilisateur a = new Utilisateur();
     @Override
     public Utilisateur rechercheUtilisateurParUsernameMdp(String username, String mdp) {
 //d
-Utilisateur a = new Utilisateur();
+Utilisateur c = new Utilisateur();
         cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
         try {
             String mdpc=encryption.cryptme(mdp);
@@ -174,20 +181,25 @@ Utilisateur a = new Utilisateur();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    a.setId(rs.getInt("id"));
-                    a.setNom(rs.getString("nom"));
-                    a.setUsername(rs.getString("username"));
-                    a.setPrenom(rs.getString("prenom"));
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    a.setAdresse(rs.getString("adresse"));
-                  a.setRoles(rs.getString("roles"));
+                   c.setId(rs.getInt("id"));
+                    c.setNom(rs.getString("nom"));
+                    c.setImage(rs.getString("image"));
+                    c.setAdresse(rs.getString("adresse"));
+                    c.setUsername(rs.getString("username"));
+                    c.setVille(rs.getString("ville"));
+                    c.setCode_postal(rs.getInt("code_postal"));
+                    c.setTelephone(rs.getInt("telephone"));
+                    c.setPrenom(rs.getString("prenom"));
+                    c.setEmail(rs.getString("email"));
+                    c.setPassword(rs.getString("password"));
+                    c.setAdresse(rs.getString("adresse"));
+                  c.setRoles(rs.getString("roles"));
                 }
             
             } catch (SQLException |NoSuchAlgorithmException ex) {
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return a;        }
+        return c;        }
 
     @Override
     public List<Utilisateur> rechercheUtilisateurParNom(String nom) {
@@ -253,22 +265,30 @@ Utilisateur a = new Utilisateur();
         String sql;
         if (mdp.equals("")){
         
-               sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE `username` ='"+username+"';";
+               sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE roles like '%ROLE_UTILISATEUR%' and `username` ='"+username+"';";
 
         }else{
         cryptpasswords encryption = new cryptpasswords() ;
         String qr=username+','+ encryption.cryptme(mdp);
-       sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE `username` ='"+username+"';";
+       sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE roles like '%ROLE_UTILISATEUR%' and `username` ='"+username+"';";
+                  QRCodeGenerator.generateQRCodeImage(qr,username,email);
+
         }
         try {
+            
             Statement stl = conn.createStatement();
             int rs =stl.executeUpdate(sql);
+            
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
             
         }    } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             
+        } catch (WriterException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }    }
 
     @Override
@@ -316,7 +336,7 @@ Utilisateur a = new Utilisateur();
     @Override
     public void updateEnable(int ena,String username) {
         try{  
-        String sql = "UPDATE `fos_user` SET `enabled`='"+ena+ "' WHERE `username` ='"+username+"';";
+        String sql = "UPDATE `fos_user` SET `enabled`='"+ena+ "' WHERE roles like '%ROLE_UTILISATEUR%' and `username` ='"+username+"';";
        Statement stl = conn.createStatement();
             int rs =stl.executeUpdate(sql);
         } catch (SQLException ex) {
@@ -449,5 +469,50 @@ Utilisateur a = new Utilisateur();
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return verif;            }
+
+    @Override
+    public boolean verifEmailUpdate(String Email, String username) {
+boolean verif =true;
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and email='"+ Email+"'and username NOT LIKE '"+username+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=false;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;            }
+
+    @Override
+    public boolean verfierMotDePasse(String mdp, String username) {
+boolean verif =false;
+
+        cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
+        try {
+            String mdpc=encryption.cryptme(mdp);
+        
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_UTILISATEUR%' and username ='" + username + "' and password like '"+ mdpc+"';";
+            System.out.println("///////////////////////");
+            System.out.println(mdpc);
+            System.out.println("///////////////////////");
+           
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=true;
+                }
+            
+            } catch (SQLException |NoSuchAlgorithmException ex) {
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;         }
 }
 

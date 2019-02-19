@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="745.0" prefWidth="1041.0" styleClass="background" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UtilisateurInscription">
    <children>
-      <AnchorPane layoutX="243.0" prefHeight="762.0" prefWidth="515.0" styleClass="box-login">
+      <AnchorPane layoutX="257.0" prefHeight="762.0" prefWidth="515.0" styleClass="box-login">
          <children>
             <JFXTextField fx:id="Nom" layoutX="149.0" layoutY="37.0" prefHeight="25.0" prefWidth="244.0" promptText="Nom" />
             <JFXTextField fx:id="Prenom" layoutX="149.0" layoutY="71.0" prefHeight="25.0" prefWidth="244.0" promptText="Prenom" />
@@ -77,6 +77,13 @@
             <Label fx:id="LImage" layoutX="423.0" layoutY="664.0" />
             <Label fx:id="LDate" layoutX="423.0" layoutY="194.0" />
             <Label fx:id="Lsexe" layoutX="426.0" layoutY="239.0" />
+            <JFXRadioButton fx:id="ClientId" layoutX="210.0" layoutY="468.0" text="Client">
+               <toggleGroup>
+                  <ToggleGroup fx:id="role" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="JournalisteId" layoutX="308.0" layoutY="468.0" text="Journaliste" toggleGroup="$role" />
+            <Label layoutX="142.0" layoutY="468.0" prefHeight="21.0" prefWidth="52.0" text="Role" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="315.0" fitWidth="264.0" layoutX="772.0" layoutY="231.0">

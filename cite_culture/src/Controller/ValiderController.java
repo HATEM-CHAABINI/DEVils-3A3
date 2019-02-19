@@ -9,11 +9,14 @@ import Entities.Utilisateur;
 import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import utilitaire.Upload;
 
 /**
  * FXML Controller class
@@ -21,8 +24,8 @@ import javafx.fxml.Initializable;
  * @author hatem
  */
 public class ValiderController implements Initializable {
-
-int n;
+int nbra=0;
+Utilisateur u;
     @FXML
     private JFXTextField idNum;
     @FXML
@@ -37,21 +40,36 @@ int n;
     }    
 
     @FXML
-    private void valider(ActionEvent event) {
+    private void valider(ActionEvent event) throws ClassNotFoundException, IOException {
         
+        System.out.println(nbra);
         
-    }
-    
-    public void setUN(Utilisateur ut,int nbra) throws ClassNotFoundException
+        if (nbra==Integer.valueOf(this.idNum.getText()))
     {
-   UtilisateurService s= new UtilisateurService();
-   
-    this.n=nbra;
-    if (nbra==Integer.valueOf(this.idNum.getText()))
-    {s.ajouterUtilisateur(ut);
+         File f=new File(u.getImage());
+        Upload up=new Upload();
+   //     String lien =;
+          //String LienIm = lien.replace("\\","/");
+        u.setImage(up.upload(f,u.getUsername()));
+        System.out.println("ooooooooooooooooooooooouiii");
+        UtilisateurService us=new UtilisateurService();
+                
+        us.ajouterUtilisateur(u);
+        
     }
     else{
         System.out.println("Code erroné");
     }
+
+        
+    }
+    
+    public void setUN(Utilisateur n,int nbra) throws ClassNotFoundException
+    {
+        
+
+        this.nbra=nbra;
+               this.u=n;
+
     }    
 }

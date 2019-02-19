@@ -7,10 +7,12 @@ package Services;
 
 import Dao.MyDB;
 import Entities.Journaliste;
+import Entities.Journaliste;
 import Entities.Utilisateur;
 import IServices.IJournaliste;
 import com.google.zxing.WriterException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utilitaire.QRCodeGenerator;
+import utilitaire.cryptpasswords;
 
 /**
  *
@@ -32,142 +37,165 @@ public class JournalisteService implements IJournaliste{
                 this.conn = MyDB.getInstance().getConnexion();
 
     }
+@Override
+    public void ajouterJournaliste(Utilisateur c) {
+    String role=  "a:2:{i:1;s:16:\"ROLE_JOURNALISTE\";}" ;
 
-    @Override
-    public void ajouterJournaliste(Journaliste a) {
-        
-   String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
+        String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
            + " `date_naissance`, `bio`, `domaine`, `note`, `adresse`, `code_postal`, `sexe`, `telephone`, `cin`) "
-           + "VALUES ('"+a.getUsername() + "','" + a.getUsername() + "','" + a.getEmail() + "','" + a.getEmail() + "','" +
-a.getEnabled() + "','" + a.getSalt() + "','" + a.getPassword()  + "','" + a.getLocked() + "','" + a.getExpired()  + 
-"','" + a.getConfirmation_token() + "','" +a.getRoles()+ "','" + a.getCredentials_expired() +  "','" + a.getDepartement()+ "','" +
-a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + "','" + a.getVille() + "','" + a.getDate_naissance() + "','" +
-           a.getBio() + "','" + a.getDomaine() + "','" + a.getNote() + "','" + a.getAdresse()+"','" + a.getCode_postal()+
-           "','" + a.getSexe()+"','" + a.getTelephone()+"','" + a.getCin()+"');";
+           + "VALUES ('"+c.getUsername() + "','" + c.getUsername() + "','" + c.getEmail() + "','" + c.getEmail() + "','" +
+c.getEnabled() + "','" + c.getSalt() + "','" + c.getPassword()  + "','" + c.getLocked() + "','" + c.getExpired()  + 
+"','" + c.getConfirmation_token() + "','"+ role+"','" + c.getCredentials_expired() +  "','" + c.getDepartement()+ "','" +
+c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + "','" + c.getVille() + "','"+ c.getDate_naissance() +"','" +
+           c.getBio() + "','" + c.getDomaine() + "','" + c.getNote() + "','" + c.getAdresse()+"','" + c.getCode_postal()+
+           "','" + c.getSexe()+"','" + c.getTelephone()+"','" + c.getCin()+"');";
+
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
-            Statement stl = conn.createStatement();
-           int rs =stl.executeUpdate(sql);
-           QRCodeGenerator.generateQRCodeImage(a.getQr(),a.getUsername(),a.getEmail());
+      Statement stl = conn.createStatement();
+//             PreparedStatement ptl = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+//            ptl.executeUpdate();
+//            ResultSet generatedKeys = ptl.getGeneratedKeys();
+//                 generatedKeys.next();
+//                 
+//            System.out.println(generatedKeys.getInt(1));
+          int rs =stl.executeUpdate(sql);
+           QRCodeGenerator.generateQRCodeImage(c.getQr(),c.getUsername(),c.getEmail());
                    } catch (SQLException |IOException|WriterException ex) {
             System.err.println("SQLException: " + ex.getMessage());
+           
+        } catch (Exception ex) {
+            Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }
+
+    @Override
+    public Utilisateur rechercheJournalisteParQr(String qr) {
+         Utilisateur c = new Utilisateur();
+        
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and (qr='" + qr + "');";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    c.setId(rs.getInt("id"));
+                    c.setNom(rs.getString("nom"));
+                    c.setUsername(rs.getString("username"));
+                    c.setPrenom(rs.getString("prenom"));
+                    c.setEmail(rs.getString("email"));
+                    c.setPassword(rs.getString("password"));
+                    c.setAdresse(rs.getString("adresse"));
+                  c.setRoles(rs.getString("roles"));
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return c;
+    }
+
+    @Override
+    public Utilisateur rechercheJournalisteParCin(int cin) {
+Utilisateur a = new Utilisateur();
+        
+//SELECT * FROM fos_user WHERE (roles like "%ROLE_UTILISATEUR%" and cin= 10009484 )
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%'  and cin='" + cin + "';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  a.setImage(rs.getString("image"));
+                  a.setVille(rs.getString("ville"));
+                  a.setTelephone(rs.getInt("telephone"));
+                  a.setCode_postal(rs.getInt("code_postal"));
+                a.setDate_naissance(rs.getDate("date_naissance"));
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return a;     }
+
+    @Override
+    public Utilisateur rechercheJournalisteParUsername(String username) {
+Utilisateur a = new Utilisateur();
+        
+
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return a;     }
+
+    @Override
+    public Utilisateur rechercheJournalisteParUsernameMdp(String username, String mdp) {
+//d
+Utilisateur a = new Utilisateur();
+        cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
+        try {
+            String mdpc=encryption.cryptme(mdp);
+        
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username ='" + username + "' and password like '"+ mdpc+"';";
+            System.out.println("///////////////////////");
+            System.out.println(mdpc);
+            System.out.println("///////////////////////");
+           
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                }
             
-        }    }
-
-    @Override
-    public Journaliste rechercheJournalisteParQr(String qr) {
- Journaliste a = new Journaliste();
-        
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and qr='" + qr + "';";
-
-            try {
-                Statement stl = conn.createStatement();
-                ResultSet rs = stl.executeQuery(sql);
-
-                while (rs.next()) {
-                    a.setId(rs.getInt("id"));
-                    a.setNom(rs.getString("nom"));
-                    a.setUsername(rs.getString("username"));
-                    a.setPrenom(rs.getString("prenom"));
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    a.setAdresse(rs.getString("adresse"));
-                  a.setRoles(rs.getString("roles"));
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        return a;    }
-
-    @Override
-    public Journaliste rechercheJournalisteParCin(int cin) {
-Journaliste a = new Journaliste();
-        
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and cin='" + cin + "';";
-
-            try {
-                Statement stl = conn.createStatement();
-                ResultSet rs = stl.executeQuery(sql);
-
-                while (rs.next()) {
-                    a.setId(rs.getInt("id"));
-                    a.setNom(rs.getString("nom"));
-                    a.setUsername(rs.getString("username"));
-                    a.setPrenom(rs.getString("prenom"));
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    a.setAdresse(rs.getString("adresse"));
-                  a.setRoles(rs.getString("roles"));
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        return a;     }
-
-    @Override
-    public Journaliste rechercheJournalisteParUsername(String username) {
-Journaliste a = new Journaliste();
-        
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "';";
-
-            try {
-                Statement stl = conn.createStatement();
-                ResultSet rs = stl.executeQuery(sql);
-
-                while (rs.next()) {
-                    a.setId(rs.getInt("id"));
-                    a.setNom(rs.getString("nom"));
-                    a.setUsername(rs.getString("username"));
-                    a.setPrenom(rs.getString("prenom"));
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    a.setAdresse(rs.getString("adresse"));
-                  a.setRoles(rs.getString("roles"));
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        return a;     }
-
-    @Override
-    public Journaliste rechercheJournalisteParUsernameMdp(String username, String mdp) {
-
-Journaliste a = new Journaliste();
-        
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + username + "'+ and password ='"+ mdp+"';";
-
-            try {
-                Statement stl = conn.createStatement();
-                ResultSet rs = stl.executeQuery(sql);
-
-                while (rs.next()) {
-                    a.setId(rs.getInt("id"));
-                    a.setNom(rs.getString("nom"));
-                    a.setUsername(rs.getString("username"));
-                    a.setPrenom(rs.getString("prenom"));
-                    a.setEmail(rs.getString("email"));
-                    a.setPassword(rs.getString("password"));
-                    a.setAdresse(rs.getString("adresse"));
-                  a.setRoles(rs.getString("roles"));
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException |NoSuchAlgorithmException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return a;        }
 
     @Override
-    public List<Journaliste> rechercheJournalisteParNom(String nom) {
-            List<Journaliste> ListJournaliste = new ArrayList<>();
+    public List<Utilisateur> rechercheJournalisteParNom(String nom) {
+            List<Utilisateur> ListJournaliste = new ArrayList<>();
             
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username='" + nom +"';";
 
@@ -176,7 +204,7 @@ Journaliste a = new Journaliste();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Journaliste a =new Journaliste();
+                    Utilisateur a =new Utilisateur();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -189,22 +217,22 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return ListJournaliste;        }
 
     @Override
-    public List<Journaliste> tousLesJournalistes() {
-        List<Journaliste> ListJournaliste = new ArrayList<>();
+    public List<Utilisateur> tousLesJournalistes() {
+        List<Utilisateur> ListJournaliste = new ArrayList<>();
             
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%';";
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%';";
 
             try {
                 Statement stl = conn.createStatement();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Journaliste a =new Journaliste();
+                    Utilisateur a =new Utilisateur();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -217,20 +245,48 @@ Journaliste a = new Journaliste();
                 }
 
             } catch (SQLException ex) {
-                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return ListJournaliste;        }
 
 
     @Override
-    public void updateJournaliste(Journaliste a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void updateJournaliste(String username,String email,int telephone,String ville,String adresse,int code_postale,String mdp,String path){
+  
+    try {
+        String sql;
+        if (mdp.equals("")){
+        
+               sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE `username` ='"+username+"';";
+
+        }else{
+        cryptpasswords encryption = new cryptpasswords() ;
+        String qr=username+','+ encryption.cryptme(mdp);
+       sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE `username` ='"+username+"';";
+                  QRCodeGenerator.generateQRCodeImage(qr,username,email);
+
+        }
+        try {
+            
+            Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+            
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+        }    } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+        }    }
 
     @Override
-    public void SupprimerCompteJournaliste(int cin) {
+    public void SupprimerCompteJournaliste(String username) {
 
-    String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
+    String sql = "DELETE FROM `fos_user` WHERE roles like '%ROLE_JOURNALISTE%' and username ='"+username+"';";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
@@ -241,5 +297,214 @@ Journaliste a = new Journaliste();
             
         }        }
 
+    @Override
+    public List<Utilisateur> clientNonActiver() {
+    List<Utilisateur> ListJournaliste = new ArrayList<>();
+            
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and enabled='" + 0 +"';";
 
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    Utilisateur a =new Utilisateur();
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  ListJournaliste.add(a);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return ListJournaliste;            }
+
+    @Override
+    public void updateEnable(int ena,String username) {
+        try{  
+        String sql = "UPDATE `fos_user` SET `enabled`='"+ena+ "' WHERE `username` ='"+username+"';";
+       Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+    }
+    }
+    @Override
+    public void updateMail(String mail,String username) {
+        try{  
+        String sql = "UPDATE `fos_user` SET `email`='"+mail+ "' WHERE `username` ='"+username+"';";
+       Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+    }
+    }
+
+    @Override
+    public ObservableList<Utilisateur> oTousLesJournalistes() {
+         ObservableList<Utilisateur> ListJournaliste = FXCollections.observableArrayList();
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    Utilisateur a =new Utilisateur();
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setEnabled(rs.getInt("enabled"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  ListJournaliste.add(a);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return ListJournaliste;        }
+
+    @Override
+    public ObservableList<Utilisateur> oJournalisteNonActiver() {
+         ObservableList<Utilisateur> ListJournaliste = FXCollections.observableArrayList();
+            
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and enabled='" + 0 +"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    Utilisateur a =new Utilisateur();
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  ListJournaliste.add(a);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return ListJournaliste;            }
+
+    @Override
+    public boolean verifUsername(String username) {
+         boolean verif =true;
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%'and username='"+ username+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=false;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;        }
+
+    @Override
+    public boolean verifEmail(String Email) {
+   boolean verif =true;
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%'and email='"+ Email+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=false;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;            }
+
+    @Override
+    public boolean verifCin(int Cin) {
+   boolean verif =true;
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%'and cin='"+ Cin+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=false;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;            }
+
+    @Override
+    public boolean verifEmailUpdate(String Email, String username) {
+boolean verif =true;
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_JOURNALISTE%'and email='"+ Email+"'and username NOT LIKE '"+username+"';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=false;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;            }
+
+    @Override
+    public boolean verfierMotDePasse(String mdp, String username) {
+boolean verif =false;
+
+        cryptpasswords encryption = new cryptpasswords() ; // SHA256 ENCRYPTION
+        try {
+            String mdpc=encryption.cryptme(mdp);
+        
+
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_JOURNALISTE%' and username ='" + username + "' and password like '"+ mdpc+"';";
+            System.out.println("///////////////////////");
+            System.out.println(mdpc);
+            System.out.println("///////////////////////");
+           
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                if (rs.next()) {
+                 verif=true;
+                }
+            
+            } catch (SQLException |NoSuchAlgorithmException ex) {
+                Logger.getLogger(JournalisteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return verif;         }
 }
+

@@ -51,6 +51,15 @@ public class ControlesaisieJ {
 		return (password.length() >= 8);
 	}
         
+        public boolean num(String num) {
+		String masque = "[0-9]";
+		Pattern pattern = Pattern.compile(masque);
+		Matcher controler = pattern.matcher(num);
+		if (controler.matches()) {
+			return true;
+		}
+		return false;
+	}
         
         
 //********************************Numero telephone contient 8 chiffres **************************************/

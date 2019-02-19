@@ -9,13 +9,18 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
  
 public class sendSMS {
-        public static void main(String[] args) {
+//        public static void main(String[] args) {
+  public sendSMS()    {}
+  public void envoitSms(int num,int valeur){
+            
 		try {
+                                System.out.println("envoie sms");
+
 			// Construct data
 			String apiKey = "apikey=" + "RYrN/HA5iVY-XHmbSh2M0DbtsmK2tGXGDldb2JbJWO	";
-			String message = "&message=" + "test";
+			String message = "&message=" + valeur;
 			String sender = "&sender=" + "CITECULTURE";
-			String numbers = "&numbers=" + "+21650459936";
+			String numbers = "&numbers=+216" +num;
 			
 			// Send data
 			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
@@ -40,7 +45,10 @@ public class sendSMS {
 	}
            
     
-}///*
+}
+
+
+///*
 // * To change this license header, choose License Headers in Project Properties.
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.

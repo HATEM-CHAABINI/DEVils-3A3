@@ -42,6 +42,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import utilitaire.ControlesaisieJ;
 import utilitaire.UserSession;
+import utilitaire.sendSMS;
 
 /**
  * FXML Controller class
@@ -116,6 +117,12 @@ public class UtilisateurInscription implements Initializable {
     private Label LDate;
     @FXML
     private Label Lsexe;
+    @FXML
+    private JFXRadioButton ClientId;
+    @FXML
+    private JFXRadioButton JournalisteId;
+    @FXML
+    private ToggleGroup role;
 
     /**
      * Initializes the controller class.
@@ -325,11 +332,11 @@ if(pwd1.getText().equals(pwd2.getText())){
  if (!path.getText().equals(""))
  {
  
-Path source=Paths.get(this.path.getText());
-Path destination= Paths.get("C:\\wamp64\\www\\image_pdf\\"+this.username.getText()+"_ image.png");
-       LienIm = destination.toString().replace("\\","/");
+//Path source=Paths.get(this.path.getText());
+//Path destination= Paths.get("C:\\wamp64\\www\\image_pdf\\"+this.username.getText()+"_ image.png");
+  //     LienIm = destination.toString().replace("\\","/");
     //    System.out.println(rp);
-Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
+//Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
   v++;      
  this.LImage.setText("");
  
@@ -337,13 +344,26 @@ Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
  this.LImage.setText("* Veuillez inserer une image");
  
  } 
-      //  if (v==13){
+       if (v==13){
                   Random r = new Random();
 int valeur = 1000 + r.nextInt(9999 - 1000);
             System.out.println(valeur);
-                  Utilisateur c1=new Utilisateur(Usernameu,EmailU,mdp1,LienIm,NomU,PrenomU,villeBox.getValue(),daten,AdrU,codeposta,SexeU,teli,cin);
-this.uti=UserSession.getInstance(c1).getUser();
-  FXMLLoader loader=new FXMLLoader();
+         Utilisateur c1=new Utilisateur(Usernameu,EmailU,mdp1,this.path.getText(),NomU,PrenomU,villeBox.getValue(),daten,AdrU,codeposta,SexeU,teli,cin);
+       
+         
+         
+/*Envoie sms         
+         
+         sendSMS sms=new sendSMS();
+         sms.envoitSms(teli, valeur);
+
+*/
+
+//this.uti=UserSession.getInstance(c1).getUser();
+  
+
+
+FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/valider.fxml"));
         try{
         loader.load();
@@ -352,13 +372,13 @@ this.uti=UserSession.getInstance(c1).getUser();
         
         }
         ValiderController display=loader.getController();
-      //  display.setUN(c1, valeur);
+        display.setUN(c1, valeur);
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
                 stage.showAndWait();
       
-    c1=new Utilisateur();
+  //  c1=new Utilisateur();
       //  }
        
     
@@ -399,6 +419,7 @@ Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
 
     //   s.ajouterUtilisateur(c1);
     }
+}
 }
     
 

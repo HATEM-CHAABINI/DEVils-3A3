@@ -66,7 +66,7 @@ public Utilisateur (String username,String email,String password,String image,St
     this.expires_at=null;
     this.confirmation_token=null;
     this.password_requested_at=null;
-    this.roles= "a:1:{i:0;s:15:\"ROLE_UTILISATEUR\";}" ;
+    this.roles= "";
     this.credentials_expired=0;
     this.credentials_expire_at=null;
     this.departement=null;

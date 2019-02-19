@@ -32,6 +32,8 @@ public void updateEnable(int ena,String username );
  
  public boolean verifUsername(String username);
  public boolean verifEmail(String Email);
+ public boolean verifEmailUpdate(String Email,String username);
+ public boolean verfierMotDePasse(String mdp,String username);
  public boolean verifCin(int Cin);
  
  

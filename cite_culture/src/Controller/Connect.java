@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import utilitaire.ControlesaisieJ;
+import utilitaire.QRCodeReader;
 import utilitaire.UserSession;
 
 /**
@@ -46,6 +47,8 @@ public class Connect implements Initializable {
     private Label LUsername;
     @FXML
     private Label LMdp1;
+    @FXML
+    private JFXButton connectqr;
 
     /**
      * Initializes the controller class.
@@ -96,19 +99,17 @@ UserSession.getInstance(u).getUser();
 // System.out.println(uti.toString());
 //Utilisateur dd= user.getUser();
   //  System.out.println(dd);
+if (UserSession.getInstance(u).getUser().getNom()!= null){
 
- 
-  
-
-  FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/UtilistaeursInscription.fxml"));
+ FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
         loader.load();
         }catch (IOException ex){
         Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
         
         }
-        UtilisateurInscription display=loader.getController();
+        MiseAJour display=loader.getController();
        
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
@@ -116,8 +117,56 @@ UserSession.getInstance(u).getUser();
                 stage.showAndWait();
         
         
+}else{
+    System.out.println("acces refusé");
 }
+}
+ 
+  
+
+ 
         
+    }
+
+    @FXML
+    private void Connectionqr(ActionEvent event) throws IOException, ClassNotFoundException {
+        String CodeQr=QRCodeReader.ReadQRCodeImage();
+        
+        
+  String nq=CodeQr.replace("QR-Code:","");
+          UtilisateurService us= new UtilisateurService();
+    Utilisateur u=new Utilisateur();
+    
+u=us.rechercheUtilisateurParQr(nq);
+UserSession.getInstance(u).getUser();
+
+if (UserSession.getInstance(u).getUser().getNom()!= null){
+
+ FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        MiseAJour display=loader.getController();
+       
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+        
+        
+}else{
+    System.out.println("acces refusé");
+}
+     /*     UtilisateurService us= new UtilisateurService();
+    Utilisateur u=new Utilisateur();
+
+u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
+    
+UserSession.getInstance(u).getUser();*/
     }
     
 }

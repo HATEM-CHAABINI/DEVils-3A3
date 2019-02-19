@@ -11,6 +11,7 @@ import Entities.Utilisateur;
 import IServices.IEmploye;
 import com.google.zxing.WriterException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utilitaire.QRCodeGenerator;
+import utilitaire.cryptpasswords;
 
 /**
  *
@@ -34,7 +38,7 @@ public class EmployeService implements IEmploye{
     }
 
     @Override
-    public void ajouterEmploye(Employe a) {
+    public void ajouterEmploye(Utilisateur a) {
 
    String sql = "INSERT INTO `fos_user`(`username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `locked`, "
            + "`expired`,  `confirmation_token`, `roles`, `credentials_expired`, `departement`, `qr`, `image`, `nom`, `prenom`, `ville`,"
@@ -57,8 +61,8 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         }    }
 
     @Override
-    public Employe rechercheEmployeParQr(String qr) {
- Employe a = new Employe();
+    public Utilisateur rechercheEmployeParQr(String qr) {
+ Utilisateur a = new Utilisateur();
         
 
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and qr='" + qr + "');";
@@ -84,8 +88,8 @@ a.getQr() + "','" + a.getImage() + "','" + a.getNom() + "','" + a.getPrenom() + 
         return a;    }
 
     @Override
-    public Employe rechercheEmployeParCin(int cin) {
-Employe a = new Employe();
+    public Utilisateur rechercheEmployeParCin(int cin) {
+Utilisateur a = new Utilisateur();
         
 
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and cin='" + cin + "');";
@@ -111,8 +115,8 @@ Employe a = new Employe();
         return a;     }
 
     @Override
-    public Employe rechercheEmployeParUsername(String username) {
-Employe a = new Employe();
+    public Utilisateur rechercheEmployeParUsername(String username) {
+Utilisateur a = new Utilisateur();
         
 
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "');";
@@ -138,9 +142,9 @@ Employe a = new Employe();
         return a;     }
 
     @Override
-    public Employe rechercheEmployeParUsernameMdp(String username, String mdp) {
+    public Utilisateur rechercheEmployeParUsernameMdp(String username, String mdp) {
 
-Employe a = new Employe();
+Utilisateur a = new Utilisateur();
         
 
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + username + "'+ and password ='"+ mdp+"');";
@@ -166,8 +170,8 @@ Employe a = new Employe();
         return a;        }
 
     @Override
-    public List<Employe> rechercheEmployeParNom(String nom) {
-            List<Employe> ListEmploye = new ArrayList<>();
+    public List<Utilisateur> rechercheEmployeParNom(String nom) {
+            List<Utilisateur> ListEmploye = new ArrayList<>();
             
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%' and username='" + nom +"');";
 
@@ -176,7 +180,7 @@ Employe a = new Employe();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Employe a =new Employe();
+                    Utilisateur a =new Utilisateur();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -194,8 +198,8 @@ Employe a = new Employe();
         return ListEmploye;        }
 
     @Override
-    public List<Employe> tousLesEmployes() {
-        List<Employe> ListEmploye = new ArrayList<>();
+ public List<Utilisateur> tousLesEmploye() {
+        List<Utilisateur> ListEmploye = new ArrayList<>();
             
             String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_EMPLOYE%';";
 
@@ -204,7 +208,7 @@ Employe a = new Employe();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
-                    Employe a =new Employe();
+                    Utilisateur a =new Utilisateur();
                     a.setId(rs.getInt("id"));
                     a.setNom(rs.getString("nom"));
                     a.setUsername(rs.getString("username"));
@@ -221,16 +225,10 @@ Employe a = new Employe();
             }
         return ListEmploye;        }
 
-
     @Override
-    public void updateEmploye(Employe a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void SupprimerCompteEmploye(String username) {
 
-    @Override
-    public void SupprimerCompteEmploye(int cin) {
-
-    String sql = "DELETE FROM `fos_user` where (cin ='"+cin+"');";
+    String sql = "DELETE FROM `fos_user` where username ='"+username+"');";
    //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
   
     try {
@@ -240,6 +238,105 @@ Employe a = new Employe();
             System.err.println("SQLException: " + ex.getMessage());
             
         }        }
+
+
+
+    @Override
+    public ObservableList<Utilisateur> oTousLesEmploye() {
+   ObservableList<Utilisateur> ListUtilisateur = FXCollections.observableArrayList();
+            
+            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_EMPLOYE%';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    Utilisateur a =new Utilisateur();
+                    a.setId(rs.getInt("id"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setEnabled(rs.getInt("enabled"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  ListUtilisateur.add(a);
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return ListUtilisateur;        }
+
+    @Override
+    public void updateMail(String mail, String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    @Override
+    public void updateEmploye(String username, String email, int telephone, String ville, String adresse, int code_postale, String mdp, String path) {
+
+    try {
+        String sql;
+        if (mdp.equals("")){
+        
+               sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE roles like '%ROLE_EMPLOYE%' and `username` ='"+username+"';";
+
+        }else{
+        cryptpasswords encryption = new cryptpasswords() ;
+        String qr=username+','+ encryption.cryptme(mdp);
+       sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "',`image`='"+path+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE roles like '%ROLE_EMPLOYE%' and `username` ='"+username+"';";
+                  QRCodeGenerator.generateQRCodeImage(qr,username,email);
+
+        }
+        try {
+            
+            Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+            
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+        }    } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }    }
+    
+
+    
+
+    @Override
+    public boolean verifUsername(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean verifEmail(String Email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean verifEmailUpdate(String Email, String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean verfierMotDePasse(String mdp, String username) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean verifCin(int Cin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 }

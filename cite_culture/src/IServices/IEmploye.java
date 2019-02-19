@@ -6,21 +6,31 @@
 package IServices;
 
 import Entities.Employe;
+import Entities.Utilisateur;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author hatem
  */
 public interface IEmploye {
-    
-     public void ajouterEmploye(Employe e);
- public Employe rechercheEmployeParQr(String qr);
- public Employe rechercheEmployeParCin(int cin);
- public Employe rechercheEmployeParUsername(String username);
- public Employe rechercheEmployeParUsernameMdp(String username,String mdp);
- public List<Employe>rechercheEmployeParNom(String nom);
- public List<Employe>tousLesEmployes();
- public void updateEmploye(Employe e);
- public void SupprimerCompteEmploye(int cin);
+   public void ajouterEmploye(Utilisateur c);
+ public Utilisateur rechercheEmployeParQr(String qr);
+ public Utilisateur rechercheEmployeParCin(int cin);
+ public Utilisateur rechercheEmployeParUsername(String username);
+ public Utilisateur rechercheEmployeParUsernameMdp(String username,String mdp);
+ public List<Utilisateur>rechercheEmployeParNom(String nom);
+ public List<Utilisateur>tousLesEmploye();
+ public ObservableList <Utilisateur> oTousLesEmploye();
+public void updateMail(String mail,String username );
+ public void updateEmploye(String username,String email,int telephone,String ville,String adresse,int code_postale,String mdp,String path);
+ public void SupprimerCompteEmploye(String username);
+ 
+ public boolean verifUsername(String username);
+ public boolean verifEmail(String Email);
+ public boolean verifEmailUpdate(String Email,String username);
+ public boolean verfierMotDePasse(String mdp,String username);
+ public boolean verifCin(int Cin);
+ 
 }
