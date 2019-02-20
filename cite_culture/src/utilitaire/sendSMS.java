@@ -17,7 +17,7 @@ public class sendSMS {
                                 System.out.println("envoie sms");
 
 			// Construct data
-			String apiKey = "apikey=" + "RYrN/HA5iVY-XHmbSh2M0DbtsmK2tGXGDldb2JbJWO	";
+			String apiKey = "apikey=" + "Ssc78UkNNbg-MoWMVi6JfilPKR3xPlXvfegxxfO9pC";
 			String message = "&message=" + valeur;
 			String sender = "&sender=" + "CITECULTURE";
 			String numbers = "&numbers=+216" +num;

@@ -94,6 +94,7 @@ c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + 
                     c.setEmail(rs.getString("email"));
                     c.setPassword(rs.getString("password"));
                     c.setAdresse(rs.getString("adresse"));
+                    c.setEnabled(rs.getInt("enabled"));
                   c.setRoles(rs.getString("roles"));
                 }
 
@@ -141,7 +142,7 @@ Utilisateur a = new Utilisateur();
 Utilisateur a = new Utilisateur();
         
 
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%' and username='" + username + "';";
+            String sql = "SELECT * FROM fos_user  WHERE  (roles like '%ROLE_JOURNALISTE%' or roles like '%ROLE_UTILISATEUR%') and username='" + username + "';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -156,6 +157,7 @@ Utilisateur a = new Utilisateur();
                     a.setPassword(rs.getString("password"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
+                  a.setTelephone(rs.getInt("telephone"));
                 }
 
             } catch (SQLException ex) {
@@ -192,6 +194,8 @@ Utilisateur c = new Utilisateur();
                     c.setPrenom(rs.getString("prenom"));
                     c.setEmail(rs.getString("email"));
                     c.setPassword(rs.getString("password"));
+                                        c.setEnabled(rs.getInt("enabled"));
+
                     c.setAdresse(rs.getString("adresse"));
                   c.setRoles(rs.getString("roles"));
                 }
@@ -417,7 +421,8 @@ Utilisateur c = new Utilisateur();
     public boolean verifUsername(String username) {
          boolean verif =true;
             
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and username='"+ username+"';";
+         //   String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and username='"+ username+"';";
+            String sql = "SELECT * FROM fos_user  WHERE username='"+ username+"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -436,6 +441,7 @@ Utilisateur c = new Utilisateur();
     public boolean verifEmail(String Email) {
    boolean verif =true;
             
+         //   String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and email='"+ Email+"';";
             String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and email='"+ Email+"';";
 
             try {
@@ -514,5 +520,25 @@ boolean verif =false;
                 Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
             }
         return verif;         }
-}
+
+    @Override
+    public void updateMdpUtilisateur(String username, String mdp,String email) {
+        try {
+            cryptpasswords encryption = new cryptpasswords() ;
+            String qr=username+','+ encryption.cryptme(mdp);
+            System.out.println(encryption.cryptme(mdp));
+            String sql = "UPDATE `fos_user` SET `password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "' WHERE `username` ='"+username+"';";
+            QRCodeGenerator.generateQRCodeImage(qr,username,email);
+        
+
+        
+   
+            
+            Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+            
+        } catch (SQLException |IOException| WriterException |NoSuchAlgorithmException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+}}
 

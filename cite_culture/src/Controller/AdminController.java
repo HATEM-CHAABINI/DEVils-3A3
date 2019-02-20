@@ -6,6 +6,7 @@
 package Controller;
 
 import Entities.Utilisateur;
+import Services.JournalisteService;
 import Services.UtilisateurService;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,9 +30,8 @@ import javafx.util.converter.IntegerStringConverter;
  * @author hatem
  */
 public class AdminController implements Initializable {
-
-    @FXML
-    private TableColumn<Utilisateur,Integer> idId;
+    //@FXML
+   // private TableColumn<Utilisateur,Integer> idId;
     @FXML
     private TableColumn<Utilisateur,String> idUsername;
     @FXML
@@ -43,23 +43,35 @@ public class AdminController implements Initializable {
     @FXML
     private Button idNonActiv;
 
-    /**
-     * Initializes the controller class.
-     */
+    
              ObservableList<Utilisateur> ListUtilisateur = FXCollections.observableArrayList();
     @FXML
     private TableView<Utilisateur> table;
+    @FXML
+    private TableColumn<Utilisateur,String> idNom;
+    @FXML
+    private TableColumn<Utilisateur,String> idPrenom;
+    @FXML
+    private TableColumn<Utilisateur,String> idAdresse;
+    @FXML
+    private Button idJour;
+    @FXML
+    private Button idjourNonActiv;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
             UtilisateurService cs= new UtilisateurService();
+            JournalisteService js=new JournalisteService();
             ListUtilisateur=cs.oTousLesUtilisateurs();
-            
-            idId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            ListUtilisateur.addAll(js.oTousLesJournalistes());
+           // idId.setCellValueFactory(new PropertyValueFactory<>("id"));
             idUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
             idEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-            idActiver.setCellValueFactory(new PropertyValueFactory<>("enabled"));
+            idNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            idPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            idAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+                  idActiver.setCellValueFactory(new PropertyValueFactory<>("enabled"));
                                 table.setItems(ListUtilisateur);
                                 table.setEditable(true);
                                  idEmail.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -89,8 +101,7 @@ public class AdminController implements Initializable {
                                
             
     }
-        @FXML
-
+    @FXML
     private void ChangeEmail(TableColumn.CellEditEvent<Utilisateur, String> event) throws ClassNotFoundException {
                     UtilisateurService cs= new UtilisateurService();
 
@@ -100,7 +111,6 @@ public class AdminController implements Initializable {
 
 //    private void ChangeEmail(TableColumn.CellEditEvent<S, T> event) {
 //    }
-
 
     @FXML
     private void ChangeActiver(TableColumn.CellEditEvent<Utilisateur,Integer> event) throws ClassNotFoundException {
@@ -112,5 +122,20 @@ public class AdminController implements Initializable {
         System.out.println(client.getUsername());
        cs.updateEnable(event.getNewValue(),client.getUsername());
     }}
+
+    @FXML
+    private void afficherjour(ActionEvent event) throws ClassNotFoundException {
+          JournalisteService js= new JournalisteService();
+            ListUtilisateur=js.oTousLesJournalistes();
+           
+         table.setItems(ListUtilisateur);
+    }
+
+    @FXML
+    private void afficherjourNonActiver(ActionEvent event) throws ClassNotFoundException {
+             JournalisteService js= new JournalisteService();
+            ListUtilisateur=js.oJournalisteNonActiver();
+             table.setItems(ListUtilisateur);
+    }
 
 }

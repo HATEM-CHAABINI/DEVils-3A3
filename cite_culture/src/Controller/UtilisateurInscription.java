@@ -123,6 +123,8 @@ public class UtilisateurInscription implements Initializable {
     private JFXRadioButton JournalisteId;
     @FXML
     private ToggleGroup role;
+    @FXML
+    private Label LRole;
 
     /**
      * Initializes the controller class.
@@ -161,7 +163,7 @@ public class UtilisateurInscription implements Initializable {
         System.out.println("You uvijinddddnvddddddddddddddddddddddddddddu me!");
           
         ControlesaisieJ cn=new ControlesaisieJ();
-String NomU = null,PrenomU = null,EmailU = null,Usernameu = null,AdrU = null,mdp1 = null,mdp2,SexeU = null,LienIm = null;
+String NomU = null,PrenomU = null,EmailU = null,Usernameu = null,AdrU = null,mdp1 = null,mdp2,SexeU = null,LienIm = null,roleu=null;
 int codeposta = 0,teli = 0,cin = 0;
    java.sql.Date daten = null;
 int v=0;
@@ -328,6 +330,17 @@ if(pwd1.getText().equals(pwd2.getText())){
 
         
         }
+ /************************************************************************/
+ if (role.selectedToggleProperty().getValue() != null){
+               RadioButton buttonr = (RadioButton) role.getSelectedToggle();
+        roleu=buttonr.getText();
+        this.LRole.setText("");
+        v++;
+        }else {
+                             this.LDate.setText("* veuillez choisir votre Role");
+
+        
+        }
  
  if (!path.getText().equals(""))
  {
@@ -344,12 +357,12 @@ if(pwd1.getText().equals(pwd2.getText())){
  this.LImage.setText("* Veuillez inserer une image");
  
  } 
-       if (v==13){
+       if (v==14){
                   Random r = new Random();
 int valeur = 1000 + r.nextInt(9999 - 1000);
             System.out.println(valeur);
          Utilisateur c1=new Utilisateur(Usernameu,EmailU,mdp1,this.path.getText(),NomU,PrenomU,villeBox.getValue(),daten,AdrU,codeposta,SexeU,teli,cin);
-       
+       c1.setRoles(roleu);
          
          
 /*Envoie sms         

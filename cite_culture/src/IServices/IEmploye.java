@@ -19,7 +19,7 @@ public interface IEmploye {
  public Utilisateur rechercheEmployeParQr(String qr);
  public Utilisateur rechercheEmployeParCin(int cin);
  public Utilisateur rechercheEmployeParUsername(String username);
- public Utilisateur rechercheEmployeParUsernameMdp(String username,String mdp);
+ public Utilisateur rechercheEmployeParEmailMdp(String email,String mdp);
  public List<Utilisateur>rechercheEmployeParNom(String nom);
  public List<Utilisateur>tousLesEmploye();
  public ObservableList <Utilisateur> oTousLesEmploye();

@@ -12,6 +12,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,12 +23,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import utilitaire.ControlesaisieJ;
 import utilitaire.QRCodeReader;
 import utilitaire.UserSession;
+import utilitaire.sendSMS;
 
 /**
  * FXML Controller class
@@ -49,6 +54,8 @@ public class Connect implements Initializable {
     private Label LMdp1;
     @FXML
     private JFXButton connectqr;
+    @FXML
+    private JFXButton MdpOub;
 
     /**
      * Initializes the controller class.
@@ -95,12 +102,13 @@ if (v==2){
 
 u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
     //System.out.println(u);
-UserSession.getInstance(u).getUser();
+
 // System.out.println(uti.toString());
 //Utilisateur dd= user.getUser();
   //  System.out.println(dd);
-if (UserSession.getInstance(u).getUser().getNom()!= null){
-
+if (u.getNom()!= null){
+if (u.getEnabled()==1){
+    UserSession.getInstance(u).getUser();
  FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
@@ -114,11 +122,22 @@ if (UserSession.getInstance(u).getUser().getNom()!= null){
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.showAndWait();
+                stage.showAndWait();}else{
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Compte bloque ou pas encore activer");
+            Optional<ButtonType> result = alert.showAndWait();
+
+}
         
         
 }else{
-    System.out.println("acces refusé");
+    
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("acces refusé");
+            Optional<ButtonType> result = alert.showAndWait();
+    
 }
 }
  
@@ -139,9 +158,10 @@ if (UserSession.getInstance(u).getUser().getNom()!= null){
     
 u=us.rechercheUtilisateurParQr(nq);
 UserSession.getInstance(u).getUser();
-
-if (UserSession.getInstance(u).getUser().getNom()!= null){
-
+        System.out.println(u.getEnabled());
+if (u.getNom()!= null){
+if (u.getEnabled()==1){
+    UserSession.getInstance(u).getUser();
  FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
@@ -155,11 +175,22 @@ if (UserSession.getInstance(u).getUser().getNom()!= null){
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.showAndWait();
+                stage.showAndWait();}else{
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Compte bloque ou pas encore activer");
+            Optional<ButtonType> result = alert.showAndWait();
+
+}
         
         
 }else{
-    System.out.println("acces refusé");
+    
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("acces refusé");
+            Optional<ButtonType> result = alert.showAndWait();
+    
 }
      /*     UtilisateurService us= new UtilisateurService();
     Utilisateur u=new Utilisateur();
@@ -167,6 +198,41 @@ if (UserSession.getInstance(u).getUser().getNom()!= null){
 u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
     
 UserSession.getInstance(u).getUser();*/
+    }
+
+    @FXML
+    private void MdpOub(ActionEvent event) throws ClassNotFoundException {
+                  UtilisateurService us= new UtilisateurService();
+    Utilisateur uop=new Utilisateur();
+        if (!username.getText().equals("")){
+        uop=us.rechercheUtilisateurParUsername(username.getText());
+            System.out.println("99999999999999999999");
+            System.out.println(uop.getUsername());
+            System.out.println("99999999999999999999");
+         Random r = new Random();
+int valeur = 1000 + r.nextInt(9999 - 1000);
+            System.out.println(valeur);
+        /* sendSMS sms=new sendSMS();
+         sms.envoitSms(u.getTelephone(), valeur);
+         */
+
+
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/ValiderNumMiseAjour.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        ValiderNumMiseAjour display=loader.getController();
+        display.setUN(uop, valeur);
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+        
+        }
     }
     
 }

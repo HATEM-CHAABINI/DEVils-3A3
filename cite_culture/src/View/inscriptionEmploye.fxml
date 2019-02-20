@@ -79,23 +79,15 @@
             <Label layoutX="59.0" layoutY="374.0" prefHeight="21.0" prefWidth="87.0" text="Domaine" />
             <JFXRadioButton fx:id="Proffeseurs" layoutX="162.0" layoutY="491.0" text="Proffeseurs">
                <toggleGroup>
-                  <ToggleGroup fx:id="Departement" />
+                  <ToggleGroup fx:id="sexe1" />
                </toggleGroup>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="Maintenace" layoutX="305.0" layoutY="491.0" text="Maintenace" toggleGroup="$Departement" />
+            <JFXRadioButton fx:id="Maintenace" layoutX="305.0" layoutY="491.0" text="Maintenace">
+               <toggleGroup>
+                  <ToggleGroup fx:id="sexe1" />
+               </toggleGroup>
+            </JFXRadioButton>
             <Label layoutX="52.0" layoutY="491.0" prefHeight="21.0" prefWidth="94.0" text="Departement" />
-            <Label fx:id="LNom" layoutX="450.0" layoutY="34.0" />
-            <Label fx:id="LPren" layoutX="452.0" layoutY="87.0" />
-            <Label fx:id="LEmail" layoutX="454.0" layoutY="142.0" />
-            <Label fx:id="LAdr" layoutX="447.0" layoutY="431.0" />
-            <Label fx:id="LTel" layoutX="458.0" layoutY="192.0" />
-            <Label fx:id="LCin" layoutX="449.0" layoutY="529.0" />
-            <Label fx:id="LMdp1" layoutX="441.0" layoutY="570.0" />
-            <Label fx:id="LMdp2" layoutX="438.0" layoutY="602.0" />
-            <Label fx:id="Lsexe" layoutX="436.0" layoutY="467.0" />
-            <Label fx:id="LDepartement" layoutX="446.0" layoutY="491.0" />
-            <Label fx:id="LDate" layoutX="458.0" layoutY="260.0" />
-            <Label fx:id="LDomaine" layoutX="460.0" layoutY="373.0" />
       </children>
     </AnchorPane>
       <SplitPane prefHeight="0.0" prefWidth="709.0" />

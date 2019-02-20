@@ -6,6 +6,7 @@
 package Controller;
 
 import Entities.Utilisateur;
+import Services.JournalisteService;
 import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -52,9 +53,15 @@ Utilisateur u;
           //String LienIm = lien.replace("\\","/");
         u.setImage(up.upload(f,u.getUsername()));
         System.out.println("ooooooooooooooooooooooouiii");
+      
+        if (u.getRoles().equals("Client")){
         UtilisateurService us=new UtilisateurService();
                 
-        us.ajouterUtilisateur(u);
+        us.ajouterUtilisateur(u);}else{
+        
+            JournalisteService js=new JournalisteService();
+            js.ajouterJournaliste(u);
+        }
         
     }
     else{

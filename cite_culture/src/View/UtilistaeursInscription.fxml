@@ -84,6 +84,7 @@
             </JFXRadioButton>
             <JFXRadioButton fx:id="JournalisteId" layoutX="308.0" layoutY="468.0" text="Journaliste" toggleGroup="$role" />
             <Label layoutX="142.0" layoutY="468.0" prefHeight="21.0" prefWidth="52.0" text="Role" />
+            <Label fx:id="LRole" layoutX="429.0" layoutY="469.0" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="315.0" fitWidth="264.0" layoutX="772.0" layoutY="231.0">
