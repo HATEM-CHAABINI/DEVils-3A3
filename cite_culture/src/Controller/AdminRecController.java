@@ -8,6 +8,10 @@ package Controller;
 import Entities.Employe;
 import Entities.Reclamation;
 import Entities.Tache;
+import Entities.Utilisateur;
+import Services.EmployeService;
+import Services.ReclamationService;
+import Services.TacheService;
 import Services.EmployeService;
 import Services.ReclamationService;
 import Services.TacheService;
@@ -16,6 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -59,17 +66,19 @@ public class AdminRecController implements Initializable {
     @FXML
     private Button traiterR;
     @FXML
-    private TableView<Employe> tblE;
+    private TableView<Utilisateur> tblE;
     @FXML
-    private TableColumn<Employe, String> NomE;
+    private TableColumn<Utilisateur, String> NomE;
     @FXML
-    private TableColumn<Employe, String> PrenomE;
+    private TableColumn<Utilisateur, String> PrenomE;
     @FXML
-     private TableColumn<Employe, String> cinE;
+     private TableColumn<Utilisateur, String> cinE;
     @FXML
     private JFXTextField cin2;
     @FXML
     private JFXTextField idR2;
+    @FXML
+    private TableColumn<Reclamation, String> SalleR;
    
     
 
@@ -86,7 +95,12 @@ public class AdminRecController implements Initializable {
             TypeR.setCellValueFactory(new PropertyValueFactory<>("type") );
             textR.setCellValueFactory(new PropertyValueFactory<>("text"));
             RR.setCellValueFactory(new PropertyValueFactory<>("username_client"));
-            
+            SalleR.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Reclamation, String>, ObservableValue<String>>() {
+        @Override
+        public ObservableValue<String> call(TableColumn.CellDataFeatures<Reclamation, String> c) {
+            return new SimpleStringProperty(c.getValue().getSalle().getDesignation());
+        }
+            });
                 NomR.setCellValueFactory(new PropertyValueFactory<>("nom_client"));
                 PrenomR.setCellValueFactory(new PropertyValueFactory<>("prenom_client"));
             TelR.setCellValueFactory(new PropertyValueFactory<>("telephone"));
@@ -95,7 +109,7 @@ public class AdminRecController implements Initializable {
             EtatR.setCellValueFactory(new PropertyValueFactory<>("etat"));
             
              EmployeService cs = new EmployeService();
-            //tblE.setItems(cs.);
+            tblE.setItems(cs.oTousLesEmploye());
              NomE.setCellValueFactory(new PropertyValueFactory<>("nom"));
             PrenomE.setCellValueFactory(new PropertyValueFactory<>("prenom"));
              cinE.setCellValueFactory(new PropertyValueFactory<>("cin"));
@@ -110,24 +124,22 @@ public class AdminRecController implements Initializable {
         
     }    
 private void setCellValueFromTableToTextField()
-    {
-        tblR.setOnMouseClicked(e -> {
-           Reclamation r = tblR.getItems().get(tblR.getSelectionModel().getSelectedIndex());
-          String  y=String.valueOf(r.getId_reclamation());
-           idR2.setText(y);
-            type_r.setText(r.getType());
-            text.setText(r.getText());
-            etat.setText(r.getEtat());
-            
-           
-            });
-    
+    {   tblR.setOnMouseClicked(e -> {
+        Reclamation r = tblR.getItems().get(tblR.getSelectionModel().getSelectedIndex());
+        String  y=String.valueOf(r.getId_reclamation());
+        idR2.setText(y);
+        type_r.setText(r.getType());
+        text.setText(r.getText());
+        etat.setText(r.getEtat());
+        
+        
+    });
     
     }
 private void setCellValueFromTableToTextField2()
     {
         tblE.setOnMouseClicked(e -> {
-           Employe x = tblE.getItems().get(tblE.getSelectionModel().getSelectedIndex());
+           Utilisateur x = tblE.getItems().get(tblE.getSelectionModel().getSelectedIndex());
             String  y=String.valueOf(x.getCin());
            cin2.setText(y);
            
@@ -149,6 +161,19 @@ private void setCellValueFromTableToTextField2()
             ts.ajouterTache(t);
             ReclamationService  rs = new ReclamationService();
             rs.update2(id);
+             ReclamationService sa = new ReclamationService() ;
+            tblR.setItems(sa.displayallR());
+            idR.setCellValueFactory(new PropertyValueFactory<>("id_reclamation") );
+            TypeR.setCellValueFactory(new PropertyValueFactory<>("type") );
+            textR.setCellValueFactory(new PropertyValueFactory<>("text"));
+            RR.setCellValueFactory(new PropertyValueFactory<>("username_client"));
+            
+                NomR.setCellValueFactory(new PropertyValueFactory<>("nom_client"));
+                PrenomR.setCellValueFactory(new PropertyValueFactory<>("prenom_client"));
+            TelR.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+            
+            MailR.setCellValueFactory(new PropertyValueFactory<>("email_client"));
+            EtatR.setCellValueFactory(new PropertyValueFactory<>("etat"));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdminRecController.class.getName()).log(Level.SEVERE, null, ex);
              

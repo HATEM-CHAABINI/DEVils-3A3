@@ -19,7 +19,7 @@ public class Testfxml extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("connection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Winner.fxml"));
         
         Scene scene = new Scene(root);
         

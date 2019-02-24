@@ -88,7 +88,7 @@ public class SalleController implements Initializable {
     private void add(ActionEvent event) {
         
         FXMLLoader loader= new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/addS.fxml"));
+        loader.setLocation(getClass().getResource("View/addS.fxml"));
         
         
         try {

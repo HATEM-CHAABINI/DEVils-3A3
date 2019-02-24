@@ -7,6 +7,7 @@ package Services;
 import Dao.MyDB;
 import Entities.Utilisateur;
 import Entities.Reclamation;
+import Entities.Salle;
 import IServices.IReclamationService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,12 +16,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import IServices.IReclamationService;
+
 /**
 /**
  *
- * @author Amine
+ * @author Nitro
  */
 public class ReclamationService implements IReclamationService {
 
@@ -33,8 +38,8 @@ public class ReclamationService implements IReclamationService {
 
     @Override
     public void addR(Reclamation r,  Utilisateur c) {
-         String sql = "INSERT INTO `reclamation` ( `type`, `text`, `username_client`, `nom_client`, `prenom_client`, `tel`, `mail`, `etat`)VALUES ('"+r.getType() + "','" + r.getText() + "','" + c.getUsername()+"','" + c.getNom()+"','" + c.getPrenom()+"','" + c.getTelephone()+"','" + c.getEmail()+"',+'Notifié');";
-        
+         String sql = "INSERT INTO `reclamation` ( `type`, `text`, `username_client`, `nom_client`, `prenom_client`, `tel`, `mail`, `etat`, `id_salle`)VALUES ('"+r.getType() + "','" + r.getText() + "','" + c.getUsername()+"','" + c.getNom()+"','" + c.getPrenom()+"','" + c.getTelephone()+"','" + c.getEmail()+"','Notifié','" + r.getSalle().getId_salle()+"');";
+     
        try {
             Statement stl = conn.createStatement();
            int rs =stl.executeUpdate(sql);
@@ -95,20 +100,24 @@ public class ReclamationService implements IReclamationService {
      public ObservableList<Reclamation>findByUsername(String s) {
         ObservableList<Reclamation> listR = FXCollections.observableArrayList();
        
-        String req = "select type,text,etat from reclamation where username_client =?";
+        String req = "select id_reclamation,type,text,etat,id_salle from reclamation where username_client =?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = conn.prepareStatement(req);
             preparedStatement.setString(1, s);
             ResultSet resultSet = preparedStatement.executeQuery();
                while (resultSet.next()) {
-                Reclamation r = new Reclamation( resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("etat") );
-
+                 Salle sa=new SalleService().rechercheSalleParID2(Integer.parseInt(resultSet.getString("id_salle")));
+                 
+                Reclamation r = new Reclamation( resultSet.getInt("id_reclamation"),resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("etat"),sa);
+                   
                 listR.add(r);
 
             }
         } catch (SQLException ex) {
            System.err.println("SQLException: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listR;
 
@@ -125,13 +134,16 @@ public class ReclamationService implements IReclamationService {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat") );
+                Salle sa=new SalleService().rechercheSalleParID2(Integer.parseInt(resultSet.getString("id_salle")));
+                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat"),sa);
 
                 listeuser.add(r);
 
             }
         } catch (SQLException ex) {
            System.err.println("SQLException: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeuser;
 
@@ -148,13 +160,15 @@ public class ReclamationService implements IReclamationService {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat") );
+                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat"),(new SalleService().rechercheSalleParID2(10)));
 
                 listeuser.add(r);
 
             }
         } catch (SQLException ex) {
            System.err.println("SQLException: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeuser;
 
@@ -170,20 +184,19 @@ public class ReclamationService implements IReclamationService {
              preparedStatement.setString(1, type);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat") );
+                Reclamation r = new Reclamation(resultSet.getInt("id_reclamation"), resultSet.getString("type"), resultSet.getString("text"),resultSet.getString("username_client"),resultSet.getString("nom_client"),resultSet.getString("prenom_client"),resultSet.getInt("tel"),resultSet.getString("mail"),resultSet.getString("etat") ,(new SalleService().rechercheSalleParID2(10)));
 
                 listeuser.add(r);
 
             }
         } catch (SQLException ex) {
            System.err.println("SQLException: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReclamationService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listeuser;
 
     }
-
-   
-  
 }
 
 //   @Override

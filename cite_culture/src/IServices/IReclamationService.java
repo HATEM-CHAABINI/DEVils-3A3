@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author Amine
+ * @author Nitro
  */
 public interface IReclamationService {
     public void addR(Reclamation r ,Utilisateur c);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="tbIRec" prefHeight="628.0" prefWidth="1102.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GestionRecCController">
+   <children>
+      <HBox prefHeight="60.0" prefWidth="1207.0" styleClass="box-topo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToggleButton mnemonicParsing="false" onAction="#ajouter" text="">
+               <styleClass>
+                  <String fx:value="menus-tela" />
+                  <String fx:value="menu-add" />
+               </styleClass>
+            </ToggleButton>
+            <ToggleButton layoutX="1150.0" layoutY="27.0" mnemonicParsing="false" onAction="#supprimerRec" text="">
+               <styleClass>
+                  <String fx:value="menus-tela" />
+                  <String fx:value="menu-excluir" />
+               </styleClass>
+               <toggleGroup>
+                  <ToggleGroup fx:id="menu" />
+               </toggleGroup>
+            </ToggleButton>
+         </children>
+         <stylesheets>
+            <URL value="@CSS/default.css" />
+            <URL value="@CSS/custom.css" />
+         </stylesheets>
+      </HBox>
+      <TextField fx:id="TextR" layoutX="243.0" layoutY="123.0" />
+      <Text layoutX="59.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votre Message : " />
+      <ComboBox fx:id="typeR" layoutX="243.0" layoutY="73.0" prefHeight="31.0" prefWidth="187.0" promptText="Choisir Type" />
+      <Text layoutX="59.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type :" />
+      <ComboBox fx:id="SalleRec" layoutX="242.0" layoutY="181.0" prefHeight="31.0" prefWidth="187.0" promptText="Choisir Type" />
+      <Text fx:id="SR" layoutX="58.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle :" />
+      <Pagination fx:id="pagination" layoutX="545.0" layoutY="154.0" maxPageIndicatorCount="5" pageCount="5" prefHeight="384.0" prefWidth="531.0" />
+   </children>
+   
+</AnchorPane>

@@ -7,6 +7,7 @@ package Services;
 import Dao.MyDB;
 import Entities.Salle;
 import IServices.ISalle;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -115,9 +116,11 @@ try {
            while(rs.next()){
                Salle S = new Salle();
                 S.setId_salle(rs.getInt(1));
-                S.setType(rs.getString(2));
-                S.setEtat(rs.getString(3));
-                  S.setLimit(rs.getInt(4));
+                S.setDesignation(rs.getString(2));
+                S.setType(rs.getString(3));
+                
+                S.setEtat(rs.getString(4));
+                  S.setLimit(rs.getInt("limite"));
                    
                
          
@@ -133,7 +136,7 @@ try {
  }
  @Override
     public Salle rechercheSalleParID2(int id) {
-           Salle s = new Salle();
+          Salle S = new Salle();
              String req4="SELECT * FROM salle WHERE id_salle='" + id + "';";
          try {
              Statement stl = conn.createStatement();
@@ -141,17 +144,20 @@ try {
              
              while (rs.next()) {
                 
-                 s.setId_salle(rs.getInt(1));
-                 s.setType(rs.getString(2));
-                 s.setEtat(rs.getString(3));
-                 s.setLimit(rs.getInt(4));
+                 
+                S.setId_salle(rs.getInt(1));
+                S.setDesignation(rs.getString(2));
+                S.setType(rs.getString(3));
+                
+                S.setEtat(rs.getString(4));
+                  S.setLimit(rs.getInt("limite"));
                  
              }
          } catch (SQLException ex) {
              Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
          }
 
-         return s;     
+         return S;     
     }
            
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="531.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminRecController">
+<AnchorPane id="AnchorPane" prefHeight="531.0" prefWidth="995.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminRecController">
     <children>
       <VBox layoutX="785.0" layoutY="220.0" prefHeight="0.0" prefWidth="121.0" spacing="10.0">
          <children>
@@ -39,7 +39,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tblR" layoutY="59.0" prefHeight="185.0" prefWidth="905.0">
+      <TableView fx:id="tblR" layoutY="59.0" prefHeight="185.0" prefWidth="995.0">
          <columns>
             <TableColumn fx:id="TypeR" prefWidth="104.0" text="Type" />
             <TableColumn fx:id="textR" prefWidth="215.0" text="Text" />
@@ -50,6 +50,7 @@
             <TableColumn fx:id="MailR" prefWidth="153.0" text="Mail" />
             <TableColumn fx:id="EtatR" prefWidth="90.0" text="Etat" />
             <TableColumn fx:id="idR" prefWidth="90.0" text="id" visible="false" />
+            <TableColumn fx:id="SalleR" prefWidth="90.0" text="Salle" />
          </columns>
       </TableView>
        <TableView fx:id="tblE" layoutX="38.0" layoutY="309.0" prefHeight="185.0" prefWidth="307.0">

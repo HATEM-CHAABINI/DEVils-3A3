@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Amine
+ * @author Nitro
  */
 public class Reclamation {
 
@@ -23,8 +23,9 @@ public class Reclamation {
     private int telephone;
      private String email_client;
      private String etat;
+     private Salle salle;
 
-    public Reclamation(int id_reclamation, String type, String text, String username_client, String nom_client, String prenom_client, int telephone, String email_client , String etat) {
+    public Reclamation(int id_reclamation, String type, String text, String username_client, String nom_client, String prenom_client, int telephone, String email_client , String etat, Salle salle) {
         this.id_reclamation = id_reclamation;
         this.type = type;
         this.text = text;
@@ -34,16 +35,18 @@ public class Reclamation {
         this.telephone = telephone;
         this.email_client = email_client;
         this.etat=etat;
+        this.salle=salle;
     }
 
    
 
-    public Reclamation(int id_reclamation, String type, String text, String username_client , String etat) {
+    public Reclamation(int id_reclamation, String type, String text, String username_client , String etat , Salle salle) {
         this.id_reclamation = id_reclamation;
         this.type = type;
         this.text = text;
         this.username_client = username_client;
         this.etat= etat;
+        this.salle=salle;
     }
     
     public Reclamation(String type, String text, String etat) {
@@ -52,10 +55,31 @@ public class Reclamation {
         this.etat=etat;
     }
 
-    public Reclamation(String type, String text) {
+    public Reclamation(String type, String text , Salle salle) {
         this.type = type;
         this.text = text;
+        this.salle=salle;
     }
+
+    public Reclamation(int id_reclamation, String type, String text,  String etat, Salle salle) {
+         this.id_reclamation = id_reclamation;
+        this.type = type;
+        this.text = text;
+        this.salle=salle;
+        
+        this.etat= etat;
+    }
+
+    
+
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
+    
     
 
     public int getId_reclamation() {
