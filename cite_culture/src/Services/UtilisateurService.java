@@ -96,6 +96,7 @@ c.getQr() + "','" + c.getImage() + "','" + c.getNom() + "','" + c.getPrenom() + 
                     c.setAdresse(rs.getString("adresse"));
                     c.setEnabled(rs.getInt("enabled"));
                   c.setRoles(rs.getString("roles"));
+                  
                 }
 
             } catch (SQLException ex) {
@@ -340,7 +341,7 @@ Utilisateur c = new Utilisateur();
     @Override
     public void updateEnable(int ena,String username) {
         try{  
-        String sql = "UPDATE `fos_user` SET `enabled`='"+ena+ "' WHERE roles like '%ROLE_UTILISATEUR%' and `username` ='"+username+"';";
+        String sql = "UPDATE `fos_user` SET `enabled`='"+ena+ "' WHERE `username` ='"+username+"';";
        Statement stl = conn.createStatement();
             int rs =stl.executeUpdate(sql);
         } catch (SQLException ex) {
@@ -442,7 +443,7 @@ Utilisateur c = new Utilisateur();
    boolean verif =true;
             
          //   String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and email='"+ Email+"';";
-            String sql = "SELECT * FROM fos_user  WHERE roles like '%ROLE_UTILISATEUR%'and email='"+ Email+"';";
+            String sql = "SELECT * FROM fos_user  WHERE email='"+ Email+"';";
 
             try {
                 Statement stl = conn.createStatement();
@@ -540,5 +541,17 @@ boolean verif =false;
         } catch (SQLException |IOException| WriterException |NoSuchAlgorithmException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
-}}
+}
+
+    @Override
+    public void Bannir(String username) {
+  try{  
+        String sql = "UPDATE `fos_user` SET `locked`='"+0+ "' WHERE `username` ='"+username+"';";
+       Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+    }    }
+}
 

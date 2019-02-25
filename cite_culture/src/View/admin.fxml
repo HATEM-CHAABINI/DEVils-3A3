@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="685.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
+<VBox prefHeight="735.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="546.0" prefWidth="925.0" VBox.vgrow="ALWAYS">
       <children>
@@ -17,7 +18,7 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <TableView fx:id="table" layoutX="17.0" layoutY="12.0" prefHeight="485.0" prefWidth="907.0">
+            <TableView fx:id="table" layoutX="25.0" layoutY="75.0" prefHeight="485.0" prefWidth="907.0">
                <columns>
                   <TableColumn fx:id="idUsername" prefWidth="146.0" text="Username" />
                   <TableColumn fx:id="idEmail" minWidth="0.0" onEditCommit="#ChangeEmail" prefWidth="145.0" text="Email" />
@@ -27,10 +28,13 @@
                   <TableColumn fx:id="idActiver" onEditCommit="#ChangeActiver" prefWidth="82.0" text="Activer" />
                </columns>
             </TableView>
-            <Button fx:id="idUt" layoutX="76.0" layoutY="560.0" mnemonicParsing="false" onAction="#afficheruti" text="Afficher Client" />
-            <Button fx:id="idNonActiv" layoutX="37.0" layoutY="618.0" mnemonicParsing="false" onAction="#afficherNonActiver" text="Afficher Client non activer" />
-            <Button fx:id="idJour" layoutX="699.0" layoutY="560.0" mnemonicParsing="false" onAction="#afficherjour" text="Afficher Journaliste" />
-            <Button fx:id="idjourNonActiv" layoutX="660.0" layoutY="618.0" mnemonicParsing="false" onAction="#afficherjourNonActiver" text="Afficher Journaliste non activer" />
+            <Button fx:id="idUt" layoutX="76.0" layoutY="594.0" mnemonicParsing="false" onAction="#afficheruti" text="Afficher Client" />
+            <Button fx:id="idNonActiv" layoutX="38.0" layoutY="667.0" mnemonicParsing="false" onAction="#afficherNonActiver" text="Afficher Client non activer" />
+            <Button fx:id="idJour" layoutX="699.0" layoutY="591.0" mnemonicParsing="false" onAction="#afficherjour" text="Afficher Journaliste" />
+            <Button fx:id="idjourNonActiv" layoutX="660.0" layoutY="657.0" mnemonicParsing="false" onAction="#afficherjourNonActiver" text="Afficher Journaliste non activer" />
+            <Button fx:id="BloquerDebloquer" layoutX="388.0" layoutY="590.0" mnemonicParsing="false" onAction="#BloquerDebloquer" text="Bloquer/Debbloquer" />
+            <Button fx:id="Banir" layoutX="438.0" layoutY="664.0" mnemonicParsing="false" onAction="#Banir" text="Banir" />
+            <JFXTextField fx:id="rechercheUti" layoutX="71.0" layoutY="26.0" prefHeight="31.0" prefWidth="767.0" />
       </children>
     </AnchorPane>
   </children>

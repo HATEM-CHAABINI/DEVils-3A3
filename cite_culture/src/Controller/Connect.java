@@ -158,6 +158,7 @@ Alert alert = new Alert(Alert.AlertType.WARNING);
     
 u=us.rechercheUtilisateurParQr(nq);
 UserSession.getInstance(u).getUser();
+        System.out.println(u.getUsername());
         System.out.println(u.getEnabled());
 if (u.getNom()!= null){
 if (u.getEnabled()==1){
@@ -212,9 +213,9 @@ UserSession.getInstance(u).getUser();*/
          Random r = new Random();
 int valeur = 1000 + r.nextInt(9999 - 1000);
             System.out.println(valeur);
-        /* sendSMS sms=new sendSMS();
-         sms.envoitSms(u.getTelephone(), valeur);
-         */
+         sendSMS sms=new sendSMS();
+         sms.envoitSms(uop.getTelephone(), valeur);
+         
 
 
 FXMLLoader loader=new FXMLLoader();

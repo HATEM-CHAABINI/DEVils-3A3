@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import utilitaire.Upload;
+import utilitaire.UploadFile;
 
 /**
  * FXML Controller class
@@ -41,17 +42,17 @@ Utilisateur u;
     }    
 
     @FXML
-    private void valider(ActionEvent event) throws ClassNotFoundException, IOException {
+    private void valider(ActionEvent event) throws ClassNotFoundException, IOException, Exception {
         
         System.out.println(nbra);
         
         if (nbra==Integer.valueOf(this.idNum.getText()))
     {
          File f=new File(u.getImage());
-        Upload up=new Upload();
+        UploadFile up=new UploadFile();
    //     String lien =;
           //String LienIm = lien.replace("\\","/");
-        u.setImage(up.upload(f,u.getUsername()));
+        u.setImage(up.upload(f.getAbsolutePath()));
         System.out.println("ooooooooooooooooooooooouiii");
       
         if (u.getRoles().equals("Client")){

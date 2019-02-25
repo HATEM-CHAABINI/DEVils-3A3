@@ -364,14 +364,11 @@ int valeur = 1000 + r.nextInt(9999 - 1000);
          Utilisateur c1=new Utilisateur(Usernameu,EmailU,mdp1,this.path.getText(),NomU,PrenomU,villeBox.getValue(),daten,AdrU,codeposta,SexeU,teli,cin);
        c1.setRoles(roleu);
          
-         
-/*Envoie sms         
-         
+         /*
          sendSMS sms=new sendSMS();
          sms.envoitSms(teli, valeur);
 
 */
-
 //this.uti=UserSession.getInstance(c1).getUser();
   
 

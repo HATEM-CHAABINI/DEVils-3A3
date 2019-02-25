@@ -27,7 +27,8 @@ public List <Utilisateur> clientNonActiver();
 public ObservableList <Utilisateur> oUtilisateurNonActiver();
 public void updateMail(String mail,String username );
 public void updateEnable(int ena,String username );
- public void updateUtilisateur(String username,String email,int telephone,String ville,String adresse,int code_postale,String mdp,String path);
+
+public void updateUtilisateur(String username,String email,int telephone,String ville,String adresse,int code_postale,String mdp,String path);
  public void updateMdpUtilisateur(String username,String mdp,String email);
  public void SupprimerCompteUtilisateur(String username);
  
@@ -36,6 +37,6 @@ public void updateEnable(int ena,String username );
  public boolean verifEmailUpdate(String Email,String username);
  public boolean verfierMotDePasse(String mdp,String username);
  public boolean verifCin(int Cin);
- 
+ public void Bannir(String username);
  
 }

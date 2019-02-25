@@ -36,6 +36,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utilitaire.ControlesaisieJ;
 import utilitaire.Upload;
+import utilitaire.UploadFile;
 import utilitaire.UserSession;
 
 /**
@@ -98,7 +99,11 @@ public class MiseAJour implements Initializable {
               this.path.setText(u.getImage());
 //            this.pNumber.setText(Integer.toString(c.getTelephone()));
             
-            String imageSource = u.getImage();
+            String imageSource = "C:/wamp64/"+u.getImage();
+            System.out.println("9999999999999999999999999999");
+            System.out.println((imageSource));
+                       System.out.println("9999999999999999999999999999999");
+
             Image image1 = new Image(new File(imageSource).toURI().toString());
             
             image.setImage(image1);
@@ -117,7 +122,7 @@ public class MiseAJour implements Initializable {
     }    
 
     @FXML
-    private void Update(ActionEvent event) throws IOException, ClassNotFoundException {
+    private void Update(ActionEvent event) throws IOException, ClassNotFoundException, Exception {
                 ControlesaisieJ cn=new ControlesaisieJ();
                      UtilisateurService us=new UtilisateurService();
 
@@ -204,8 +209,14 @@ this.LNvMdp.setText("Mot de passe incorrecte");
 }
         if (v==7){
         File f=new File(this.path.getText());
-        Upload up=new Upload();
-        u.setImage(up.upload(f,u.getUsername()));
+        
+  UploadFile up=new UploadFile();
+   //     String lien =;
+          //String LienIm = lien.replace("\\","/");
+        u.setImage(up.upload(f.getAbsolutePath()));
+
+//Upload up=new Upload();
+      //  u.setImage(up.upload(f,u.getUsername()));
 
         if (this.pwd1.getText().trim().isEmpty()){
             us.updateUtilisateur(this.username.getText(),this.email.getText(),Integer.valueOf(this.pNumber.getText()),this.villeBox.getValue(),this.Adr.getText(),Integer.valueOf(this.codep.getText()),"",u.getImage());
