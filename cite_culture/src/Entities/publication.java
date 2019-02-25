@@ -17,17 +17,34 @@ public class publication {
      private String sujet ;
      private String nom_publication ;
      private String nom_auteur ;
-     private Date date_publication ;
+     private String date_publication ;
      private String contenu_pub ;
      private String email;
 
-    public publication(int ref, String titre, String sujet, String nom_publication, String nom_auteur, Date date_publication, String contenu_pub, String email) {
-        this.ref = ref;
+    public publication() {
+    }
+    public publication(publication x)
+    {
+        this.ref=x.getRef();
+        this.titre=x.getTitre();
+        this.sujet=x.getSujet();
+        this.nom_publication=x.getNom_publication();
+        this.nom_auteur=x.getNom_auteur();
+        this.date_publication=x.getDate_publication();
+        this.contenu_pub=x.getContenu_pub();
+        this.email=x.getEmail();
+    }
+   
+     
+     
+
+    public publication( String titre, String sujet, String nom_publication, String nom_auteur, String contenu_pub, String email) {
+       
         this.titre = titre;
         this.sujet = sujet;
         this.nom_publication = nom_publication;
         this.nom_auteur = nom_auteur;
-        this.date_publication = date_publication;
+       
         this.contenu_pub = contenu_pub;
         this.email = email;
     }
@@ -52,7 +69,7 @@ public class publication {
         return nom_auteur;
     }
 
-    public Date getDate_publication() {
+    public String getDate_publication() {
         return date_publication;
     }
 
@@ -84,7 +101,7 @@ public class publication {
         this.nom_auteur = nom_auteur;
     }
 
-    public void setDate_publication(Date date_publication) {
+    public void setDate_publication(String date_publication) {
         this.date_publication = date_publication;
     }
 

@@ -20,7 +20,8 @@ public class article {
     private String adresse_mail ;
      private String contenu ;
     private Date date;
-
+    private String etat;
+    
     public article() {
     }
 
