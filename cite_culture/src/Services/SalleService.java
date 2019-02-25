@@ -100,21 +100,20 @@ try {
         }       
 }
  @Override
- public ObservableList<Salle>  rechercheSalleParID(int id)
- {ObservableList<Salle> listS = FXCollections.observableArrayList();
- 
+ public Salle  rechercheSalleParID(String id)
+ {  Salle S = new Salle();
         
 
             
 
            try {
             
-                 String req4="SELECT * FROM salle WHERE id_salle='" + id + "';";
+                 String req4="SELECT * FROM salle WHERE designation='" + id + "';";
           Statement st = conn.createStatement();
             st.executeQuery(req4);
             ResultSet rs = st.executeQuery(req4);
            while(rs.next()){
-               Salle S = new Salle();
+              
                 S.setId_salle(rs.getInt(1));
                 S.setDesignation(rs.getString(2));
                 S.setType(rs.getString(3));
@@ -124,10 +123,10 @@ try {
                    
                
          
-                listS.add(S);
+               
             }
-            listS.forEach(System.out::println);
-            return listS;
+           
+            return S;
         
         } catch (SQLException ex) {
             Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);

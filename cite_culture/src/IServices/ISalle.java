@@ -16,7 +16,7 @@ public interface ISalle {
     public void ajouterSalle(Salle s);
     public void modify(int id);
     public Salle rechercheSalleParID2(int id);
- public ObservableList<Salle> rechercheSalleParID(int id);
+ public Salle  rechercheSalleParID(String id);
  public ObservableList<Salle> displayall(); 
  public void SupprimerSalle(int id);
 }

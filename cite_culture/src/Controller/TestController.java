@@ -25,6 +25,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import utilitaire.ConnectedUser;
+import utilitaire.UserSession;
 
 /**
  * FXML Controller class
@@ -60,7 +62,8 @@ public class TestController implements Initializable {
         try {
             CarteFideliteService aaa = new CarteFideliteService();
             Date date = Date.valueOf(LocalDate.now());
-            CarteFidelite b = new CarteFidelite(1000,date,cbIdclient.getSelectionModel().getSelectedItem());
+            
+            CarteFidelite b = new CarteFidelite(1000,date,ConnectedUser.getConnectedUser());
             
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("done with success");
@@ -79,7 +82,7 @@ public class TestController implements Initializable {
     private void Create(ActionEvent event) {
         try {
             CarteFideliteService aaa = new CarteFideliteService();
-            aaa.update("hatem1");
+            aaa.update(ConnectedUser.getConnectedUser().getUsername());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TestController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,7 +41,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.controlsfx.control.Notifications;
-
+import validation.TextFieldValidation;
 /**
  * FXML Controller class
  *
@@ -63,7 +64,7 @@ public class GestionRecCController implements Initializable {
     @FXML
     private ToggleGroup menu;
     @FXML
-    private ComboBox<Salle> SalleRec;
+    private ComboBox<String> SalleRec;
     @FXML
     private Text SR;
    
@@ -74,6 +75,12 @@ public class GestionRecCController implements Initializable {
 
     private final TableView<Reclamation> table = createTable();
      private final List<Reclamation> data = createData();   
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
     private TableView<Reclamation> createTable() {
 
        TableView<Reclamation> table = new TableView<>();
@@ -149,8 +156,15 @@ public class GestionRecCController implements Initializable {
            
         }
         
-             
-            SalleRec.setItems(SS.displayall());
+              ObservableList<Salle> listSalle =FXCollections.observableArrayList(SS.displayall());
+                            ObservableList<String> listSalle2 =FXCollections.observableArrayList();
+int index=0;
+          while (  index < listSalle.size()) {
+            listSalle2.add(listSalle.get(index).getDesignation());
+
+            index++;
+        }
+            SalleRec.setItems(listSalle2);
         try {
             java.sql.Date d=new java.sql.Date(2018, 01, 16);
             Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
@@ -176,20 +190,30 @@ public class GestionRecCController implements Initializable {
 
     @FXML
     private void ajouter(ActionEvent event) {
+         boolean isTypeEmpty=validation.TextFieldValidation.isTextFieldNotEmpty(TextR, label2, "Message is required");
+        if(isTypeEmpty && (typeR.getSelectionModel().getSelectedIndex()!=-1)){
         try {
              java.sql.Date d=new java.sql.Date(2018, 01, 16);
             Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
+            SalleService SS = null;
+        try {
+            SS = new SalleService();
+        } catch (ClassNotFoundException ex) {
            
+        } 
+       
             String t=typeR.getSelectionModel().getSelectedItem();
             String txtrr=this.TextR.getText();
-            Salle  s= SalleRec.getSelectionModel().getSelectedItem();
+          //  String x = SS.rechercheSalleParID(SalleRec.getSelectionModel().getSelectedItem();)
+            Salle  s= SS.rechercheSalleParID(SalleRec.getSelectionModel().getSelectedItem());
             Reclamation r;
             r = new Reclamation (t,txtrr,s);
           
             ReclamationService sa =new ReclamationService();
             sa.addR(r, c3);
             TextR.clear();
-            
+            label1.setText("");
+            label3.setText("");
             table.setItems(sa.findByUsername(c3.getUsername()));
             Notifications.create()
                     .title("Notification ")
@@ -197,6 +221,12 @@ public class GestionRecCController implements Initializable {
                     .showWarning();
         } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
            
+        }
+        }
+        else{
+       
+        label1.setText("Choisir un type");
+        label3.setText("Choisir une salle");
         }
            
            

@@ -70,7 +70,7 @@ public static String convert(java.sql.Date d) {
         try {
             WinnerService win = new WinnerService();
             UtilisateurService us = new UtilisateurService();
-            
+          
             Utilisateur user = us.rechercheUtilisateurParCin(win.winnerOfTheDay());
             System.out.println(user);
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -82,15 +82,9 @@ public static String convert(java.sql.Date d) {
             int MAXWINN = DD.length();
             String bb = dateFormat.format(date.getTime());
             int AUTRE = bb.length();
-            System.out.println("bb" + AUTRE);
-            System.out.println("dd" + MAXWINN);
-            ////  String carac = bb+"";
-            ///  int lasthope = carac.length();
-            ////  System.out.println(lasthope);
-            System.out.println("ahmedkkkkkkkkkkkkkk" + DD);
-            System.out.println("aaaaaaaaaaaaaaaaaaa" + dateFormat.format(date.getTime()));
+          
             if (bb.equals(DD)) {
-                System.out.println("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+          
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("sorry");
                 alert.setHeaderText("we have already have a winner for today");
@@ -100,35 +94,27 @@ public static String convert(java.sql.Date d) {
                     
                 }
             } else {
-                System.out.println("lllllllllllllllllllllllllllllllllllllllllllll");
-                win.add(pp);
-                wintxt.setText("The winner of the day is: \n" + user.toString());
                 
-                /*   String accessToken ="EAACEdEose0cBAI8TkdZBbKKLSVLPuVb0ET9KtZAFKwYZA0aSIHGzoBmAqcHhWNjKd3sZATK5kN7mXeyr737QbGYZBw1xfKoacMqTgVAReKmcRxI8gxkCph8aZBFZBwQOu50ZBo1oMMZAsjVSDpTdI5EaZBqShv5o4pCCJIUXoRHXZAMNOD8zYIWixCypf20dZBPCEGwZD" ;
-                FacebookClient fbClien = new DefaultFacebookClient(accessToken);
-                FacebookType response = fbClien.publish("me/feed",FacebookType.class,Parameter.with("message", "idim ya 5ra"));
-                */
+                win.add(pp);
+                wintxt.setText("The winner of the day is: \n" + user.getNom() + user.getPrenom());
+                
+               
             }
             
             
             String title = "Congratulations sir";
-            String message = "The winner of the day is: ";
-            //Notifications notification = Notifications.SUCCESS;
+            String message = "The winner of the day is: " + user.getNom() + user.getPrenom();
+           
             
             TrayNotification tray = new TrayNotification();
             tray.setTitle(title);
             tray.setMessage(message);
-           // tray.setNotificationType(NotificationType.NOTICE);
+           
             tray.showAndWait();
             
             
             
-            /*
-            Image whatsAppImg = new Image("https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/whatsapp-128.png");
-            
-            tray.setTray("Title", "Message", whatsAppImg, Paint.valueOf("#2A9A84"),AnimationType.SLIDE);
-            tray.showAndDismiss(Duration.seconds(4));
-            */
+          
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(WinnerController.class.getName()).log(Level.SEVERE, null, ex);
         }

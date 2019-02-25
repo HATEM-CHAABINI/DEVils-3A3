@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
 import Dao.MyDB;
 
 import Entities.Winner;
+import java.sql.Statement;
 /**
  *
  * @author ahmed
@@ -59,11 +60,14 @@ public class WinnerService implements IWinnerService {
     }
 
     public Boolean isValidWinnerUser(int w_id) {
-        Utilisateur userWinner = null;
+        Utilisateur userWinner;
         boolean f_return = false;
        
+
               userWinner = executeDBQuery("SELECT * from fos_user where id = " + (w_id));
-        System.out.println(userWinner);
+       
+
+            
         /*Here we will get the list of the last 7 winners*/
         List<Winner> winners = new ArrayList<>();
         String req = "SELECT DISTINCT * FROM winner ORDER BY winner_date DESC LIMIT 7";
@@ -75,10 +79,9 @@ public class WinnerService implements IWinnerService {
             while (resultSet.next()) {
                 Winner winner = new Winner(resultSet.getInt(1),(resultSet.getDate(2)), resultSet.getInt(3));
                 winners.add(winner);
-                System.out.println("dfef");
+               
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
         }
 
         /*Here we will check if the randomly found winner user 
@@ -103,22 +106,60 @@ public class WinnerService implements IWinnerService {
     @Override
     public int winnerOfTheDay() {
         
-        Utilisateur userMax = null;
-        Utilisateur userWinner = null;
+        
+        Utilisateur userWinner=new Utilisateur() ;
         int Min = executeDBQuery("SELECT MIN(id) FROM fos_user").getId();
+        
         int randomUserId;
         int Max = executeDBQuery("SELECT MAX(id) FROM fos_user").getId();
-
+        
         do {
-            randomUserId = Min + (int) (Math.random() * ((Max - Min) + 1));
+            randomUserId = (int) ((Math.random() * ((Max - Min) + 1)) +  Min);
+            
         } while (!isValidWinnerUser(randomUserId));
+        System.out.println("hedhy e thenyaaa");
+        System.err.println(randomUserId);
+        
+        
+        ///////////////////////////////////////////////////////////
+        
+        Utilisateur a = new Utilisateur();
+        
+//SELECT * FROM fos_user WHERE (roles like "%ROLE_UTILISATEUR%" and cin= 10009484 )
 
-        userWinner = executeDBQuery("SELECT * from fos_user WHERE id = " + (randomUserId));
-        //Add the userWinner.getId_user to the winner ta
+            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_UTILISATEUR%'  and id ='" + randomUserId + "';";
+
+            try {
+                Statement stl = conn.createStatement();
+                ResultSet rs = stl.executeQuery(sql);
+
+                while (rs.next()) {
+                    a.setId(rs.getInt("id"));
+                    a.setCin(rs.getInt("cin"));
+                    a.setNom(rs.getString("nom"));
+                    a.setUsername(rs.getString("username"));
+                    a.setPrenom(rs.getString("prenom"));
+                    a.setEmail(rs.getString("email"));
+                    a.setPassword(rs.getString("password"));
+                    a.setAdresse(rs.getString("adresse"));
+                  a.setRoles(rs.getString("roles"));
+                  a.setImage(rs.getString("image"));
+                  a.setVille(rs.getString("ville"));
+                  a.setTelephone(rs.getInt("telephone"));
+                  a.setCode_postal(rs.getInt("code_postal"));
+                a.setDate_naissance(rs.getDate("date_naissance"));
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      
         
         
+        //userWinner = executeDBQuery("SELECT * from fos_user WHERE (id ='"+randomUserId+"');");
+        System.err.println(a.getCin());
         
-        return userWinner.getId();
+        return a.getCin();
     }
 
    

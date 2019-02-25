@@ -7,11 +7,14 @@ package Controller;
 
 import Entities.Salle;
 import Services.SalleService;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,15 +46,84 @@ public class SalleController implements Initializable {
     @FXML
     private TableColumn<Salle, ?> LimiteS;
     @FXML
-    private Button add;
-
+    private ComboBox<String> typeS;
+    @FXML
+    private JFXTextField limite;
+    @FXML
+    private JFXTextField des;
+    
+ObservableList<String> listS = FXCollections.observableArrayList("Cinema","Theatre","Gallerie","Formation");
+    @FXML
+    private JFXTextField idS;
+    @FXML
+    private Button supp;
+    @FXML
+    private Button addS;
+    @FXML
+    private Button updatee;
+   
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
+          typeS.setItems(listS);
+        try {
              SalleService sa = new SalleService() ;
+            tblS.setItems(sa.displayall());
+            
+            Des.setCellValueFactory(new PropertyValueFactory<>("designation") );
+            TypeS.setCellValueFactory(new PropertyValueFactory<>("type"));
+            EtatS.setCellValueFactory(new PropertyValueFactory<>("etat"));
+            
+                LimiteS.setCellValueFactory(new PropertyValueFactory<>("limit"));
+               
+            
+            
+        
+            
+                
+            setCellValueFromTableToTextField();
+        } catch (ClassNotFoundException ex) {
+           
+        }
+        
+    }    
+    private void setCellValueFromTableToTextField()
+    {
+        tblS.setOnMouseClicked(e -> {
+           Salle s = tblS.getItems().get(tblS.getSelectionModel().getSelectedIndex());
+           
+            idS.setText(String.valueOf(s.getId_salle()));
+            des.setText(s.getDesignation());
+           limite.setText(String.valueOf(s.getLimit()));
+          
+            });
+    
+    
+    }
+
+    @FXML
+    private void add(ActionEvent event) {
+        
+       try {
+        String designation=this.des.getText();
+        int limit=Integer.valueOf(this.limite.getText());
+        
+        String type=    typeS.getSelectionModel().getSelectedItem().toString();
+        
+        
+        System.out.println("**********************");
+        System.out.println(designation);
+        System.out.println(limit);
+        System.out.println(type);
+        System.out.println("**********************");
+        
+        Salle S = new Salle (type,designation,"Libre",limit);
+        SalleService sa =new SalleService();
+        sa.ajouterSalle(S);
+        
+        
             tblS.setItems(sa.displayall());
             
             Des.setCellValueFactory(new PropertyValueFactory<>("designation") );
@@ -68,41 +141,35 @@ public class SalleController implements Initializable {
         } catch (ClassNotFoundException ex) {
            
         }
-        
-    }    
-//    private void setCellValueFromTableToTextField()
-//    {
-//        tblS.setOnMouseClicked(e -> {
-//           Salle s = tblS.getItems().get(tblS.getSelectionModel().getSelectedIndex());
-//           
-//            type_r.setText(r.getType());
-//            text.setText(r.getText());
-//            etat.setText(r.getEtat());
-//           
-//            });
-//    
-//    
-//    }
-
-    @FXML
-    private void add(ActionEvent event) {
-        
-        FXMLLoader loader= new FXMLLoader();
-        loader.setLocation(getClass().getResource("View/addS.fxml"));
-        
-        
-        try {
-            loader.load();
-        } catch (IOException ex) {
-            Logger.getLogger(AdminRecController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-            Parent p =loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(p));
-            stage.showAndWait();
-            stage.close();
+    
+    
         
     }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+        try {
+            SalleService sa =new SalleService();
+            sa.SupprimerSalle(Integer.valueOf(idS.getText()));
+            
+            
+            tblS.setItems(sa.displayall());
+            
+            Des.setCellValueFactory(new PropertyValueFactory<>("designation") );
+            TypeS.setCellValueFactory(new PropertyValueFactory<>("type"));
+            EtatS.setCellValueFactory(new PropertyValueFactory<>("etat"));
+            
+            LimiteS.setCellValueFactory(new PropertyValueFactory<>("limit"));
+            idS.clear();
+            limite.clear();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SalleController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+            
+            
+        
+    }
+
+   
 }
