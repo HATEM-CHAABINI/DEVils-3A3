@@ -15,9 +15,27 @@ public class Conference extends Evenement {
     private int idConference;
     private int idEvent;
 
-    public Conference(String titre, String description, Date dateD, Date dateF, String salle, float prixEnfant, float prixAdulte, float prixEtudiant, String time1, String typeEvent, String image, int nbrPlace) {
-        super(titre, description, dateD, dateF, salle, prixEnfant, prixAdulte, prixEtudiant, time1, typeEvent, image, nbrPlace);
+    public Conference(String titre, String description, Date dateD, Date dateF, String salle, float prixEnfant, float prixAdulte, float prixEtudiant, String time1, String image, int nbrPlace) {
+        super(titre, description, dateD, dateF, salle, prixEnfant, prixAdulte, prixEtudiant, time1, "Conference", image, nbrPlace);
     }
+     public Conference() {
+    }
+     public Conference(Conference f){
+        this.idConference=f.getIdConference();
+        this.idEvent=f.getIdEvent();
+        this.titre=f.getTitre();
+        this.description=f.getDescription();
+        this.dateD=f.getDateD();
+        this.dateF=f.getDateF();
+        this.salle=f.getSalle();
+        this.prixEnfant=f.getPrixEnfant();
+        this.prixAdulte=f.getPrixAdulte();
+        this.prixEtudiant=f.getPrixEtudiant();
+        this.time1=f.getTime1();
+        this.image=f.getImage();
+        this.nbrPlace=f.getNbrPlace();
+        this.typeEvent=f.getTypeEvent();
+     }
 
     public int getIdConference() {
         return idConference;

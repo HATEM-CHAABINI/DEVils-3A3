@@ -5,11 +5,8 @@
  */
 package Controller;
 
-/**
- *
- * @author mouna dridi
- */
-import Entities.Film;
+import Entities.Conference;
+import Entities.Galerie;
 import Services.RatingService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -19,54 +16,40 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.FacebookType;
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Rating;
 
-public class voirFilmController implements Initializable{
-   
+/**
+ * FXML Controller class
+ *
+ * @author mouna dridi
+ */
+public class VoirGalerieController implements Initializable {
 
     @FXML
     private ImageView im;
-
-    @FXML
-    private JFXTextField titre;
-
-
-    @FXML
-    private JFXTextField time;
-
-    @FXML
-    private Button trailer;
-
-    @FXML
-    private Button reserver;
     @FXML
     private Label date;
+    @FXML
+    private JFXButton reserver;
+    @FXML
+    private JFXTextField titre;
+    @FXML
+    private JFXTextField time;
     @FXML
     private JFXTextArea descr;
     @FXML
@@ -74,23 +57,21 @@ public class voirFilmController implements Initializable{
     @FXML
     private Label msg;
     int idEvent;
-    @FXML
-    private JFXButton fb;
     String imageURI=null;
     String ima=null;
     String t=null;
     String info=null;
     String heure=null;
+    String dd=null;
+    int i=0;
     @FXML
     private JFXTextField d;
-    String dd=null;
     @FXML
     private Label moyenne;
-    int i=0;
+    @FXML
+    private JFXButton fb;
 
-    
-    void setFilm(Film f){
-        
+        void setGalerie(Galerie f){
         idEvent=f.getIdEvent();
         RatingService fS=new RatingService();
         float cal=fS.calculer(idEvent);
@@ -100,48 +81,30 @@ public class voirFilmController implements Initializable{
         titre.setText(f.getTitre());
         imageURI = new File("C:/wamp64/"+f.getImage()).toURI().toString(); 
         final Image image = new Image(imageURI);
+               
         System.out.println(f.getImage());
         //titre.setTitre(f.getTitre());
         im.setImage(image);
         time.setText(f.getTime1());
         d.setText(String.valueOf(f.getDateD()));
-        trailer.setOnAction((event) -> {
-            try {
-                Desktop.getDesktop().browse(new URL(f.getTrailer()).toURI());
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(voirFilmController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(voirFilmController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
 
-        });
+        //date.setText(f.getDateD());
+//        Date date1=f.getDateD();
+//        Calendar calendar = new GregorianCalendar();
+//        calendar.setTime(date1);
+//        date.setText(LocalDate.of(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH)));
+//       
+        
     }
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    
-        /*    rating.ratingProperty().addListener(new ChangeListener<Number>(){
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number t, Number t1) {
-                msg.setText(t1.toString());
-                System.out.println("*************");
-                System.out.println(t1.toString());
-                System.out.println(idEvent);
+    public void initialize(URL url, ResourceBundle rb) {
         
-                RatingService fS=new RatingService();
-                fS.ajouterRate(50,idEvent,t1.intValue());
-                System.out.println("**************");
-
-            }
-            
-            
-        });
-  */
-
-            
-           }
-    
+        // TODO
+    }    
 
     @FXML
     private void ajouterProposition(ActionEvent event) {
@@ -149,6 +112,7 @@ public class voirFilmController implements Initializable{
 
     @FXML
     private void ajouterRating(MouseEvent event) {
+        
          int note;
       
 
@@ -170,12 +134,11 @@ public class voirFilmController implements Initializable{
             
             
         });
-        
     }
 
     @FXML
-    private void partager(ActionEvent event) throws FileNotFoundException, MalformedURLException {
-        ima=imageURI.replace('/', '\\'); 
+    private void partager(ActionEvent event) throws MalformedURLException, FileNotFoundException {
+         ima=imageURI.replace('/', '\\'); 
         String file = new URL(ima).getPath();
         System.out.println("/////////////////////////");
         System.out.println(imageURI);
@@ -187,13 +150,12 @@ public class voirFilmController implements Initializable{
         dd=d.getText();
         heure=time.getText();
         info =t+"\n"+dd+"\n"+heure;
-        String access="EAAfl1TLe9i8BAOpDTvXpnWdu6p4w4nW3yop5eeigHWsfDrtDrKHl1X7K5dwZABcJqP8IPMlIkxSZBvh9yBPecID45h3C5SRVq1pR60mlucOq9BTpFxjxAMIkwt9zENNVuEzaOiA85ZBgFYgEZCT0u3xPb9FBTIuSrPymiFxLoSAk2pTbRKL2crsG8iBzNHIAhmLwUu4IBQZDZD";
+        String access="EAAfl1TLe9i8BACrnrHzhaoXQnPtZAgnyjUvyHbDDHVsLWp8U2ZBbCSMO7SlUdE0GZB91BUrZCQQ4lySTYKYxTkZCHqDZAm6IujPy6cL887CjVkFG8r2lTrlgP0rTZB4Wr4n6mi4seFQlQiZCbbpiG9BSpo5gAc5TjsjWf3ECsZChzKXZBAhZCZCGXsmySZA8AZCZCOY5hxZCDpCEbXxU8wZDZD";
         FacebookClient fbC= new DefaultFacebookClient(access);
 //        User me = fbC.fetchObject("me", User.class);
         FileInputStream f= new FileInputStream(new File(ima.replace("file:\\","")));
         FacebookType r= fbC.publish("me/photos",FacebookType.class , BinaryAttachment.with(file,f),Parameter.with("message",info));
         System.out.println("fb.com/"+r.getId());
-   
     }
+    
 }
-

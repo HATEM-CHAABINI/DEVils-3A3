@@ -6,18 +6,23 @@
 package Controller;
 
 import Entities.PropositionEvent;
+import Entities.Utilisateur;
 import Services.PropositionEventService;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import utilitaire.UserSession;
 
 /**
  * FXML Controller class
@@ -73,11 +78,14 @@ public class PropositioneventController implements Initializable {
 
     @FXML
     private void ajouterProposition(ActionEvent event)throws ClassNotFoundException {
-        
+        UserSession users= new UserSession();
+         Utilisateur us=users.getUser();
+       
         String type=this.type.getValue();
         String description=this.description.getText();
         String titre=this.titre.getText();
-        PropositionEvent e=new PropositionEvent(type,description,titre,"mouna");
+        
+        PropositionEvent e=new PropositionEvent(type,description,titre,us.getUsername());
         PropositionEventService fS=new PropositionEventService();
         fS.ajouterPEvent(e);
         table.setItems(fS.afficherPEvent());
@@ -87,6 +95,15 @@ public class PropositioneventController implements Initializable {
 
     @FXML
     private void annulerProposition(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+alert.setTitle("supression");
+alert.setHeaderText("supprimer un film");
+alert.setContentText("Are you ok with this?");
+
+Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK){
+
         
             PropositionEventService fs=new PropositionEventService();
             fs.supprimerPEvent(p);
@@ -98,7 +115,7 @@ public class PropositioneventController implements Initializable {
             desc.setCellValueFactory(new PropertyValueFactory<>("description"));
             titre1.setCellValueFactory(new PropertyValueFactory<>("titre")); 
             p=new PropositionEvent();
-    }
+    }}
      private void setCellValueFromTableToTextField()
     {
             table.setOnMouseClicked(e -> {

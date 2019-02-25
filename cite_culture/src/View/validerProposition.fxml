@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -8,8 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="656.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controller.ValiderPropositionController">
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ValiderPropositionController">
    <children>
       <Button fx:id="ajouter" layoutX="360.0" layoutY="463.0" mnemonicParsing="false" onAction="#ajouterP" text="valider proposition" />
       <Label layoutX="34.0" layoutY="46.0" prefHeight="17.0" prefWidth="98.0" text="titre" />
@@ -21,7 +21,6 @@
       <DatePicker fx:id="datedebut" layoutX="139.0" layoutY="214.0" promptText="date_debut" />
       <DatePicker fx:id="datefin" layoutX="140.0" layoutY="262.0" prefHeight="25.0" prefWidth="174.0" promptText="date_fin" />
       <Label layoutX="34.0" layoutY="310.0" prefHeight="17.0" prefWidth="98.0" text="salle" />
-      <TextField fx:id="salle" layoutX="139.0" layoutY="306.0" prefHeight="25.0" prefWidth="174.0" promptText="salle" />
       <Label layoutX="34.0" layoutY="353.0" prefHeight="17.0" prefWidth="98.0" text="prix enfant" />
       <Label layoutX="34.0" layoutY="402.0" prefHeight="17.0" prefWidth="98.0" text="prix adulte" />
       <TextField fx:id="prixenfant" layoutX="139.0" layoutY="349.0" prefHeight="25.0" prefWidth="174.0" promptText="prix_enfant" />
@@ -48,5 +47,6 @@
          </columns>
       </TableView>
       <Button fx:id="refuser" layoutX="503.0" layoutY="463.0" mnemonicParsing="false" onAction="#refuserP" text="refuser proposition" />
+      <ComboBox fx:id="salle1" layoutX="139.0" layoutY="306.0" onAction="#changeplace" prefHeight="25.0" prefWidth="174.0" promptText="choisissez une salle" />
    </children>
 </AnchorPane>

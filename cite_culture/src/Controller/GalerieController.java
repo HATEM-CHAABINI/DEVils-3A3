@@ -5,13 +5,15 @@
  */
 package Controller;
 
-import Entities.Film;
-import Services.FilmService;
-import java.awt.Desktop;
+import static Controller.ConferenceController.sallouma;
+import Entities.Conference;
+import Entities.Galerie;
+import Services.ConferenceService;
+import Services.GalerieService;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +37,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
@@ -47,38 +48,20 @@ import utilitaire.UploadImageFilm;
  *
  * @author mouna dridi
  */
-public class FilmController implements Initializable {
+public class GalerieController implements Initializable {
 
-    @FXML
-    private Button ajouterB;
-    @FXML
-    private TextField titre;
-    @FXML
-    private TextField description;
     @FXML
     private DatePicker datedebut;
     @FXML
     private DatePicker datefin;
     @FXML
-    private TextField prixenfant;
+    private TableView<Galerie> tab;
     @FXML
-    private TextField prixadulte;
+    private TableColumn<?, ?> idg;
     @FXML
-    private TextField prixetudiant;
-    @FXML
-    private TextField time;
-    @FXML
-    private Button supprimerB;
-    @FXML
-    private Button modifierB;
-    @FXML
-    private TableView<Film> tab;
-    @FXML
-    private TableColumn<?, ?> idf;
+    private TableColumn<?, ?> idt;
     @FXML
     private TableColumn<?, ?> idd;
-    @FXML
-    private TableColumn<?, ?> idtr;
     @FXML
     private TableColumn<?, ?> idD;
     @FXML
@@ -94,52 +77,64 @@ public class FilmController implements Initializable {
     @FXML
     private TableColumn<?, ?> idti;
     @FXML
-    private TableColumn<?, ?> idnb;
-    @FXML
-    private TableColumn<?, ?> idt;
-    @FXML
-    private TextField image;
-    @FXML
-    private TextField trailer;
-    @FXML
-    private TextField nbrPlace;
-    @FXML
-    private Button ajouterI_B;
-    @FXML
-    private Button ajouterT_B;
-    @FXML
-    private TextField idFilm;
-    @FXML
-    private TextField Rid;
-    @FXML
     private TableColumn<?, ?> idty;
     @FXML
     private TableColumn<?, ?> idi;
+    @FXML
+    private TableColumn<?, ?> idnb;
+    @FXML
+    private Button ajouterI_B;
+    @FXML
+    private JFXButton ajouterB;
+    @FXML
+    private JFXButton modifierB;
+    @FXML
+    private JFXButton supprimerB;
+    @FXML
+    private JFXTextField idGalerie;
+    @FXML
+    private JFXTextField titre;
+    @FXML
+    private JFXTextField description;
+    @FXML
+    private JFXTextField image;
+    private JFXTextField salle;
+    @FXML
+    private JFXTextField prixenfant;
+    @FXML
+    private JFXTextField prixadulte;
+    @FXML
+    private JFXTextField prixetudiant;
+    @FXML
+    private JFXTextField nbrPlace;
+    @FXML
+    private JFXTextField time;
+    @FXML
+    private JFXTextField Rid;
     public static String sallouma=null;
-    String im=null;
     @FXML
     private ComboBox<String> salle1;
+
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        FilmService fs;
-        fs = new FilmService();
+        
+        GalerieService fs;
+        fs = new GalerieService();
         salle1.setItems(fs.affecterSalle());
         
-        
-        
-         try {
-            FilmService artc = new FilmService();
-            tab.setItems(artc.afficherFilm());
+        try {
+            GalerieService artc = new GalerieService();
+            tab.setItems(artc.afficherGalerie());
             
             
-            idf.setCellValueFactory(new PropertyValueFactory<>("idFilm"));
+            idg.setCellValueFactory(new PropertyValueFactory<>("idGalerie"));
             idt.setCellValueFactory(new PropertyValueFactory<>("titre"));
             idd.setCellValueFactory(new PropertyValueFactory<>("description"));
             idi.setCellValueFactory(new PropertyValueFactory<>("image"));
-            idtr.setCellValueFactory(new PropertyValueFactory<>("trailer"));
             idD.setCellValueFactory(new PropertyValueFactory<>("dateD"));
             idF.setCellValueFactory(new PropertyValueFactory<>("dateF"));
             ids.setCellValueFactory(new PropertyValueFactory<>("salle"));
@@ -150,130 +145,12 @@ public class FilmController implements Initializable {
             idnb.setCellValueFactory(new PropertyValueFactory<>("nbrPlace"));
             idty.setCellValueFactory(new PropertyValueFactory<>("typeEvent"));
         } catch (Exception ex) {
-            Logger.getLogger(FilmController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GalerieController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        setCellValueFromTableToTextField();
         // TODO
     }    
-
-    @FXML
-    private void ajouter(ActionEvent event) throws ClassNotFoundException, Exception {
-        ControlesaisieJ cn=new ControlesaisieJ();
-        
-        String titre1=this.titre.getText();
-        String description1=this.description.getText();
-        String image1=sallouma;
-        String trailer1=this.trailer.getText();
-        //java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
-        //java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
-        /////////////////////////////////////////////////////////
-        if (datedebut.getValue()!=null && datefin.getValue()!=null ){
-        java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
-        java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
-        if(cn.testdateEMB_dateEXP1(dated,datef)==-1){
-        
-             
-        //}
-        //////////////////////////////////////////////////////////
-        
-        String salle=this.salle1.getValue();
-
-        float prixEnfant=Integer.valueOf(this.prixenfant.getText());
-        float prixAdulte=Integer.valueOf(this.prixadulte.getText());
-        float prixEtudiant=Integer.valueOf(this.prixetudiant.getText());
-        String time1=this.time.getText();
-        int nbrplace=Integer.valueOf(this.nbrPlace.getText());
-        
-        UploadImageFilm up=new UploadImageFilm();
-        String path2=up.upload(image.getText());
-        //String rp = image1.replace('\\','/');  
-        System.out.println(path2);
-      //  Film e=new Film(titre1,description1,rp,trailer1,dated,datef,salle1,prixEnfant,prixAdulte ,prixEtudiant, time1,nbrplace);
-        Film e=new Film(trailer1,titre1,description1,dated,datef,salle,prixEnfant,prixAdulte ,prixEtudiant, time1,path2,nbrplace);
-        FilmService fS=new FilmService();
-        fS.ajouterFilm(e);
-        fS.modifierEtatSalle(this.salle1.getValue());
-        FilmService artc = new FilmService();
-        tab.setItems(artc.afficherFilm());
-        }else{
-        Alert alert =new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("date erronee");
-        alert.setHeaderText("ajoutez une date valide");
-        alert.showAndWait();
-        }
-        
-        }
-        
-    }
-
-    @FXML
-    private void supprimer(ActionEvent event) throws ClassNotFoundException {
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-alert.setTitle("supression");
-alert.setHeaderText("supprimer un film");
-alert.setContentText("Are you ok with this?");
-
-Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == ButtonType.OK){
-        Film f =new Film();
-        f.setIdFilm(Integer.valueOf(idFilm.getText()));
-        FilmService fs=new FilmService();
-        fs.supprimerFilm(f);
-         idFilm.clear();
-            titre.clear();
-            description.clear();
-            image.clear();
-            trailer.clear();
-            datedebut.getEditor().clear();
-            datefin.getEditor().clear();
-            //salle.clear();
-            prixenfant.clear();
-            prixadulte.clear();
-            prixetudiant.clear();
-            time.clear();
-            nbrPlace.clear();
-                    
-            tab.setItems(fs.afficherFilm());
-            
-            idf.setCellValueFactory(new PropertyValueFactory<>("idFilm"));
-            idt.setCellValueFactory(new PropertyValueFactory<>("titre"));
-            idd.setCellValueFactory(new PropertyValueFactory<>("description"));
-            idi.setCellValueFactory(new PropertyValueFactory<>("image"));
-            idtr.setCellValueFactory(new PropertyValueFactory<>("trailer"));
-            idD.setCellValueFactory(new PropertyValueFactory<>("dateD"));
-            idF.setCellValueFactory(new PropertyValueFactory<>("dateF"));
-            ids.setCellValueFactory(new PropertyValueFactory<>("salle"));
-            idp.setCellValueFactory(new PropertyValueFactory<>("prixEnfant"));
-            idpa.setCellValueFactory(new PropertyValueFactory<>("prixAdulte"));
-            idpe.setCellValueFactory(new PropertyValueFactory<>("prixEtudiant"));
-            idti.setCellValueFactory(new PropertyValueFactory<>("time1"));
-            idnb.setCellValueFactory(new PropertyValueFactory<>("nbrPlace"));
-       
-    }}
-
-    @FXML
-    private void modifier(ActionEvent event) throws ClassNotFoundException {
-        
-        java.sql.Date d=java.sql.Date.valueOf(datedebut.getValue());
-        java.sql.Date d1=java.sql.Date.valueOf(datefin.getValue());
-        float p=Float.valueOf(prixenfant.getText());
-        float p1=Float.valueOf(prixadulte.getText());
-        float p2=Float.valueOf(prixetudiant.getText());
-        int nbr=Integer.valueOf(nbrPlace.getText());
-        
-        
-        FilmService fs = new FilmService();
-        Film f  = new Film(trailer.getText(),titre.getText(),description.getText(),d,d1,salle1.getValue(),p,p1,p2,time.getText(),image.getText(),nbr);
-        int id =Integer.valueOf(idFilm.getText());
-        f.setIdFilm(id);
-       
-        fs.modifierFilm(f);
-        FilmService artc = new FilmService();
-        tab.setItems(artc.afficherFilm());
-        
-    }
 
     @FXML
     private void ajouterFichier(ActionEvent event) throws IOException {
@@ -286,8 +163,7 @@ Optional<ButtonType> result = alert.showAndWait();
             Path destination= Paths.get("C:\\wamp64\\www\\filmImage\\"+selectedfile.getName());
                         
            sallouma=destination.toString();
-
-           System.out.println(sallouma);
+            System.out.println(sallouma);
 //            System.out.println(s.indexOf("\\"));                    
 //            String rp = s.replace("\\","/");
 //                   
@@ -297,28 +173,129 @@ Optional<ButtonType> result = alert.showAndWait();
                     
                     
             //copie
-            //Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(source, destination,StandardCopyOption.REPLACE_EXISTING);
             
         }
     }
 
     @FXML
-    private void ajouterVideo(ActionEvent event) throws MalformedURLException, URISyntaxException, IOException {
-                Desktop.getDesktop().browse(new URL("https://www.youtube.com/").toURI());
-                
+    private void ajouter(ActionEvent event) throws Exception {
+        ControlesaisieJ cn=new ControlesaisieJ();
+        String titre1=this.titre.getText();
+        String description1=this.description.getText();
+        String image1=sallouma;
+        //java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
+        //java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
+        //String salle1=this.salle.getText();
+        if (datedebut.getValue()!=null && datefin.getValue()!=null ){
+            java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
+        java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
+        if(cn.testdateEMB_dateEXP1(dated,datef)==-1){
+              
+        
+        String salle=this.salle1.getValue();
+        float prixEnfant=Integer.valueOf(this.prixenfant.getText());
+        float prixAdulte=Integer.valueOf(this.prixadulte.getText());
+        float prixEtudiant=Integer.valueOf(this.prixetudiant.getText());
+        String time1=this.time.getText();
+        int nbrplace=Integer.valueOf(this.nbrPlace.getText());
+        
+        
+        UploadImageFilm up=new UploadImageFilm();
+        String path2=up.upload(image.getText());
+        System.out.println(path2);
+        
+        
+      //  Film e=new Film(titre1,description1,rp,trailer1,dated,datef,salle1,prixEnfant,prixAdulte ,prixEtudiant, time1,nbrplace);
+        Galerie e=new Galerie(titre1,description1,dated,datef,salle,prixEnfant,prixAdulte ,prixEtudiant, time1,path2,nbrplace);
+        GalerieService fS=new GalerieService();
+        fS.ajouterGalerie(e);
+        GalerieService artc = new GalerieService();
+        tab.setItems(artc.afficherGalerie());
+    }else{
+        Alert alert =new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("date erronee");
+        alert.setHeaderText("ajoutez une date valide");
+        alert.showAndWait();
+        }
+        
+        }
     }
 
     @FXML
+    private void modifier(ActionEvent event) {
+         java.sql.Date d=java.sql.Date.valueOf(datedebut.getValue());
+        java.sql.Date d1=java.sql.Date.valueOf(datefin.getValue());
+        float p=Float.valueOf(prixenfant.getText());
+        float p1=Float.valueOf(prixadulte.getText());
+        float p2=Float.valueOf(prixetudiant.getText());
+        int nbr=Integer.valueOf(nbrPlace.getText());
+        
+        
+        GalerieService fs = new GalerieService();
+        Galerie f  = new Galerie(titre.getText(),description.getText(),d,d1,salle1.getValue(),p,p1,p2,time.getText(),image.getText(),nbr);
+        int id =Integer.valueOf(idGalerie.getText());
+        f.setIdGalerie(id);
+       
+        fs.modifierGalerie(f);
+        GalerieService artc = new GalerieService();
+        tab.setItems(artc.afficherGalerie());
+    }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+alert.setTitle("supression");
+alert.setHeaderText("supprimer un film");
+alert.setContentText("Are you ok with this?");
+
+Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK){
+         Galerie f =new Galerie();
+        f.setIdGalerie(Integer.valueOf(idGalerie.getText()));
+        GalerieService fs=new GalerieService();
+        fs.supprimerGalerie(f);
+            idGalerie.clear();
+            titre.clear();
+            description.clear();
+            image.clear();
+            datedebut.getEditor().clear();
+            datefin.getEditor().clear();
+            //salle.clear();
+            prixenfant.clear();
+            prixadulte.clear();
+            prixetudiant.clear();
+            time.clear();
+            nbrPlace.clear();
+                    
+            tab.setItems(fs.afficherGalerie());
+            
+            idg.setCellValueFactory(new PropertyValueFactory<>("idGalerie"));
+            idt.setCellValueFactory(new PropertyValueFactory<>("titre"));
+            idd.setCellValueFactory(new PropertyValueFactory<>("description"));
+            idi.setCellValueFactory(new PropertyValueFactory<>("image"));
+            idD.setCellValueFactory(new PropertyValueFactory<>("dateD"));
+            idF.setCellValueFactory(new PropertyValueFactory<>("dateF"));
+            ids.setCellValueFactory(new PropertyValueFactory<>("salle"));
+            idp.setCellValueFactory(new PropertyValueFactory<>("prixEnfant"));
+            idpa.setCellValueFactory(new PropertyValueFactory<>("prixAdulte"));
+            idpe.setCellValueFactory(new PropertyValueFactory<>("prixEtudiant"));
+            idti.setCellValueFactory(new PropertyValueFactory<>("time1"));
+            idnb.setCellValueFactory(new PropertyValueFactory<>("nbrPlace"));
+    }}
+    
+
+    @FXML
     private void search(KeyEvent event) {
-        FilmService sa = new FilmService() ;
+         GalerieService sa = new GalerieService() ;
         if (!(this.Rid.getText().equals(""))){
-        int id_film=Integer.valueOf(this.Rid.getText());
-        tab.setItems(sa.rechercheFilmParID(id_film));
-        idf.setCellValueFactory(new PropertyValueFactory<>("idFilm"));
+        int id_galerie=Integer.valueOf(this.Rid.getText());
+        tab.setItems(sa.rechercheGalerieParID(id_galerie));
+        idg.setCellValueFactory(new PropertyValueFactory<>("idGalerie"));
         idt.setCellValueFactory(new PropertyValueFactory<>("titre"));
         idd.setCellValueFactory(new PropertyValueFactory<>("description"));
         idi.setCellValueFactory(new PropertyValueFactory<>("image"));
-        idtr.setCellValueFactory(new PropertyValueFactory<>("trailer"));
         idD.setCellValueFactory(new PropertyValueFactory<>("dateD"));
         idF.setCellValueFactory(new PropertyValueFactory<>("dateF"));
         ids.setCellValueFactory(new PropertyValueFactory<>("salle"));
@@ -331,27 +308,25 @@ Optional<ButtonType> result = alert.showAndWait();
         
         }else {
             
-            FilmService artc = new FilmService();
-            tab.setItems(artc.afficherFilm());
+            GalerieService artc = new GalerieService();
+            tab.setItems(artc.afficherGalerie());
         }
     }
     
     
     
     
-        
-        private void setCellValueFromTableToTextField()
+     private void setCellValueFromTableToTextField()
     {
         
             tab.setOnMouseClicked(e -> {
-            Film a1 = tab.getItems().get(tab.getSelectionModel().getSelectedIndex());
+            Galerie a1 = tab.getItems().get(tab.getSelectionModel().getSelectedIndex());
             
            
-            idFilm.setText(String.valueOf(a1.getIdFilm()));       
+            idGalerie.setText(String.valueOf(a1.getIdGalerie()));       
             titre.setText(a1.getTitre());
             description.setText(a1.getDescription());
             image.setText(a1.getImage());
-            trailer.setText(a1.getTrailer());
             
             //datedebut.setTime(a1.getDateD());
             Date date=a1.getDateD();
@@ -384,7 +359,7 @@ Optional<ButtonType> result = alert.showAndWait();
 
     @FXML
     private void changeplace(ActionEvent event) {
-        FilmService fs=new FilmService();
+         GalerieService fs=new GalerieService();
        int pl= fs.NbrPlace(salle1.getValue());
         this.nbrPlace.setText(String.valueOf(pl));
     }

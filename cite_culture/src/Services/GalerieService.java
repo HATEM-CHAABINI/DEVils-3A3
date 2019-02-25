@@ -6,8 +6,9 @@
 package Services;
 
 import Dao.MyDB;
-import Entities.Film;
-import IServices.IFilm;
+import Entities.Conference;
+import Entities.Galerie;
+import IServices.IGalerie;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -25,24 +26,21 @@ import javafx.collections.ObservableList;
  *
  * @author mouna dridi
  */
-public class FilmService implements IFilm {
+public class GalerieService implements IGalerie{
+     Connection conn;
     
-    Connection conn;
-    
-    public FilmService() {
+    public GalerieService() {
         
         try {
             this.conn = MyDB.getInstance().getConnexion();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GalerieService.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
 
     @Override
-    public void ajouterFilm(Film f) {
-        
-        
-         String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, `salle`, `prixEnfant`, `prixAdulte`, `prixEtudiant`, `time`,`typeEvent`,`image`,`nbrPlace`) VALUES ('"+f.getTitre()+"','"+f.getDescription()+"','"+f.getDateD()+"','"+f.getDateF()+"','"+f.getSalle()+"','"+f.getPrixEnfant()+"','"+f.getPrixAdulte()+"','"+f.getPrixEtudiant()+"','"+f.getTime1()+"','"+f.getTypeEvent()+"','"+f.getImage()+"','"+f.getNbrPlace()+"')";
+    public void ajouterGalerie(Galerie t) {
+String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, `salle`, `prixEnfant`, `prixAdulte`, `prixEtudiant`, `time`,`typeEvent`,`image`,`nbrPlace`) VALUES ('"+t.getTitre()+"','"+t.getDescription()+"','"+t.getDateD()+"','"+t.getDateF()+"','"+t.getSalle()+"','"+t.getPrixEnfant()+"','"+t.getPrixAdulte()+"','"+t.getPrixEtudiant()+"','"+t.getTime1()+"','"+t.getTypeEvent()+"','"+t.getImage()+"','"+t.getNbrPlace()+"')";
   
     try {
            PreparedStatement ptl = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
@@ -54,7 +52,7 @@ public class FilmService implements IFilm {
 
                    
        
-    String sql1 = "INSERT INTO `film`(`idEvent`, `trailer`) VALUES ('"+generatedKeys.getInt(1)+"','"+f.getTrailer()+"')";
+    String sql1 = "INSERT INTO `galerie`(`idEvent`) VALUES ('"+generatedKeys.getInt(1)+"')";
   
     
             Statement stl = conn.createStatement();
@@ -65,57 +63,23 @@ public class FilmService implements IFilm {
             System.err.println("SQLState: " + ex.getSQLState());
             System.err.println("VendorError: " + ex.getErrorCode());
             System.err.println("sql: " + sql);
-        }
-       
-    }
-@Override
- public  List<Film> tousFilms(){
-                 List<Film> l=new ArrayList<>();
-                 
-        try {
-            String sql="select * from evenement WHERE `typeEvent` ='Film' ";
-            
-            Statement st=conn.createStatement();
-            ResultSet rs=st.executeQuery(sql);
-            while(rs.next()){
-                Film f=new Film();
-                f.setTitre(rs.getString("titre"));
-                f.setImage(rs.getString("image"));
-                f.setDateD(rs.getDate("dateD"));
-                f.setDateF(rs.getDate("dateF"));
-                f.setPrixEnfant(rs.getFloat("prixEnfant"));
-                f.setIdEvent(rs.getInt("idEvent"));
-                f.setTime1(rs.getString("time"));
-                f.setDescription(rs.getString("description"));
-                f.setNbrPlace(rs.getInt("nbrPlace"));
-                String trsql="select trailer from film where idEvent='"+f.getIdEvent()+"'";
-                Statement st2=conn.createStatement();
-            ResultSet rsss=st2.executeQuery(trsql);
-            while(rsss.next()){
-               f.setTrailer(rsss.getString("trailer"));
-            }
-               l.add(f);
-                        }  } catch (SQLException ex) {
-            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    return l; 
- }   
+        }    }
+
     @Override
-    public ObservableList<Film> afficherFilm() {
-                ObservableList<Film> listA = FXCollections.observableArrayList();
+    public ObservableList<Galerie> afficherGalerie() {
+ObservableList<Galerie> listA = FXCollections.observableArrayList();
 
 try {
             
-            String req4="select * FROM film as f, evenement as e where f.idEvent=e.idEvent and e.typeEvent='Film'";
+            String req4="select * FROM galerie as t, evenement as e where t.idEvent=e.idEvent and e.typeEvent='Galerie'";
             Statement st = conn.createStatement();
             st.executeQuery(req4);
             ResultSet rs = st.executeQuery(req4);
             while(rs.next()){
-               Film f = new Film();
+               Galerie f = new Galerie();
                 
-                f.setIdFilm(rs.getInt("idFilm"));
+                f.setIdGalerie(rs.getInt("idGalerie"));
                 f.setIdEvent(rs.getInt("idEvent"));
-                f.setTrailer(rs.getString("trailer"));
                 f.setTitre(rs.getString("titre"));
                 f.setDescription(rs.getString("description"));
                 f.setDateD(rs.getDate("dateD")); 
@@ -135,27 +99,24 @@ try {
             return listA;
         
         } catch (SQLException ex) {
-            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GalerieService.class.getName()).log(Level.SEVERE, null, ex);
         } 
     return null;    }
 
-    
-    
     @Override
-    public void modifierFilm(Film f) {
- 
-         try {
+    public void modifierGalerie(Galerie t) {
+try {
          
             
-  f.setIdEvent(RetourIdEvent(f));
+  t.setIdEvent(RetourIdEvent(t));
              
-         String sql ="UPDATE `evenement` SET `titre`='"+f.getTitre() + "',`description`='"+f.getDescription() + "',`dateD`='"+f.getDateD() + "',`dateF`='"+f.getDateF() + "',`salle`='"+f.getSalle() + "',`prixEnfant`='"+f.getPrixEnfant() + "',`prixAdulte`='"+f.getPrixAdulte() + "',`prixEtudiant`='"+f.getPrixEtudiant() + "',`time`='"+f.getTime1() + "',`typeEvent`='"+f.getTypeEvent() + "',`image`='"+f.getImage() + "',`nbrPlace`='"+f.getNbrPlace() + "' WHERE `idEvent`='"+f.getIdEvent()+"' ";
-         String sql1 = "UPDATE film SET `trailer`='"+f.getTrailer()+"' WHERE `idEvent`='"+f.getIdEvent()+"'";
+         String sql ="UPDATE `evenement` SET `titre`='"+t.getTitre() + "',`description`='"+t.getDescription() + "',`dateD`='"+t.getDateD() + "',`dateF`='"+t.getDateF() + "',`salle`='"+t.getSalle() + "',`prixEnfant`='"+t.getPrixEnfant() + "',`prixAdulte`='"+t.getPrixAdulte() + "',`prixEtudiant`='"+t.getPrixEtudiant() + "',`time`='"+t.getTime1() + "',`typeEvent`='"+t.getTypeEvent() + "',`image`='"+t.getImage() + "',`nbrPlace`='"+t.getNbrPlace() + "' WHERE `idEvent`='"+t.getIdEvent()+"' ";
+         //String sql1 = "UPDATE `theatre` WHERE idEvent='"+t.getIdEvent()+"'";
 
              Statement stl = conn.createStatement();
            int rsn =stl.executeUpdate(sql);
-   Statement stl2 = conn.createStatement();
-           int rsb =stl2.executeUpdate(sql1);
+//   Statement stl2 = conn.createStatement();
+//           int rsb =stl2.executeUpdate(sql1);
  
             
         } catch (SQLException ex) {
@@ -163,15 +124,13 @@ try {
             System.err.println("SQLState: " + ex.getSQLState());
             System.err.println("VendorError: " + ex.getErrorCode());
        //     System.err.println("sql: " + sql);
-        }
-             }
+        }    }
 
     @Override
-    public void supprimerFilm(Film f) {
-   //String sql = "INSERT INTO fos_user(username) VALUES ('"+c.getUsername()+"');";
-  int idEvent= RetourIdEvent(f);
+    public void supprimerGalerie(Galerie t) {
+int idEvent= RetourIdEvent(t);
     try {
-         String sql = "DELETE FROM `film` where (idEvent ='"+idEvent+"');";
+         String sql = "DELETE FROM `galerie` where (idEvent ='"+idEvent+"');";
 
             Statement stl = conn.createStatement();
            int rs =stl.executeUpdate(sql);
@@ -183,12 +142,11 @@ try {
        
                    } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
-            
-        }            }
+                }    }
 
     @Override
-    public int RetourIdEvent(Film f) {
-         String sql2="select idEvent from film where idFilm='"+f.getIdFilm()+"';";
+    public int RetourIdEvent(Galerie t) {
+String sql2="select idEvent from galerie where idGalerie='"+t.getIdGalerie()+"';";
  
          int i = 0;
          try {
@@ -208,28 +166,26 @@ try {
         }
 
 
- return i;
-}
+ return i;    }
 
     @Override
-    public ObservableList<Film> rechercheFilmParID(int id) {
-ObservableList<Film> listF = FXCollections.observableArrayList();
- Film s = new Film();
+    public ObservableList<Galerie> rechercheGalerieParID(int id) {
+ObservableList<Galerie> listF = FXCollections.observableArrayList();
+ Galerie s = new Galerie();
         
 
             
 
            try {
             
-            String req4="select * FROM film as f, evenement as e where f.idEvent=e.idEvent  and f.idFilm='"+id+"'";
+            String req4="select * FROM galerie as t, evenement as e where t.idEvent=e.idEvent  and t.idGalerie='"+id+"'";
             Statement st = conn.createStatement();
             st.executeQuery(req4);
             ResultSet rs = st.executeQuery(req4);
            while(rs.next()){
-                Film f = new Film();
-                f.setIdFilm(rs.getInt("idFilm"));
+                Galerie f = new Galerie();
+                f.setIdGalerie(rs.getInt("idGalerie"));
                 f.setIdEvent(rs.getInt("idEvent"));
-                f.setTrailer(rs.getString("trailer"));
                 f.setTitre(rs.getString("titre"));
                 f.setDescription(rs.getString("description"));
                 f.setDateD(rs.getDate("dateD")); 
@@ -248,21 +204,52 @@ ObservableList<Film> listF = FXCollections.observableArrayList();
             return listF;
         
         } catch (SQLException ex) {
-            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GalerieService.class.getName()).log(Level.SEVERE, null, ex);
         } 
     return null;    }
 
     @Override
-    public List<Film> tousFilmsParDate(Date d) {
-       List<Film> l=new ArrayList<>();
+    public List<Galerie> tousGaleries() {
+List<Galerie> l=new ArrayList<>();
                  
         try {
-            String sql="select * from evenement where dateD ='"+d+"' and typeEvent='Film' ";
+            String sql="SELECT * FROM `evenement` WHERE `typeEvent` ='Galerie'  ";
             
             Statement st=conn.createStatement();
             ResultSet rs=st.executeQuery(sql);
             while(rs.next()){
-                Film f=new Film();
+                Galerie f=new Galerie();
+                f.setTitre(rs.getString("titre"));
+                f.setImage(rs.getString("image"));
+                f.setDateD(rs.getDate("dateD"));
+                f.setDateF(rs.getDate("dateF"));
+                f.setPrixEnfant(rs.getFloat("prixEnfant"));
+                f.setIdEvent(rs.getInt("idEvent"));
+                f.setTime1(rs.getString("time"));
+                f.setDescription(rs.getString("description"));
+                f.setNbrPlace(rs.getInt("nbrPlace"));
+//                Statement st2=conn.createStatement();
+//            ResultSet rsss=st2.executeQuery(trsql);
+//            while(rsss.next()){
+//               f.setTrailer(rsss.getString("trailer"));
+//            }
+               l.add(f);
+                        }  } catch (SQLException ex) {
+            Logger.getLogger(GalerieService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return l;            }
+
+    @Override
+    public List<Galerie> tousGalerieParDate(Date d) {
+List<Galerie> l=new ArrayList<>();
+                 
+        try {
+            String sql="select * from evenement where dateD ='"+d+"' and typeEvent='Galerie'";
+            
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery(sql);
+            while(rs.next()){
+                Galerie f=new Galerie();
                 f.setImage(rs.getString("image"));
                 f.setTitre(rs.getString("titre"));
                 f.setDateD(rs.getDate("dateD"));
@@ -272,18 +259,33 @@ ObservableList<Film> listF = FXCollections.observableArrayList();
                 f.setTime1(rs.getString("time"));
                 f.setDescription(rs.getString("description"));
                 f.setNbrPlace(rs.getInt("nbrPlace"));
-                String trsql="select trailer from film where idEvent='"+f.getIdEvent()+"'";
-                Statement st2=conn.createStatement();
-            ResultSet rsss=st2.executeQuery(trsql);
-            while(rsss.next()){
-               f.setTrailer(rsss.getString("trailer"));
-            }
+               
                l.add(f);
                         }  } catch (SQLException ex) {
-            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GalerieService.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return l;     }
+    return l;    }
 
+    @Override
+    public ObservableList<String> affecterSalle() {
+ObservableList<String> listS = FXCollections.observableArrayList();
+    String salle ="";
+     String sql="select designation from salle where type ='Galerie' and etat='Libre' ";
+     try{
+         Statement st1 = conn.createStatement();
+         ResultSet rs=st1.executeQuery(sql);
+         while(rs.next()){
+             salle=rs.getString(1);
+             listS.add(salle);
+         }
+         rs.close();
+     }catch(SQLException ex)
+     {
+         System.err.println("SQLException"+ex.getMessage());
+     }
+    return listS;    }
+    
+    
     public int NbrPlace(String designation){
     int place=0;
     String sql="select limite from salle where designation='"+designation+"'";
@@ -301,44 +303,5 @@ ObservableList<Film> listF = FXCollections.observableArrayList();
      }
     return place;
     }
-    @Override
-    public ObservableList<String> affecterSalle() {
-    ObservableList<String> listS = FXCollections.observableArrayList();
-    String salle ="";
-     String sql="select designation from salle where type ='Film' and etat='Libre' ";
-     try{
-         Statement st1 = conn.createStatement();
-         ResultSet rs=st1.executeQuery(sql);
-         while(rs.next()){
-             salle=rs.getString(1);
-             listS.add(salle);
-         }
-         rs.close();
-     }catch(SQLException ex)
-     {
-         System.err.println("SQLException"+ex.getMessage());
-     }
-    return listS;
-    }
     
-    
-    public void modifierEtatSalle(String des) {
-        
-      
-           String sql = "UPDATE `salle` SET `etat`='Non Libre' WHERE `designation`='"+des+"'";
-
-        
-        try {
-            Statement stl = conn.createStatement();
-           int rs =stl.executeUpdate(sql);
-         //  QRCodeGenerator.generateQRCodeImage(r.getQr(),c.getUsername());
-                   } catch (SQLException ex) {
-            System.err.println("SQLException: " + ex.getMessage());
-            
-        }
-    }
-    
- }
-    
-
-
+}

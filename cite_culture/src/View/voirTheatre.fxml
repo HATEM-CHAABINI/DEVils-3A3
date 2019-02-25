@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.VoirTheatreController">
+   <children>
+      <ImageView fx:id="im" fitHeight="300.0" fitWidth="217.0" layoutX="24.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="date" layoutX="283.0" layoutY="263.0" />
+      <JFXButton fx:id="reserver" layoutX="360.0" layoutY="300.0" onAction="#ajouterProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="reserver" />
+      <JFXTextField fx:id="titre" layoutX="295.0" layoutY="58.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="titre" />
+      <JFXTextField fx:id="time" layoutX="295.0" layoutY="262.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="time" />
+      <JFXTextArea fx:id="descr" layoutX="295.0" layoutY="114.0" prefHeight="79.0" prefWidth="234.0" promptText="description" />
+      <Rating fx:id="rating" layoutX="38.0" layoutY="364.0" onMouseClicked="#ajouterRating" prefHeight="17.0" prefWidth="83.0" />
+      <Label fx:id="msg" layoutX="257.0" layoutY="372.0" prefHeight="17.0" prefWidth="92.0" />
+      <JFXTextField fx:id="d" layoutX="295.0" layoutY="211.0" prefHeight="25.0" prefWidth="234.0" promptText="date" text="date" />
+      <Label fx:id="moyenne" layoutX="548.0" layoutY="372.0" text="Label" />
+      <JFXButton fx:id="fb" layoutX="315.0" layoutY="348.0" onAction="#partager" prefHeight="39.0" prefWidth="198.0" stylesheets="@CSS/dark-theme.css" text="partager sur facebook" />
+   </children>
+</AnchorPane>

@@ -27,5 +27,8 @@ public interface IFilm {
      */
     public  List<Film> tousFilms();
     public  List<Film> tousFilmsParDate(java.sql.Date d);
+     public ObservableList<String> affecterSalle();
+    // public void modifierEtatSalle();
+    
      
 }

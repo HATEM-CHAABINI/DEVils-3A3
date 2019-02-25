@@ -6,8 +6,10 @@
 package IServices;
 
 
+import Entities.Conference;
 import Entities.Film;
 import Entities.PropositionEvent;
+import Entities.Theatre;
 import javafx.collections.ObservableList;
 
 /**
@@ -19,6 +21,8 @@ public interface IPFilm {
     public ObservableList<PropositionEvent> afficherPEvent();
     public void supprimerPEvent(PropositionEvent f);
     public void validerPEvent(Film f);
+    public void validerPEvent2(Theatre t);
+    public void validerPEvent3(Conference c);
     public void setEtatV(PropositionEvent f);
     
 }

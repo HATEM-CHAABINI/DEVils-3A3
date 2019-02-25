@@ -167,5 +167,12 @@ public class ControlesaisieJ {
 		
 	}
         
+        public int testdateEMB_dateEXP1(java.sql.Date d1, java.sql.Date d2) throws ParseException {
+		//******************* test date embauche inférieur a la date expiration*****************************
+		java.util.Date dateEMB = d1;
+		java.util.Date dateEXP = d2;
+		return dateEMB.compareTo(dateEXP);
+	}
+        
         
 }

@@ -63,6 +63,7 @@ public class InfoFilmController  implements Initializable  {
     private ScrollPane tt;
     
     private Button b=new Button("hamouda");
+   // private Label la=new Label("a");
 //   Style s=new S
 //    Class CommandsController = getClass();
     List<HBox> hboxes=new ArrayList<>();
@@ -71,6 +72,8 @@ public class InfoFilmController  implements Initializable  {
     private HBox hbox;
     @FXML
     private DatePicker date;
+    @FXML
+    private VBox gvbox;
    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -126,27 +129,42 @@ public class InfoFilmController  implements Initializable  {
 		hbox.setPadding(new Insets(5, 30, 5, 50));
 		hbox.setSpacing(15);
             for(Film f: maList){
-                String k=maList.get(i).getImage().replace('/', '\\');               
-                final String imageURI = new File(maList.get(i).getImage()).toURI().toString(); 
+            String k="C:/wamp64/"+maList.get(i).getImage();              
+                final String imageURI = new File(k).toURI().toString(); 
+                System.out.println("//////////////////////////");
+                System.out.println(imageURI);
+                System.out.println("//////////////////////////");
                 final Image image = new Image(imageURI);
-               
+                String k1=maList.get(i).getTitre(); 
+                Label la=new Label();
+                la.setLayoutX(100);
+                la.setLayoutY(310);
+                la.setText(k1);
+
                     ImageView im=new ImageView(image);
                     im.setLayoutY(0);
                     im.setLayoutX(0);
                     im.setFitHeight(300);
                     im.setFitWidth(300);
+                    
                     Button plo=new Button("");
                     plo.setPrefSize(300, 300);
                     plo.setLayoutX(0);
                     plo.setLayoutY(0);
                     plo.setStyle("-fx-background-color: transparent;");
-
+                    
+//                    Label l1 = new Label(k1);
+//                     l1.setLayoutY(0);
+//                    l1.setLayoutX(0);
+//                    l1.setAlignment(Pos.CENTER);
+//                    l1.setFitWidth(300);
+                    
                     final int kvalue=i;
    plo.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent t) {
           try {
               FXMLLoader loader=new FXMLLoader();
-              loader.setLocation(getClass().getResource("voirFilm.fxml"));
+              loader.setLocation(getClass().getResource("/View/voirFilm.fxml"));
               Parent root=loader.load();
               voirFilmController vfc=loader.getController();
               vfc.setFilm(maList.get(kvalue));
@@ -166,7 +184,7 @@ public class InfoFilmController  implements Initializable  {
                 
                 l.setStyle("-fx-background-color: rgba(99,168,48,0.5);-fx-background-radius: 10 10 10 10;");
 		l.setPrefSize(300, 300);
-                l.getChildren().addAll(im,plo);
+                l.getChildren().addAll(im,plo,la);
 		panes.add(l);
                 if(p==3 || i==(maList.size()-1)){
                     hbox.getChildren().addAll(panes);
@@ -202,10 +220,11 @@ public class InfoFilmController  implements Initializable  {
 		hbox.setPadding(new Insets(5, 30, 5, 50));
 		hbox.setSpacing(15);
             for(Film f: maList){
-                String k=maList.get(i).getImage().replace('/', '\\');               
-                final String imageURI = new File(maList.get(i).getImage()).toURI().toString(); 
+                String k="C:/wamp64/"+maList.get(i).getImage();              
+                final String imageURI = new File(k).toURI().toString();
                 final Image image = new Image(imageURI);
-               
+                String k1=maList.get(i).getTitre(); 
+      
                     ImageView im=new ImageView(image);
                     im.setLayoutY(0);
                     im.setLayoutX(0);
@@ -216,13 +235,17 @@ public class InfoFilmController  implements Initializable  {
                     plo.setLayoutX(0);
                     plo.setLayoutY(0);
                     plo.setStyle("-fx-background-color: transparent;");
+                Label la=new Label();
+                la.setLayoutX(100);
+                la.setLayoutY(310);
+                la.setText(k1);
 
                     final int kvalue=i;
    plo.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent t) {
           try {
               FXMLLoader loader=new FXMLLoader();
-              loader.setLocation(getClass().getResource("voirFilm.fxml"));
+              loader.setLocation(getClass().getResource("/View/voirFilm.fxml"));
               Parent root=loader.load();
               voirFilmController vfc=loader.getController();
               vfc.setFilm(maList.get(kvalue));
@@ -242,7 +265,7 @@ public class InfoFilmController  implements Initializable  {
                 
                 l.setStyle("-fx-background-color: rgba(99,168,48,0.5);-fx-background-radius: 10 10 10 10;");
 		l.setPrefSize(300, 300);
-                l.getChildren().addAll(im,plo);
+                l.getChildren().addAll(im,plo,la);
 		panes.add(l);
                 if(p==3 || i==(maList.size()-1)){
                     hbox.getChildren().addAll(panes);
@@ -265,9 +288,11 @@ public class InfoFilmController  implements Initializable  {
 
 	}
 
+    @FXML
         public void affWhere(ActionEvent event){
             vb.getChildren().clear();
             hboxes.clear();
+            
             if(date.getValue() != null){
             List<Film> maList=fs.tousFilmsParDate(java.sql.Date.valueOf(date.getValue()));
             addLabelsWithList(maList);
@@ -282,7 +307,6 @@ public class InfoFilmController  implements Initializable  {
         
         
        
-    @FXML
     private void recherche(ActionEvent event) {
                 vb  = new VBox(); 
                 hbox=new HBox();
@@ -324,7 +348,7 @@ public class InfoFilmController  implements Initializable  {
       @Override public void handle(ActionEvent t) {
           try {
               FXMLLoader loader=new FXMLLoader();
-              loader.setLocation(getClass().getResource("voirFilm.fxml"));
+              loader.setLocation(getClass().getResource("/View/voirFilm.fxml"));
               Parent root=loader.load();
               voirFilmController vfc=loader.getController();
               vfc.setFilm(maList.get(kvalue));

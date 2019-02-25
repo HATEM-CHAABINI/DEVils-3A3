@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PropositioneventController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PropositioneventController">
    <children>
       <Label layoutX="44.0" layoutY="79.0" prefHeight="17.0" prefWidth="122.0" text="type evenement" />
       <Label layoutX="41.0" layoutY="125.0" prefHeight="17.0" prefWidth="81.0" text="description" />
       <Label layoutX="44.0" layoutY="173.0" text="Titre" />
-      <Button fx:id="envoyer" layoutX="373.0" layoutY="121.0" mnemonicParsing="false" onAction="#ajouterProposition" text="envoyer" />
-      <Button fx:id="annuler" layoutX="473.0" layoutY="120.0" mnemonicParsing="false" onAction="#annulerProposition" text="annuler" />
-      <TextField fx:id="description" layoutX="151.0" layoutY="121.0" />
-      <TextField fx:id="titre" layoutX="151.0" layoutY="169.0" />
       <TableView fx:id="table" layoutX="100.0" layoutY="201.0" prefHeight="186.0" prefWidth="377.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="idPEvent" />
@@ -27,5 +23,9 @@
         </columns>
       </TableView>
       <ComboBox fx:id="type" layoutX="151.0" layoutY="76.0" prefWidth="150.0" promptText="type evenement" />
+      <JFXTextField fx:id="description" layoutX="151.0" layoutY="120.0" prefHeight="25.0" prefWidth="150.0" promptText="description" />
+      <JFXTextField fx:id="titre" layoutX="151.0" layoutY="169.0" prefHeight="25.0" prefWidth="150.0" promptText="titre" />
+      <JFXButton fx:id="envoyer" layoutX="425.0" layoutY="72.0" onAction="#ajouterProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="envoyer" />
+      <JFXButton fx:id="annuler" layoutX="425.0" layoutY="132.0" onAction="#annulerProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="annuler" />
    </children>
 </AnchorPane>

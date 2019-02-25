@@ -6,9 +6,12 @@
 package Services;
 
 import Dao.MyDB;
+import Entities.Conference;
 import Entities.Film;
 import Entities.Evenement;
+import Entities.Galerie;
 import Entities.PropositionEvent;
+import Entities.Theatre;
 import IServices.IPFilm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,6 +56,24 @@ public class PropositionEventService implements IPFilm {
         }
            
        
+    }
+    public ObservableList<String> affecterSalle(String type) {
+    ObservableList<String> listS = FXCollections.observableArrayList();
+    String salle ="";
+     String sql="select designation from salle where type ='"+type+"' ";
+     try{
+         Statement st1 = conn.createStatement();
+         ResultSet rs=st1.executeQuery(sql);
+         while(rs.next()){
+             salle=rs.getString(1);
+             listS.add(salle);
+         }
+         rs.close();
+     }catch(SQLException ex)
+     {
+         System.err.println("SQLException"+ex.getMessage());
+     }
+    return listS;
     }
 
     @Override
@@ -101,6 +122,7 @@ try {
         } 
         
     }
+    
 
     
 
@@ -152,11 +174,90 @@ try {
         }
            
     }
+
+    @Override
+    public void validerPEvent2(Theatre t) {
+String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, `salle`, `prixEnfant`, `prixAdulte`, `prixEtudiant`, `time`,`typeEvent`,`image`,`nbrPlace`) VALUES ('"+t.getTitre()+"','"+t.getDescription()+"','"+t.getDateD()+"','"+t.getDateF()+"','"+t.getSalle()+"','"+t.getPrixEnfant()+"','"+t.getPrixAdulte()+"','"+t.getPrixEtudiant()+"','"+t.getTime1()+"','"+t.getTypeEvent()+"','"+t.getImage()+"','"+t.getNbrPlace()+"')";
+  
+    try {
+           PreparedStatement ptl = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ptl.executeUpdate();
+            ResultSet generatedKeys = ptl.getGeneratedKeys();
+                 generatedKeys.next();
+                 
+            System.out.println(generatedKeys.getInt(1));
+
+                   
+       
+    String sql1 = "INSERT INTO `theatre`(`idEvent`) VALUES ('"+generatedKeys.getInt(1)+"')";
+  
+    
+            Statement stl = conn.createStatement();
+           int rs =stl.executeUpdate(sql1);
+
+                   } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
+            System.err.println("sql: " + sql);
+        }    }
+
+    @Override
+    public void validerPEvent3(Conference c) {
+String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, `salle`, `prixEnfant`, `prixAdulte`, `prixEtudiant`, `time`,`typeEvent`,`image`,`nbrPlace`) VALUES ('"+c.getTitre()+"','"+c.getDescription()+"','"+c.getDateD()+"','"+c.getDateF()+"','"+c.getSalle()+"','"+c.getPrixEnfant()+"','"+c.getPrixAdulte()+"','"+c.getPrixEtudiant()+"','"+c.getTime1()+"','"+c.getTypeEvent()+"','"+c.getImage()+"','"+c.getNbrPlace()+"')";
+  
+    try {
+           PreparedStatement ptl = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ptl.executeUpdate();
+            ResultSet generatedKeys = ptl.getGeneratedKeys();
+                 generatedKeys.next();
+                 
+            System.out.println(generatedKeys.getInt(1));
+
+                   
+       
+    String sql1 = "INSERT INTO `conference`(`idEvent`) VALUES ('"+generatedKeys.getInt(1)+"')";
+  
+    
+            Statement stl = conn.createStatement();
+           int rs =stl.executeUpdate(sql1);
+
+                   } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
+            System.err.println("sql: " + sql);
+        }     }
     
 
     
 
+ public void validerPEvent3(Galerie c) {
+String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, `salle`, `prixEnfant`, `prixAdulte`, `prixEtudiant`, `time`,`typeEvent`,`image`,`nbrPlace`) VALUES ('"+c.getTitre()+"','"+c.getDescription()+"','"+c.getDateD()+"','"+c.getDateF()+"','"+c.getSalle()+"','"+c.getPrixEnfant()+"','"+c.getPrixAdulte()+"','"+c.getPrixEtudiant()+"','"+c.getTime1()+"','"+c.getTypeEvent()+"','"+c.getImage()+"','"+c.getNbrPlace()+"')";
+  
+    try {
+           PreparedStatement ptl = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            ptl.executeUpdate();
+            ResultSet generatedKeys = ptl.getGeneratedKeys();
+                 generatedKeys.next();
+                 
+            System.out.println(generatedKeys.getInt(1));
 
+                   
+       
+    String sql1 = "INSERT INTO `galerie`(`idEvent`) VALUES ('"+generatedKeys.getInt(1)+"')";
+  
+    
+            Statement stl = conn.createStatement();
+           int rs =stl.executeUpdate(sql1);
+
+                   } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
+            System.err.println("sql: " + sql);
+        }     }
+    
 
 
 
