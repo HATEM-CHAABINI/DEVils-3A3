@@ -10,41 +10,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="745.0" prefWidth="1041.0" styleClass="background" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MiseAJour">
+<AnchorPane prefHeight="762.0" prefWidth="860.0" styleClass="background" stylesheets="@CSS/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MiseAJour">
    <children>
-      <AnchorPane layoutX="243.0" prefHeight="762.0" prefWidth="515.0" styleClass="box-login">
+      <AnchorPane prefHeight="762.0" prefWidth="1038.0" styleClass="box-login">
          <children>
-            <JFXTextField fx:id="email" focusColor="#48a5ea" layoutX="149.0" layoutY="252.0" prefHeight="25.0" prefWidth="245.0" promptText="Email" />
-            <JFXTextField fx:id="username" editable="false" focusColor="#48a5ea" layoutX="149.0" layoutY="209.0" prefHeight="25.0" prefWidth="245.0" promptText="Username" />
-            <JFXTextField fx:id="Adr" focusColor="#48a5ea" layoutX="145.0" layoutY="292.0" prefHeight="25.0" prefWidth="253.0" promptText="Adresse" />
-            <JFXTextField fx:id="pNumber" focusColor="#48a5ea" layoutX="145.0" layoutY="437.0" prefHeight="25.0" prefWidth="253.0" promptText="Numero telephone" />
-            <JFXPasswordField fx:id="ancienpwd" layoutX="147.0" layoutY="478.0" prefHeight="25.0" prefWidth="253.0" promptText="Mot de passe" />
-            <ImageView fitHeight="61.0" fitWidth="271.0" layoutX="137.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" styleClass="login-img" />
-            <Label layoutX="235.0" layoutY="2.0" styleClass="login-txt" text="Inscription" textFill="WHITE" />
-            <JFXButton fx:id="updateBtn" layoutX="68.0" layoutY="701.0" onAction="#Update" prefHeight="47.0" prefWidth="104.0" stylesheets="@CSS/dark-theme.css" text="Effectué" />
-            <ChoiceBox fx:id="villeBox" layoutX="253.0" layoutY="350.0" prefHeight="31.0" prefWidth="143.0" />
-            <Label layoutX="149.0" layoutY="355.0" prefHeight="21.0" prefWidth="87.0" text="Ville" />
-            <JFXTextField fx:id="codep" labelFloat="true" layoutX="147.0" layoutY="389.0" maxWidth="400.0" minWidth="217.0" prefHeight="39.0" prefWidth="253.0" promptText="Code Postale">
+            <JFXTextField fx:id="email" focusColor="#48a5ea" layoutX="388.0" layoutY="199.0" prefHeight="25.0" prefWidth="245.0" promptText="Email" />
+            <JFXTextField fx:id="username" editable="false" focusColor="#48a5ea" layoutX="388.0" layoutY="156.0" prefHeight="25.0" prefWidth="245.0" promptText="Username" />
+            <JFXTextField fx:id="Adr" focusColor="#48a5ea" layoutX="384.0" layoutY="239.0" prefHeight="25.0" prefWidth="253.0" promptText="Adresse" />
+            <JFXTextField fx:id="pNumber" focusColor="#48a5ea" layoutX="384.0" layoutY="384.0" prefHeight="25.0" prefWidth="253.0" promptText="Numero telephone" />
+            <JFXPasswordField fx:id="ancienpwd" layoutX="386.0" layoutY="425.0" prefHeight="25.0" prefWidth="253.0" promptText="Mot de passe" />
+            <ImageView fitHeight="61.0" fitWidth="271.0" layoutX="375.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" styleClass="login-img" />
+            <Label layoutX="473.0" layoutY="9.0" styleClass="login-txt" text="Inscription" textFill="WHITE" />
+            <JFXButton fx:id="updateBtn" layoutX="400.0" layoutY="618.0" onAction="#Update" prefHeight="47.0" prefWidth="104.0" stylesheets="@CSS/dark-theme.css" text="Effectué" />
+            <ChoiceBox fx:id="villeBox" layoutX="492.0" layoutY="297.0" prefHeight="31.0" prefWidth="143.0" />
+            <Label layoutX="388.0" layoutY="302.0" prefHeight="21.0" prefWidth="87.0" text="Ville" />
+            <JFXTextField fx:id="codep" labelFloat="true" layoutX="386.0" layoutY="336.0" maxWidth="400.0" minWidth="217.0" prefHeight="39.0" prefWidth="253.0" promptText="Code Postale">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="pwd2" layoutX="147.0" layoutY="570.0" prefHeight="25.0" prefWidth="253.0" promptText="Verifier le mot de passe" />
-            <JFXTextField fx:id="path" editable="false" labelFloat="true" layoutX="164.0" layoutY="635.0" maxWidth="400.0" minWidth="201.0" prefHeight="39.0" prefWidth="201.0">
+            <JFXPasswordField fx:id="pwd2" layoutX="386.0" layoutY="517.0" prefHeight="25.0" prefWidth="253.0" promptText="Verifier le mot de passe" />
+            <JFXTextField fx:id="path" editable="false" labelFloat="true" layoutX="403.0" layoutY="552.0" maxWidth="400.0" minWidth="201.0" prefHeight="39.0" prefWidth="201.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="pwd1" layoutX="146.0" layoutY="528.0" prefHeight="25.0" prefWidth="253.0" promptText="Nouveau Mot de passe" />
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="164.0" layoutY="48.0" onMouseClicked="#joinde" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton fx:id="SuppBtn" layoutX="348.0" layoutY="701.0" onAction="#Delete" prefHeight="47.0" prefWidth="104.0" stylesheets="@CSS/dark-theme.css" text="Supprimer" />
+            <JFXPasswordField fx:id="pwd1" layoutX="385.0" layoutY="475.0" prefHeight="25.0" prefWidth="253.0" promptText="Nouveau Mot de passe" />
+            <ImageView fx:id="image" fitHeight="146.0" fitWidth="170.0" layoutX="92.0" layoutY="166.0" onMouseClicked="#joinde" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="SuppBtn" layoutX="542.0" layoutY="618.0" onAction="#Delete" prefHeight="47.0" prefWidth="104.0" stylesheets="@CSS/dark-theme.css" text="Supprimer" />
+            <ImageView fitHeight="88.0" fitWidth="96.0" layoutX="910.0" layoutY="21.0">
+               <image>
+                  <Image url="@Sans%20titre-3.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="Decoonection" layoutX="452.0" layoutY="676.0" onAction="#DecoonectionAct" prefHeight="47.0" prefWidth="143.0" stylesheets="@CSS/dark-theme.css" text="Decoonection" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="315.0" fitWidth="264.0" layoutX="772.0" layoutY="231.0">
-         <image>
-            <Image url="@Sans%20titre-3.png" />
-         </image>
-      </ImageView>
       <Label fx:id="LEmail" layoutX="660.0" layoutY="269.0" />
       <Label fx:id="LAdr" layoutX="660.0" layoutY="308.0" />
       <Label fx:id="LCodeP" layoutX="660.0" layoutY="412.0" />

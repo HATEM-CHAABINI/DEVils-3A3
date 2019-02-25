@@ -88,17 +88,28 @@ public class MiseAJour implements Initializable {
     private Label LMdp2;
     @FXML
     private Label LNvMdp;
+    @FXML
+    private JFXButton Decoonection;
+boolean imageverif=false;
+String ancienneimage=null;
+
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            u=UserSession.getInstance(new Utilisateur()).getUser();
+       // try {
+            
+    UserSession session=new UserSession();
+    
+            u=session.getUser();
               this.path.setText(u.getImage());
 //            this.pNumber.setText(Integer.toString(c.getTelephone()));
             
+            ancienneimage=this.path.getText();
+
             String imageSource = "C:/wamp64/"+u.getImage();
             System.out.println("9999999999999999999999999999");
             System.out.println((imageSource));
@@ -116,10 +127,10 @@ public class MiseAJour implements Initializable {
 
             codep.setText(Integer.toString(u.getCode_postal()));
             username.setText(u.getUsername());
-        } catch (ClassNotFoundException ex) {
+     /*   } catch (ClassNotFoundException ex) {
             Logger.getLogger(MiseAJour.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+   */ }    
 
     @FXML
     private void Update(ActionEvent event) throws IOException, ClassNotFoundException, Exception {
@@ -198,6 +209,14 @@ if(pwd1.getText().equals(pwd2.getText())){
  
             }
    //***************************************************************
+   
+   
+   
+   if (!(ancienneimage.equals(this.path.getText()))){
+        this.imageverif=true;
+   }
+   
+   
 if (us.verfierMotDePasse(this.ancienpwd.getText(),this.username.getText())|| (this.ancienpwd.getText().equals("")&& pwd1.getText().equals("")) ){
 
 this.LNvMdp.setText("");
@@ -208,6 +227,7 @@ this.LNvMdp.setText("Mot de passe incorrecte");
 
 }
         if (v==7){
+            if (imageverif==true){
         File f=new File(this.path.getText());
         
   UploadFile up=new UploadFile();
@@ -224,7 +244,19 @@ this.LNvMdp.setText("Mot de passe incorrecte");
         {
             us.updateUtilisateur(this.username.getText(),this.email.getText(),Integer.valueOf(this.pNumber.getText()),this.villeBox.getValue(),this.Adr.getText(),Integer.valueOf(this.codep.getText()),this.pwd1.getText(),u.getImage());
         }
-    }
+    }else{
+                /*****************/
+                
+                  if (this.pwd1.getText().trim().isEmpty()){
+            us.updateUtilisateurSansImage(this.username.getText(),this.email.getText(),Integer.valueOf(this.pNumber.getText()),this.villeBox.getValue(),this.Adr.getText(),Integer.valueOf(this.codep.getText()),"");
+        }else
+        {
+            us.updateUtilisateurSansImage(this.username.getText(),this.email.getText(),Integer.valueOf(this.pNumber.getText()),this.villeBox.getValue(),this.Adr.getText(),Integer.valueOf(this.codep.getText()),this.pwd1.getText());
+        }
+                
+                /****************/
+                
+            }}
         else{
         
             System.out.println("famma mochkla");
@@ -307,6 +339,31 @@ FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/inscription
     
     
     
+    }
+
+    @FXML
+    private void DecoonectionAct(ActionEvent event) throws ClassNotFoundException {
+    //    System.out.println(UserSession.getInstance(new Utilisateur()).getUser().getUsername());
+
+    UserSession session=new UserSession();
+    session.resetUser();
+//        UserSession.clear();
+  //      System.err.println(UserSession.getInstance(new Utilisateur()).getUser().getUsername());
+        
+
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/connection.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(UtilisateurInscription.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+      
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.show();
     }
 
     }

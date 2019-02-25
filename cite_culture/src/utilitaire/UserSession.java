@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class UserSession  {
   
-    Utilisateur u ;
-    private static UserSession instance=null;
-    
+  static  Utilisateur u =new Utilisateur();
+    //private static UserSession instance=null;
+    public UserSession(){}
     private UserSession (Utilisateur uu) throws ClassNotFoundException {
     
          
@@ -30,17 +30,27 @@ public class UserSession  {
 
        
     }
+    public void setUser(Utilisateur uti){
+        u=uti;
     
-    public static UserSession getInstance(Utilisateur uu) throws ClassNotFoundException{
+    }
+    public void resetUser(){
+    
+        u=new Utilisateur();
+    }
+    
+   /* public static UserSession getInstance(Utilisateur uu) throws ClassNotFoundException{
         if( instance == null)
             instance = new UserSession(uu);
         
         return instance;
-    }
+    }*/
     
     public Utilisateur getUser() {
         return u;
-    }   
+    
+    } 
+    
     
 }
     

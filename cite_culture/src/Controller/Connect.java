@@ -43,8 +43,6 @@ public class Connect implements Initializable {
     @FXML
     private JFXButton connect;
     @FXML
-    private Button btnFB;
-    @FXML
     private JFXPasswordField pwd1;
     @FXML
     private JFXTextField username;
@@ -97,10 +95,13 @@ this.LMdp1.setText("* Mot de passe doit contenir 8 caratcter minimum");
 
 
 if (v==2){
+    
+    
     UtilisateurService us= new UtilisateurService();
     Utilisateur u=new Utilisateur();
 
 u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
+    System.err.println(u.getUsername());
     //System.out.println(u);
 
 // System.out.println(uti.toString());
@@ -108,8 +109,23 @@ u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
   //  System.out.println(dd);
 if (u.getNom()!= null){
 if (u.getEnabled()==1){
-    UserSession.getInstance(u).getUser();
- FXMLLoader loader=new FXMLLoader();
+   
+    
+    
+    
+    
+    
+    UserSession session=new UserSession();
+    session.setUser(u);
+    
+    
+    
+    /*UserSession.getInstance(u).getUser();
+    System.out.println("77777777777777777777777777777");
+        System.out.println(UserSession.getInstance(u).getUser().getNom());
+    System.out.println("77777777777777777777777777777");
+ */
+    FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
         loader.load();
@@ -157,13 +173,17 @@ Alert alert = new Alert(Alert.AlertType.WARNING);
     Utilisateur u=new Utilisateur();
     
 u=us.rechercheUtilisateurParQr(nq);
-UserSession.getInstance(u).getUser();
+//UserSession.getInstance(u).getUser();
         System.out.println(u.getUsername());
         System.out.println(u.getEnabled());
 if (u.getNom()!= null){
 if (u.getEnabled()==1){
-    UserSession.getInstance(u).getUser();
- FXMLLoader loader=new FXMLLoader();
+
+    UserSession session=new UserSession();
+    session.setUser(u);
+    
+    
+    FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
         loader.load();

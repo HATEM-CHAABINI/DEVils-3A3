@@ -296,6 +296,41 @@ Utilisateur c = new Utilisateur();
             Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
         }    }
 
+    
+    @Override
+    public void updateUtilisateurSansImage(String username,String email,int telephone,String ville,String adresse,int code_postale,String mdp){
+  
+    try {
+        String sql;
+        if (mdp.equals("")){
+        
+               sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE roles like '%ROLE_UTILISATEUR%' and `username` ='"+username+"';";
+
+        }else{
+        cryptpasswords encryption = new cryptpasswords() ;
+        String qr=username+','+ encryption.cryptme(mdp);
+       sql = "UPDATE `fos_user` SET `email`='"+email+ "',`email_canonical`='"+email+ "',`password`='"+encryption.cryptme(mdp) + "',`qr`='"+qr+ "',`ville`='"+ville+ "',`adresse`='"+adresse+ "',`code_postal`='"+code_postale+ "',`telephone`='"+telephone+ "' WHERE `username` ='"+username+"';";
+                  QRCodeGenerator.generateQRCodeImage(qr,username,email);
+
+        }
+        try {
+            
+            Statement stl = conn.createStatement();
+            int rs =stl.executeUpdate(sql);
+            
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            
+        }    } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UtilisateurService.class.getName()).log(Level.SEVERE, null, ex);
+        }    }
+
+    
     @Override
     public void SupprimerCompteUtilisateur(String username) {
 

@@ -134,7 +134,7 @@ public class UtilisateurInscription implements Initializable {
            villeBox.setValue("Tunis");
             villeBox.setItems(ListVille);
             
-       try {
+       /*try {
             uti=UserSession.getInstance(uti).getUser();
            System.out.println("///////////*************");
    System.out.println(uti.getNom());
@@ -143,7 +143,7 @@ public class UtilisateurInscription implements Initializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UtilisateurInscription.class.getName()).log(Level.SEVERE, null, ex);
         
-    }}    
+    }*/}    
 
     @FXML
     private void joinde(ActionEvent event) {
