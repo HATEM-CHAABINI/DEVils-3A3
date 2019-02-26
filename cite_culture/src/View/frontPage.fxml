@@ -55,6 +55,7 @@
          <children>
             <MenuButton fx:id="menub" layoutX="963.0" layoutY="23.0" lineSpacing="2.0" mnemonicParsing="false" onAction="#EventHandler" prefHeight="60.0" prefWidth="89.0" style="-fx-background-color: transparent;">
               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#MesCours" text="Mes cours Reservés" />
                 <MenuItem fx:id="res" mnemonicParsing="false" onAction="#reser" text="mes reservation" />
                 <MenuItem fx:id="idMiseAJourCompte" mnemonicParsing="false" onAction="#MiseAJourCompte" text="configurer mon compte" />
                   <MenuItem fx:id="CarteF" mnemonicParsing="false" onAction="#CFC" text="carte fidelité" />
@@ -90,5 +91,6 @@
       </AnchorPane>
       <Button fx:id="bb" layoutX="296.0" layoutY="227.0" mnemonicParsing="false" onAction="#sentToBienvenu" prefHeight="150.0" prefWidth="160.0" style="-fx-background-color: transparent;" />
       <Button fx:id="Reclamation" layoutX="712.0" layoutY="500.0" mnemonicParsing="false" onAction="#Reclamation" prefHeight="117.0" prefWidth="115.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="295.0" layoutY="495.0" mnemonicParsing="false" onAction="#Cours" opacity="0.0" prefHeight="128.0" prefWidth="151.0" text="Button" />
    </children>
 </AnchorPane>

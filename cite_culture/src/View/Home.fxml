@@ -186,7 +186,7 @@
                   <Insets left="50.0" />
                </padding>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Gestion des formations" textFill="#5b5858">
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#GererCours" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Gestion des formations" textFill="#5b5858">
                <padding>
                   <Insets left="50.0" />
                </padding>

@@ -377,6 +377,20 @@ public class HomeController implements Initializable {
           }
     }
 
+    @FXML
+    private void GererCours(ActionEvent event) {
+        try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/cours.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/cours.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+
         
         
     }

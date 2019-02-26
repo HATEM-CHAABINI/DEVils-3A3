@@ -311,6 +311,43 @@ FXMLLoader loader=new FXMLLoader();
                 stage.setScene(new Scene(p));
                 stage.showAndWait();
     }
+
+    @FXML
+    private void MesCours(ActionEvent event) {
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/MesReservations.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        MesReservationsController display=loader.getController();
+       
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+    }
+
+    @FXML
+    private void Cours(ActionEvent event) {
+        
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/ReservationCours.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        ReservationCoursController display=loader.getController();
+       
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+    }
     }
         
 

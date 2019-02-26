@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CoursController">
+   <children>
+      <Label layoutX="73.0" layoutY="96.0" prefHeight="18.0" prefWidth="38.0" text="id :" textFill="#517fb5" underline="true" />
+      <TextField id="id" fx:id="id" disable="true" layoutX="123.0" layoutY="93.0" />
+      <Label layoutX="56.0" layoutY="138.0" text="type :" textFill="#517fb5" underline="true" />
+      <Label layoutX="31.0" layoutY="179.0" text="nom prof :" textFill="#517fb5" underline="true" />
+      <Label layoutX="10.0" layoutY="263.0" text="nombre places :" textFill="#517fb5" underline="true" />
+      <Label layoutX="40.0" layoutY="227.0" text="n° salle :" textFill="#517fb5" underline="true" />
+      <Label layoutX="56.0" layoutY="303.0" text="date :" textFill="#517fb5" underline="true" />
+      <Label layoutX="18.0" layoutY="343.0" text="heure début :" textFill="#517fb5" underline="true" />
+      <Label layoutX="36.0" layoutY="384.0" text="heure fin :" textFill="#517fb5" underline="true" />
+      <TextField id="nb_places" fx:id="nb_places" disable="true" layoutX="125.0" layoutY="259.0" />
+      <DatePicker id="date" fx:id="date" layoutX="122.0" layoutY="299.0" />
+      <TextField id="heure_debut" fx:id="heure_d" layoutX="124.0" layoutY="338.0" />
+      <TextField id="heure_fin" fx:id="heure_f" layoutX="122.0" layoutY="380.0" />
+      <Button id="ajout" fx:id="ajout" layoutX="82.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajouter" stylesheets="@CSS/dark-theme.css" text="ajouter" />
+      <Button id="modif" fx:id="modif" layoutX="162.0" layoutY="524.0" mnemonicParsing="false" onAction="#modifier" stylesheets="@CSS/dark-theme.css" text="modifier" />
+      <Button id="suppr" fx:id="suppr" layoutX="259.0" layoutY="524.0" mnemonicParsing="false" onAction="#supprimer" stylesheets="@CSS/dark-theme.css" text="supprimer" />
+      <TableView fx:id="table" layoutX="372.0" layoutY="158.0" prefHeight="364.0" prefWidth="453.0">
+        <columns>
+          <TableColumn fx:id="idC" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="typee" prefWidth="75.0" text="type" />
+            <TableColumn fx:id="idp" prefWidth="75.0" text="id prof" />
+            <TableColumn fx:id="nbp" prefWidth="75.0" text="nb_places" />
+            <TableColumn fx:id="idS" prefWidth="75.0" text="id salle" />
+            <TableColumn fx:id="datee" prefWidth="75.0" text="date" />
+            <TableColumn fx:id="heureD" prefWidth="75.0" text="heure debut" />
+            <TableColumn fx:id="heureF" prefWidth="75.0" text="heure fin" />
+            <TableColumn fx:id="prixx" prefWidth="75.0" text="prix" />
+            <TableColumn fx:id="im" prefWidth="75.0" text="image" />
+        </columns>
+      </TableView>
+      <Label layoutX="48.0" layoutY="425.0" text="prix :" textFill="#517fb5" underline="true" />
+      <TextField id="prix" fx:id="prix" layoutX="124.0" layoutY="423.0" />
+      <ComboBox fx:id="type" layoutX="123.0" layoutY="134.0" prefWidth="150.0" />
+      <Button fx:id="image" layoutX="45.0" layoutY="467.0" mnemonicParsing="false" onAction="#ajouterFichier" stylesheets="@CSS/dark-theme.css" text="image" />
+      <TextField fx:id="imaget" layoutX="124.0" layoutY="467.0" />
+      <TextField fx:id="rechercher" layoutX="492.0" layoutY="96.0" onKeyReleased="#rechercher" promptText="Rechercher par id" />
+      <ComboBox fx:id="idP" layoutX="123.0" layoutY="175.0" onAction="#broo" prefWidth="150.0" />
+      <Label fx:id="ddd" layoutX="294.0" layoutY="190.0" text="Label" visible="false" />
+      <ComboBox fx:id="id_salle" layoutX="126.0" layoutY="223.0" onAction="#salle" prefWidth="150.0" />
+      <Label fx:id="salle" layoutX="308.0" layoutY="254.0" visible="false" />
+      <Separator layoutX="1.0" layoutY="67.0" prefHeight="21.0" prefWidth="863.0" />
+      <Label layoutX="44.0" layoutY="15.0" prefHeight="21.0" prefWidth="421.0" text="Gerer les cours" textFill="#2d40b9">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
