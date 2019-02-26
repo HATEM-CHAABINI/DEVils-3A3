@@ -90,9 +90,17 @@ Utilisateur u = new Utilisateur();
     }
 
     @FXML
-    private void reser(ActionEvent event) {
+    private void reser(ActionEvent event) throws IOException {
         
-        System.out.println("hhh");
+         FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/ticket.fxml"));
+        loader.load();
+       // SeatCotroller sc=loader.getController();
+       // sc.setMovie(idEvent);
+        Parent p=loader.getRoot();
+        Stage stage=new Stage();
+        stage.setScene(new Scene(p));
+        stage.showAndWait();
     }
 
     @FXML

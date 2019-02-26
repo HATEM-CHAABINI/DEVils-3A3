@@ -7,6 +7,7 @@ package Controller;
 
 import Entities.Reservation;
 import Entities.Ticket;
+import Entities.Utilisateur;
 import Services.ReservationService;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,6 +42,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import utilitaire.UserSession;
 import utilitaire.mailReservation;
 
 /**
@@ -78,11 +80,26 @@ public class SeatCotroller implements Initializable {
     private GridPane seat13;
     @FXML
     private Button btnPurchaseSeats;
+    @FXML
+    private Label idE;
     
    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
+    
+    
+    
+    
+    void setMovie(int idEvent)
+    {
+        UserSession session=new UserSession();
+        
+        Utilisateur ut=new Utilisateur();
+        ut=session.getUser();
+        
+        idE.setText(String.valueOf(idEvent));
+        System.out.println("//////////////");
+        System.out.println(idE.getText());
+        
+                try {
             seatList.add(seatA1); seatList.add(seatA2); seatList.add(seatA3); seatList.add(seatA4); seatList.add(seatA5); seatList.add(seatA6);seatList.add(seatA7); seatList.add(seatA8); seatList.add(seatA9);seatList.add(seatA10); seatList.add(seatA11); seatList.add(seatA12);seatList.add(seatB1); seatList.add(seatB2); seatList.add(seatB3);seatList.add(seatB4); seatList.add(seatB5); seatList.add(seatB6);seatList.add(seatB7); seatList.add(seatB8); seatList.add(seatB9);seatList.add(seatB10); seatList.add(seatB11); seatList.add(seatB12);seatList.add(seatC1); seatList.add(seatC2); seatList.add(seatC3);seatList.add(seatC4); seatList.add(seatC5); seatList.add(seatC6);seatList.add(seatC7); seatList.add(seatC8); seatList.add(seatC9);seatList.add(seatC10); seatList.add(seatC11); seatList.add(seatC12);seatList.add(seatD1); seatList.add(seatD2); seatList.add(seatD3);seatList.add(seatD4); seatList.add(seatD5); seatList.add(seatD6);
             seatList.add(seatD7); seatList.add(seatD8); seatList.add(seatD9);
             seatList.add(seatD10); seatList.add(seatD11); seatList.add(seatD12);
@@ -117,7 +134,7 @@ public class SeatCotroller implements Initializable {
             comboBoxSelectTime.getItems().clear();
             Ticket t=new Ticket();
             ReservationService rss=new ReservationService();
-            t=rss.getTicket(885);
+            t=rss.getTicket(Integer.valueOf(idE.getText()));
             comboBoxSelectTime.getItems().addAll(
                     "Select Time",
                     t.getTime()                    );
@@ -159,7 +176,7 @@ public class SeatCotroller implements Initializable {
             
             String a="";
             List<String> l=new ArrayList<>();
-            l=r1.rechercheReservationParId(885);
+            l=r1.rechercheReservationParId(Integer.valueOf(idE.getText()));
             System.out.println(l);
             
             for (int i=0; i<l.size();i++)
@@ -198,7 +215,7 @@ ll.remove(0);
 System.out.println(Arrays.toString(split));
 
 
-int nbs=r1.nbplace(885);
+int nbs=r1.nbplace(Integer.valueOf(idE.getText()));
                 
 
 
@@ -250,6 +267,14 @@ for (int i=0;i<nbs;i++)
             
             
             
+    }
+    
+    
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
             
     }    
     
@@ -299,9 +324,9 @@ for (int i=0;i<nbs;i++)
         
         
         ReservationService r=new ReservationService();
-        Ticket t=r.getTicket(885);
+        Ticket t=r.getTicket(Integer.valueOf(idE.getText()));
         
-        int nb=r.nbplace(885);
+        int nb=r.nbplace(Integer.valueOf(idE.getText()));
         
         
         
@@ -448,10 +473,10 @@ for (int i=0;i<nbs;i++)
         try {
             ReservationService r=new ReservationService();
             
-            int nb=r.nbplace(885);
+            int nb=r.nbplace(Integer.valueOf(idE.getText()));
             Label tempLabel = new Label();
             Ticket t=new Ticket();
-            t=r.getTicket(885);
+            t=r.getTicket(Integer.valueOf(idE.getText()));
             for (int i = 0; i < nb; i++) {
                 tempLabel = seatList.get(i);
                 currentMovie.setSeat(i, tempLabel.getText());
@@ -630,9 +655,9 @@ for (int i=0;i<nbs;i++)
         
       ReservationService r=new ReservationService();
         
-        int nb=r.nbplace(885);
+        int nb=r.nbplace(Integer.valueOf(idE.getText()));
         Ticket t=new Ticket();
-        t=r.getTicket(885);
+        t=r.getTicket(Integer.valueOf(idE.getText()));
       
         System.out.println("**********************************************************");
         System.out.println(seatList);
@@ -688,7 +713,7 @@ for (int i=0;i<nbs;i++)
             Label tempLabel = new Label();
             ReservationService r=new ReservationService();
             
-            int nb=r.nbplace(885);
+            int nb=r.nbplace(Integer.valueOf(idE.getText()));
             
             for (int i = 0; i < nb; i++) {
                 tempLabel = seatList.get(i);
@@ -726,8 +751,8 @@ if (result.get() == ButtonType.OK){
         
         try {
             ReservationService r1=new ReservationService();
-            int nb=r1.nbplace(885);
-            //float prix=r1.prixEvent(885);
+            int nb=r1.nbplace(Integer.valueOf(idE.getText()));
+            //float prix=r1.prixEvent(Integer.valueOf(idE.getText()));
             Alert windowAlert = new Alert(Alert.AlertType.INFORMATION);
             Label tempLabel = new Label();
             
@@ -758,11 +783,15 @@ if (result.get() == ButtonType.OK){
                             
                             System.out.println(seatsConfirmed);
                         }
-                         float prix=  r1.prixEvent(885)*seatCounter;
+                         float prix=  r1.prixEvent(Integer.valueOf(idE.getText()))*seatCounter;
                         windowAlert.setContentText("vous avez reservez:\n\n" + seatsConfirmed+"\n Prix:"+prix+"DT");
                         windowAlert.setTitle("Reservation Confirmation");
                         mailReservation ma=new mailReservation();
-                        ma.send("moahamedahmed.benamara@esprit.tn","vous avez reservez:\n\n" + seatsConfirmed+"\n Prix:"+prix+"DT");
+                         UserSession session=new UserSession();
+        
+        Utilisateur ut=new Utilisateur();
+        ut=session.getUser();
+                        ma.send(ut.getEmail(),"vous avez reservez:\n\n" + seatsConfirmed+"\n Prix:"+prix+"DT");
                         windowAlert.showAndWait();
                         
                         
@@ -787,8 +816,11 @@ if (result.get() == ButtonType.OK){
                         //Reservation r=new Reservation("ttttt","jkj","hb","hb","hb","hb",7,seatsConfirmed,"hb",seatCounter,seatList.size-seatCounter);
                         //QRCodeGenerator.generateQRCodeImage(seatsConfirmed, seatsConfirmed, seatsConfirmed);
                         // ReservationService r1=new ReservationService();
-                       
-                        Reservation a=new Reservation(prix,seatsConfirmed,"",seatCounter, 31,885);
+                      // UserSession session=new UserSession();
+        
+       // Utilisateur ut=new Utilisateur();
+        ut=session.getUser();
+                        Reservation a=new Reservation(prix,seatsConfirmed,"",seatCounter,ut.getId(),Integer.valueOf(idE.getText()));
                         
                         r1.ajouterReservation(a);
                         

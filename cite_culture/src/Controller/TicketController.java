@@ -6,6 +6,7 @@
 package Controller;
 
 import Entities.Ticket;
+import Entities.Utilisateur;
 import Services.ReservationService;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.QRCodeDecoderMetaData;
@@ -33,6 +34,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import utilitaire.QRCodeGenerators;
+import utilitaire.UserSession;
 
 /**
  * FXML Controller class
@@ -52,6 +54,11 @@ public class TicketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        UserSession session=new UserSession();
+        
+        Utilisateur ut=new Utilisateur();
+        ut=session.getUser();
+        
         
         try {
             int i=0;
@@ -65,7 +72,7 @@ public class TicketController implements Initializable {
             
         
             ReservationService r = new ReservationService();
-            List<Ticket> data=r.afficherReseration(31);
+            List<Ticket> data=r.afficherReseration(ut.getId());
             
             
             Node [] nodes = new  Node[data.size()];

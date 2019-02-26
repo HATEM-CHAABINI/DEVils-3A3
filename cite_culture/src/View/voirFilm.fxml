@@ -13,7 +13,7 @@
       <ImageView fx:id="im" fitHeight="300.0" fitWidth="217.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="date" layoutX="273.0" layoutY="253.0" />
       <JFXButton fx:id="trailer" layoutX="293.0" layoutY="286.0" onAction="#ajouterProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="trailer" />
-      <JFXButton fx:id="reserver" layoutX="418.0" layoutY="286.0" onAction="#ajouterProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="reserver" />
+      <JFXButton fx:id="reserver" layoutX="418.0" layoutY="286.0" onAction="#reserver" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="reserver" />
       <JFXTextField fx:id="titre" layoutX="285.0" layoutY="48.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="titre" unFocusColor="#255c86" />
       <JFXTextField fx:id="time" layoutX="285.0" layoutY="241.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="time" unFocusColor="#255c86" />
       <JFXTextArea fx:id="descr" layoutX="285.0" layoutY="97.0" prefHeight="79.0" prefWidth="234.0" promptText="description" unFocusColor="#255c86" />

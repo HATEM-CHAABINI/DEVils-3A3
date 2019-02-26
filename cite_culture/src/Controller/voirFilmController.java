@@ -286,6 +286,23 @@ FXMLLoader loader=new FXMLLoader();
     }
 }
 
+    @FXML
+    private void reserver(ActionEvent event) throws IOException {
+        
+        System.out.println(idEvent);
+        //Ticket t=new Ticket();
+       // t.setId(idEvent);
+        FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/seat.fxml"));
+        loader.load();
+        SeatCotroller sc=loader.getController();
+        sc.setMovie(idEvent);
+        Parent p=loader.getRoot();
+        Stage stage=new Stage();
+        stage.setScene(new Scene(p));
+        stage.showAndWait();
+    }
+
 
 
 }

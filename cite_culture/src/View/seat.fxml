@@ -651,5 +651,6 @@
             <Image url="@logo.png" />
          </image>
       </ImageView>
+      <Label fx:id="idE" text="Label" visible="false" GridPane.columnIndex="13" GridPane.rowIndex="1" />
    </children>
 </GridPane>

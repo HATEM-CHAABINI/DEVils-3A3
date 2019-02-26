@@ -6,8 +6,11 @@
 package Controller;
 
 import Entities.Reclamation;
+import Entities.Reservation;
+import Entities.Ticket;
 //import Entity.Ticket;
 import Services.ReclamationService;
+import Services.ReservationService;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utilitaire.QRCodeReaders;
 //import utilitaire.QRCodeReaders;
 
 /**
@@ -48,6 +52,8 @@ public class HomeController implements Initializable {
     private JFXButton gs;
     @FXML
     private JFXButton gp;
+    @FXML
+    private JFXButton stat1;
     
     private void handleButtonAction(MouseEvent event) {        
        refreshNodes();
@@ -163,7 +169,7 @@ public class HomeController implements Initializable {
               
               
               FXMLLoader.load(getClass().getResource("/View/FXML.fxml"));
-              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/AdminRec.fxml")));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/FXML.fxml")));
           } catch (IOException ex) {
               Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
           }
@@ -268,6 +274,99 @@ public class HomeController implements Initializable {
           }
     }
 
+    @FXML
+    private void reservation(ActionEvent event) {
+         try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/FXML.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/FXML.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
+
+    @FXML
+    private void check(ActionEvent event) {
+        
+          try {
+                    ReservationService rs=new ReservationService();
+                    //System.out.println(this.idRES.getText());
+                     //System.out.println(Integer.valueOf(this.idRES.getText()));
+                    
+                    String CodeQr;
+                    
+                        CodeQr = QRCodeReaders.ReadQRCodeImage();
+                          String nq=CodeQr.replace("QR-Code:","");
+                         
+                          try{
+                              int qr=Integer.parseInt(nq);
+                          
+                          
+    Reservation res=new Reservation();
+    res=rs.rechercheReservationParIdRes(qr);
+    Ticket t=rs.getUser(res.getId_user());
+    if (res.getSiege()!=null){
+    
+        System.out.println("oui");
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText("VALIDE");
+    alert.setContentText(t.getNom()+" "+t.getPrenom()+"  nombre de place:"+res.getNb_place()+"  PRIX:"+res.getPrix()+"DT");
+    
+    alert.showAndWait();
+    rs.supprimerReservation(qr);
+    //pane.setVisible(false);
+    
+        /*alert.setTitle("Confirmation");
+    alert.setHeaderText("Look, a Confirmation Dialog");
+    alert.setContentText("Are you ok with this?");*/}
+    else{
+        System.out.println("non");
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("ERREUR");
+    alert.setHeaderText("INFORMATION");
+    alert.setContentText("VOUS NE DISPOSEZ PAS DE RESERVATION");
+    
+    alert.showAndWait();
+    //pane.setVisible(false);
+    
+       }
+    
+                          }catch(Exception e){
+                          
+                              System.out.println("non2");
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Error Dialog");
+    alert.setHeaderText("Look, an Error Dialog");
+    alert.setContentText("Ooops, there was an error!");
+    
+    alert.showAndWait();
+   // pane.setVisible(false);
+                              
+                          
+                          }
+                    } catch (ClassNotFoundException| IOException ex) {
+                        Logger.getLogger(TicketReadController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
+          //   TODO
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+
+        
+        
+    }
+
+    
     
 
