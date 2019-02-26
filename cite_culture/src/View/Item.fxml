@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ItemController">
+   <children>
+      <Pane fx:id="pane" layoutX="29.0" layoutY="22.0" prefHeight="345.0" prefWidth="896.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fx:id="image" fitHeight="101.0" fitWidth="87.0" layoutX="9.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
+            <Label fx:id="event" layoutX="123.0" layoutY="18.0" text="ticket film" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="51.0" layoutY="113.0" text="CLIENT" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="273.0" layoutY="201.0" prefHeight="20.0" prefWidth="114.0" text="nombre de place:" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="113.0" prefHeight="20.0" prefWidth="36.0" text="prix" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="184.0" text="EMAIL" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom" layoutX="58.0" layoutY="139.0" text="amara" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="prix" layoutX="287.0" layoutY="139.0" text="54dt" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="58.0" layoutY="211.0" text="London" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="576.0" layoutY="113.0" prefHeight="20.0" prefWidth="80.0" text="Siege" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="siege" layoutX="619.0" layoutY="114.0" prefHeight="19.0" prefWidth="94.0" style="-fx-background-color: #aeacac;" text="A41" textFill="#fffefe" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Pane layoutY="269.0" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: #F0F0F0;">
+               <children>
+                  <Button fx:id="boom" layoutX="663.0" layoutY="15.0" mnemonicParsing="false" onAction="#put" style="-fx-background-color: blue;" text="imprimer" />
+                  <JFXButton fx:id="annuler" layoutX="757.0" layoutY="15.0" onAction="#annulerReservation" style="-fx-background-color: red;" text="annuler" />
+               </children></Pane>
+            <Label fx:id="date" layoutX="559.0" layoutY="40.0" prefHeight="31.0" prefWidth="134.0" text="Date Creation" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Separator layoutX="708.0" layoutY="19.0" orientation="VERTICAL" prefHeight="64.0" prefWidth="0.0" />
+            <Label fx:id="time" layoutX="721.0" layoutY="46.0" text="Date evenement" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="id" layoutX="123.0" layoutY="51.0" text="6" textFill="#b2b0b0" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenom" layoutX="118.0" layoutY="139.0" prefHeight="19.0" prefWidth="81.0" text="amara" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="nom_evenement" layoutX="283.0" layoutY="31.0" prefHeight="44.0" prefWidth="266.0" />
+            <Label fx:id="nb_place" layoutX="399.0" layoutY="201.0" prefHeight="20.0" prefWidth="26.0" text="nombre de place:" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="seat13" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1080.0" style="-fx-background-color: #33C3FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SeatCotroller">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="264.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="470.0" minHeight="5.0" prefHeight="73.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label fx:id="seatA1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatA9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatB1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatC1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatD1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatE1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatF1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatG5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatH9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="seatI1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#clickOpenSeat" onMouseEntered="#mouseEnterOpenSeat" onMouseExited="#mouseExitOpenSeat" styleClass="seat" stylesheets="@mycss.css" text="Open" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label alignment="CENTER" text="A" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="A" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="F" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="F" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="E" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="E" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="D" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="D" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="C" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="C" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="B" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="B" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="H" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="G" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="G" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="H" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="11">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="I" textFill="#a4a4bf" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="I" textFill="#a4a4bf" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="12">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="movieTitle" alignment="CENTER" prefHeight="40.0" prefWidth="540.0" text="Movie Title - Time" textFill="WHITE" GridPane.columnIndex="4" GridPane.columnSpan="2147483647">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnPurchaseSeats" mnemonicParsing="false" onAction="#clickPurchaseSeatsBtn" prefHeight="31.0" prefWidth="214.0" text="Reserver" GridPane.columnIndex="12" GridPane.columnSpan="2147483647" />
+      <ComboBox fx:id="comboBoxSelectTime" maxWidth="150.0" onAction="#comboBoxSelectionChanged" prefHeight="31.0" prefWidth="104.0" promptText="select temps" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+          
+          </ComboBox>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="movie" stylesheets="@mycss.css" text="Movie Screen" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="60.0" right="60.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="1" textFill="#a4a4bf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="5" textFill="#a4a4bf" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="4" textFill="#a4a4bf" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="3" textFill="#a4a4bf" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="2" textFill="#a4a4bf" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="12" textFill="#a4a4bf" GridPane.columnIndex="14" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="11" textFill="#a4a4bf" GridPane.columnIndex="13" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="10" textFill="#a4a4bf" GridPane.columnIndex="12" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="9" textFill="#a4a4bf" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="8" textFill="#a4a4bf" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="7" textFill="#a4a4bf" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" text="6" textFill="#a4a4bf" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="126.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</GridPane>

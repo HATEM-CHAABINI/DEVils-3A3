@@ -10,6 +10,7 @@ package Controller;
  * @author mouna dridi
  */
 import Entities.Film;
+import Entities.Ticket;
 import Services.RatingService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -145,6 +146,9 @@ public class voirFilmController implements Initializable{
 
     @FXML
     private void ajouterProposition(ActionEvent event) {
+      /*  System.out.println(idEvent);
+        Ticket t=new Ticket();*/
+        
     }
 
     @FXML
