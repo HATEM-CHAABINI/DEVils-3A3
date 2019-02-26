@@ -184,6 +184,7 @@ Utilisateur c = new Utilisateur();
                 ResultSet rs = stl.executeQuery(sql);
 
                 while (rs.next()) {
+                    c.setLocked(rs.getInt("locked"));
                    c.setId(rs.getInt("id"));
                     c.setNom(rs.getString("nom"));
                     c.setImage(rs.getString("image"));
@@ -199,6 +200,8 @@ Utilisateur c = new Utilisateur();
 
                     c.setAdresse(rs.getString("adresse"));
                   c.setRoles(rs.getString("roles"));
+                  c.setDepartement(rs.getString("departement"));
+                  c.setDomaine(rs.getString("domaine"));
                 }
             
             } catch (SQLException |NoSuchAlgorithmException ex) {

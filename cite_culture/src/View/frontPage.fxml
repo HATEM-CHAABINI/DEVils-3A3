@@ -50,16 +50,16 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="bbb" prefHeight="150.0" prefWidth="1231.0" style="-fx-background-color: #399FEE;">
+      <AnchorPane fx:id="idDeconnection" prefHeight="150.0" prefWidth="1231.0" style="-fx-background-color: #399FEE;">
          <children>
             <MenuButton fx:id="menub" layoutX="963.0" layoutY="23.0" lineSpacing="2.0" mnemonicParsing="false" onAction="#EventHandler" prefHeight="60.0" prefWidth="89.0" style="-fx-background-color: transparent;">
               <items>
                 <MenuItem fx:id="res" mnemonicParsing="false" onAction="#reser" text="mes reservation" />
-                <MenuItem mnemonicParsing="false" text="configurer mon compte" />
+                <MenuItem fx:id="idMiseAJourCompte" mnemonicParsing="false" onAction="#MiseAJourCompte" text="configurer mon compte" />
                   <MenuItem mnemonicParsing="false" text="carte fidelité" />
               </items>
             </MenuButton>
-            <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="1145.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="idDeconnecter" fitHeight="54.0" fitWidth="45.0" layoutX="1145.0" layoutY="30.0" onMouseClicked="#Deconnecter" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logout.png" />
                </image>
@@ -74,12 +74,12 @@
                   <Image url="@logo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="971.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="idimageuser" fitHeight="60.0" fitWidth="64.0" layoutX="971.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@myAccount.png" />
                </image>
             </ImageView>
-            <Label layoutX="955.0" layoutY="90.0" prefHeight="21.0" prefWidth="115.0" text="mon compte">
+            <Label fx:id="idLabelCompte" layoutX="955.0" layoutY="90.0" prefHeight="21.0" prefWidth="115.0" text="mon compte">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

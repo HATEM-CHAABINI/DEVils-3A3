@@ -10,12 +10,20 @@ import Services.UtilisateurService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import utilitaire.ControlesaisieJ;
 
 /**
@@ -46,7 +54,7 @@ Utilisateur u;
     }    
 
     @FXML
-    private void UpdateMdp(ActionEvent event) throws ClassNotFoundException {
+    private void UpdateMdp(ActionEvent event) throws ClassNotFoundException, IOException {
         int v=0;
         UtilisateurService us=new UtilisateurService();
                 ControlesaisieJ cn=new ControlesaisieJ();
@@ -70,7 +78,34 @@ if(pwd1.getText().equals(pwd2.getText())){
             }
         if (v==2){
             us.updateMdpUtilisateur(u.getUsername(),pwd1.getText() ,u.getEmail());
+          
+  Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/connection.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/connection.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
         
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        
+
+        stage2.close();
+        
+                 stage.show();
         }
         
     }

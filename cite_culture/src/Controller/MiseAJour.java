@@ -346,7 +346,7 @@ FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/inscription
     }
 
     @FXML
-    private void DecoonectionAct(ActionEvent event) throws ClassNotFoundException {
+    private void DecoonectionAct(ActionEvent event) throws ClassNotFoundException, IOException {
     //    System.out.println(UserSession.getInstance(new Utilisateur()).getUser().getUsername());
 
     UserSession session=new UserSession();
@@ -354,23 +354,33 @@ FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/View/inscription
 //        UserSession.clear();
   //      System.err.println(UserSession.getInstance(new Utilisateur()).getUser().getUsername());
         
-
+  Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/connection.fxml"));
+        Scene scene = new Scene(root);
+       
 FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/connection.fxml"));
         try{
         loader.load();
         }catch (IOException ex){
-        Logger.getLogger(UtilisateurInscription.class.getName()).log(Level.SEVERE,null,ex);
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
         
         }
-      
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.show();
-    }
+              
+        
+               
 
-    }
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        
+
+        stage2.close();
+                 stage.show();
+    }}
 
     
 

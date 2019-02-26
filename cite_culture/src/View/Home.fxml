@@ -47,7 +47,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Gestion des employés" textFill="#5b5858">
+            <JFXButton fx:id="idGestionEmploye" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#GestionEmploye" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Gestion des employés" textFill="#5b5858">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -65,7 +65,7 @@
                   <Font size="17.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Blockage/ban" textFill="#5b5858">
+            <JFXButton fx:id="idBlockage" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#Blockage" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Blockage/ban" textFill="#5b5858">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

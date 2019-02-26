@@ -20,10 +20,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 //import utilitaire.QRCodeReaders;
 
 /**
@@ -38,7 +41,9 @@ public class HomeController implements Initializable {
     @FXML
     private JFXButton stat;
     @FXML
-    private JFXButton qr;
+    private JFXButton idGestionEmploye;
+    @FXML
+    private JFXButton idBlockage;
     
     private void handleButtonAction(MouseEvent event) {        
        refreshNodes();
@@ -146,7 +151,6 @@ public class HomeController implements Initializable {
 //        
 //    }
 
-    @FXML
     private void stat(ActionEvent event) {
         
            try {
@@ -161,6 +165,7 @@ public class HomeController implements Initializable {
           }
         }  
 
+    @FXML
     private void Adminreclamation(ActionEvent event) {
          try {
               pnl_scroll.getChildren().clear();
@@ -174,6 +179,7 @@ public class HomeController implements Initializable {
           }
     }
 
+    @FXML
     private void AdminGestionSalle (ActionEvent event) {
     
          try {
@@ -188,7 +194,6 @@ public class HomeController implements Initializable {
           }
        } 
 
-    @FXML
     private void scan(ActionEvent event) {
           try {
               pnl_scroll.getChildren().clear();
@@ -197,6 +202,35 @@ public class HomeController implements Initializable {
               
               FXMLLoader.load(getClass().getResource("/View/ticketReader.fxml"));
               pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/AdminRec.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+
+    @FXML
+    private void GestionEmploye(ActionEvent event) {
+          try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/inscription.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/inscription.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
+    }
+
+    @FXML
+    private void Blockage(ActionEvent event) {
+         try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/admin.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/admin.fxml")));
           } catch (IOException ex) {
               Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
           }

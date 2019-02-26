@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -54,6 +55,8 @@ public class Connect implements Initializable {
     private JFXButton connectqr;
     @FXML
     private JFXButton MdpOub;
+    @FXML
+    private JFXButton idcreationcompte;
 
     /**
      * Initializes the controller class.
@@ -64,7 +67,7 @@ public class Connect implements Initializable {
     }    
 
     @FXML
-    private void Connection(ActionEvent event) throws ClassNotFoundException {
+    private void Connection(ActionEvent event) throws ClassNotFoundException, IOException {
         
         
         
@@ -73,7 +76,7 @@ String Usernameu = null,mdp1 = null;
 
 int v=0;
         
-  if (!username.getText().equals("") && cn.testUsername(username.getText())){
+  if (!username.getText().equals("")){
                  this.LUsername.setText("");
                  Usernameu=username.getText();
                                   v++;
@@ -108,6 +111,7 @@ u=us.rechercheUtilisateurParUsernameMdp(Usernameu, mdp1);
 //Utilisateur dd= user.getUser();
   //  System.out.println(dd);
 if (u.getNom()!= null){
+    if (u.getLocked()==1){
 if (u.getEnabled()==1){
    
     
@@ -117,9 +121,12 @@ if (u.getEnabled()==1){
     
     UserSession session=new UserSession();
         session.setUser(u);
+        
+          
         if (u.getRoles().contains("ADMIN")){
+            /*
          FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(getClass().getResource("/View/admin.fxml"));
+            loader.setLocation(getClass().getResource("/View/Home.fxml"));
             try{
             loader.load();
             }catch (IOException ex){
@@ -131,16 +138,64 @@ if (u.getEnabled()==1){
                     Stage stage = new Stage();
                     stage.setScene(new Scene(p));
                     stage.showAndWait();
+*/
+      Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/Home.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/Home.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
 
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        stage2.close();
+          stage.showAndWait();
+            
         }else if (u.getRoles().contains("UTILISATEUR") || u.getRoles().contains("JOURNALISTE")){
     
-    
+      Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/frontPage.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/frontPage.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        stage2.close();
+          stage.showAndWait();
     /*UserSession.getInstance(u).getUser();
     System.out.println("77777777777777777777777777777");
         System.out.println(UserSession.getInstance(u).getUser().getNom());
     System.out.println("77777777777777777777777777777");
  */
-    FXMLLoader loader=new FXMLLoader();
+    /*FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
         loader.load();
@@ -153,23 +208,18 @@ if (u.getEnabled()==1){
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.showAndWait();} 
+                stage.showAndWait();*/} 
     
     else if (u.getRoles().contains("EMPLOYE")){///////////////////////////////////////////EMPLOYE////////////////////////////////
-     FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
-        try{
-        loader.load();
-        }catch (IOException ex){
-        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        if (u.getDepartement().equals("Maintenace")){
+            System.out.println("maintenance");
         
+        }else
+        {
+        
+                    System.out.println("Proffeseurs");
+
         }
-        MiseAJour display=loader.getController();
-       
-                Parent p =loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(p));
-                stage.showAndWait();
     
     }
 
@@ -185,6 +235,14 @@ Alert alert = new Alert(Alert.AlertType.WARNING);
         
         
 }else{
+
+
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("vous avez été banni ");
+            Optional<ButtonType> result = alert.showAndWait();
+
+}}else{
     
 Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
@@ -215,11 +273,12 @@ u=us.rechercheUtilisateurParQr(nq);
         System.out.println(u.getEnabled());
 if (u.getNom()!= null){
 if (u.getEnabled()==1){
-
+////////////////////////////////////////////////////
     UserSession session=new UserSession();
     session.setUser(u);
+     if (u.getRoles().contains("UTILISATEUR") || u.getRoles().contains("JOURNALISTE")){
     
-    
+  /*
     FXMLLoader loader=new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
         try{
@@ -233,7 +292,40 @@ if (u.getEnabled()==1){
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.showAndWait();}else{
+                stage.showAndWait();
+         */ Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/frontPage.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/frontPage.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        stage2.close();
+          stage.showAndWait();
+         
+         }else{
+Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Attention");
+            alert.setHeaderText("ce Compte n'est pas autoriser a acceder a cette page");
+            Optional<ButtonType> result = alert.showAndWait();
+
+         
+     }}else{
 Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
             alert.setHeaderText("Compte bloque ou pas encore activer");
@@ -267,12 +359,15 @@ UserSession.getInstance(u).getUser();*/
             System.out.println("99999999999999999999");
             System.out.println(uop.getUsername());
             System.out.println("99999999999999999999");
+            if (uop.getUsername()!=null){
+                             this.LUsername.setText("");
+
          Random r = new Random();
 int valeur = 1000 + r.nextInt(9999 - 1000);
             System.out.println(valeur);
-         sendSMS sms=new sendSMS();
+       /*  sendSMS sms=new sendSMS();
          sms.envoitSms(uop.getTelephone(), valeur);
-         
+         */
 
 
 FXMLLoader loader=new FXMLLoader();
@@ -290,7 +385,43 @@ FXMLLoader loader=new FXMLLoader();
                 stage.setScene(new Scene(p));
                 stage.showAndWait();
         
+        }else {
+             
+             this.LUsername.setText("* Username erroné");
+
+         }}
+        else {             this.LUsername.setText("* Inserer Username");
+}}
+    
+
+    @FXML
+    private void creationcompte(ActionEvent event) throws IOException {
+        
+         Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/UtilistaeursInscription.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/UtilistaeursInscription.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
         }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        stage2.close();
+          stage.showAndWait();
     }
+        
     
 }

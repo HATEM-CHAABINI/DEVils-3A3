@@ -18,9 +18,9 @@
             <JFXPasswordField fx:id="pwd1" focusColor="#5caceb" layoutX="135.0" layoutY="227.0" prefHeight="25.0" prefWidth="253.0" promptText="Mot de passe" unFocusColor="#5caceb" />
             <Label fx:id="LUsername" layoutX="442.0" layoutY="187.0" />
             <Label fx:id="LMdp1" layoutX="442.0" layoutY="258.0" />
-            <JFXButton fx:id="connect" layoutX="153.0" layoutY="305.0" onAction="#Connection" prefHeight="47.0" prefWidth="224.0" stylesheets="@CSS/dark-theme.css" text="Se connecter" />
-            <JFXButton fx:id="connectqr" layoutX="153.0" layoutY="358.0" onAction="#Connectionqr" prefHeight="47.0" prefWidth="224.0" stylesheets="@CSS/dark-theme.css" text="Se connecter Par Qr" />
-            <JFXButton fx:id="MdpOub" layoutX="153.0" layoutY="416.0" onAction="#MdpOub" prefHeight="39.0" prefWidth="224.0" stylesheets="@CSS/dark-theme.css" text="Mot de passe oubliée" />
+            <JFXButton fx:id="connect" layoutX="111.0" layoutY="279.0" onAction="#Connection" prefHeight="47.0" prefWidth="136.0" stylesheets="@CSS/dark-theme.css" text="Se connecter" />
+            <JFXButton fx:id="connectqr" layoutX="265.0" layoutY="279.0" onAction="#Connectionqr" prefHeight="47.0" prefWidth="177.0" stylesheets="@CSS/dark-theme.css" text="Se connecter Par Qr" />
+            <JFXButton fx:id="MdpOub" layoutX="150.0" layoutY="403.0" onAction="#MdpOub" prefHeight="39.0" prefWidth="224.0" stylesheets="@CSS/dark-theme.css" text="Mot de passe oubliée" />
             <JFXTextField fx:id="username" focusColor="#48a5ea" layoutX="132.0" layoutY="172.0" prefHeight="31.0" prefWidth="253.0" promptText="Username" unFocusColor="#5caceb" />
             <ImageView fitHeight="81.0" fitWidth="105.0" layoutX="390.0" layoutY="18.0">
                <image>
@@ -32,6 +32,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
+            <JFXButton fx:id="idcreationcompte" layoutX="183.0" layoutY="353.0" onAction="#creationcompte" prefHeight="9.0" prefWidth="149.0" stylesheets="@CSS/dark-theme.css" text="creer un compte" />
          </children>
       </AnchorPane>
    </children>
