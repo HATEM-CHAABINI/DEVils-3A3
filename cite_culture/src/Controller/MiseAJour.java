@@ -266,6 +266,10 @@ this.LNvMdp.setText("Mot de passe incorrecte");
     private void joinde(MouseEvent event) {
          System.out.println("aaaaaaaaaa");
     FileChooser fileChooser = new FileChooser();
+           
+ FileChooser.ExtensionFilter imageFilter
+                = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+  fileChooser.getExtensionFilters().add(imageFilter);
 		File selectedFile = fileChooser.showOpenDialog(null);
 
 		if (selectedFile != null) {

@@ -40,6 +40,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import utilitaire.ControlesaisieJ;
 import utilitaire.UserSession;
 import utilitaire.sendSMS;
@@ -148,6 +151,10 @@ public class UtilisateurInscription implements Initializable {
     @FXML
     private void joinde(ActionEvent event) {
            FileChooser fileChooser = new FileChooser();
+           
+ FileChooser.ExtensionFilter imageFilter
+                = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+  fileChooser.getExtensionFilters().add(imageFilter);
 		File selectedFile = fileChooser.showOpenDialog(null);
 
 		if (selectedFile != null) {

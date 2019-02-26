@@ -174,8 +174,8 @@ Utilisateur c = new Utilisateur();
         try {
             String mdpc=encryption.cryptme(mdp);
         
-
-            String sql = "SELECT * FROM fos_user WHERE roles like '%ROLE_UTILISATEUR%' and username ='" + username + "' and password like '"+ mdpc+"';";
+//roles like '%ROLE_UTILISATEUR%' and
+            String sql = "SELECT * FROM fos_user WHERE  username ='" + username + "' and password like '"+ mdpc+"';";
             System.out.println("///////////////////////");
             System.out.println(mdpc);
             System.out.println("///////////////////////");

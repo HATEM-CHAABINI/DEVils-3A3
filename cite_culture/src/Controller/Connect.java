@@ -116,8 +116,23 @@ if (u.getEnabled()==1){
     
     
     UserSession session=new UserSession();
-    session.setUser(u);
-    
+        session.setUser(u);
+        if (u.getRoles().contains("ADMIN")){
+         FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/admin.fxml"));
+            try{
+            loader.load();
+            }catch (IOException ex){
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+
+            }
+
+                    Parent p =loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(p));
+                    stage.showAndWait();
+
+        }else if (u.getRoles().contains("UTILISATEUR") || u.getRoles().contains("JOURNALISTE")){
     
     
     /*UserSession.getInstance(u).getUser();
@@ -138,7 +153,29 @@ if (u.getEnabled()==1){
                 Parent p =loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(p));
-                stage.showAndWait();}else{
+                stage.showAndWait();} 
+    
+    else if (u.getRoles().contains("EMPLOYE")){///////////////////////////////////////////EMPLOYE////////////////////////////////
+     FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/MiseAJour.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        MiseAJour display=loader.getController();
+       
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+    
+    }
+
+}
+
+else{
 Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
             alert.setHeaderText("Compte bloque ou pas encore activer");
