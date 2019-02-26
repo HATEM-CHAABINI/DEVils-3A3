@@ -23,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -60,7 +61,11 @@ ObservableList<String> listS = FXCollections.observableArrayList("Cinema","Theat
     @FXML
     private Button addS;
     @FXML
-    private Button updatee;
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
    
     /**
      * Initializes the controller class.
@@ -105,7 +110,9 @@ ObservableList<String> listS = FXCollections.observableArrayList("Cinema","Theat
 
     @FXML
     private void add(ActionEvent event) {
-        
+        boolean isDesEmpty=validation.TextFieldValidation.isTextFieldNotEmpty(des, label2, "designation is required");
+        boolean isLimitEmpty=validation.TextFieldValidation.isTextFieldNotEmpty(des, label3, "designation is required");
+        if(isDesEmpty && isLimitEmpty && (typeS.getSelectionModel().getSelectedIndex()!=-1)){
        try {
         String designation=this.des.getText();
         int limit=Integer.valueOf(this.limite.getText());
@@ -113,12 +120,9 @@ ObservableList<String> listS = FXCollections.observableArrayList("Cinema","Theat
         String type=    typeS.getSelectionModel().getSelectedItem().toString();
         
         
-        System.out.println("**********************");
-        System.out.println(designation);
-        System.out.println(limit);
-        System.out.println(type);
-        System.out.println("**********************");
-        
+         label1.setText("");
+            label2.setText("");
+        label3.setText("");
         Salle S = new Salle (type,designation,"Libre",limit);
         SalleService sa =new SalleService();
         sa.ajouterSalle(S);
@@ -140,6 +144,12 @@ ObservableList<String> listS = FXCollections.observableArrayList("Cinema","Theat
             //setCellValueFromTableToTextField();
         } catch (ClassNotFoundException ex) {
            
+        }
+        }
+        else{
+       
+        label1.setText("Choisir un client");
+        
         }
     
     

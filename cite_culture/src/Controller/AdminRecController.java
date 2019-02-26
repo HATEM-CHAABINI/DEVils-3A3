@@ -23,12 +23,14 @@ import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -138,14 +140,17 @@ private void setCellValueFromTableToTextField()
     }
 private void setCellValueFromTableToTextField2()
     {
-        tblE.setOnMouseClicked(e -> {
-           Utilisateur x = tblE.getItems().get(tblE.getSelectionModel().getSelectedIndex());
-            String  y=String.valueOf(x.getCin());
-           cin2.setText(y);
-           
-           
-           
-            });
+        tblE.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Utilisateur x;
+                x = tblE.getSelectionModel().getSelectedItem();
+                System.out.println(x);
+                String  y=String.valueOf(x.getCin());
+                System.out.println(y);
+                cin2.setText(y);
+            }
+        });
     
     
     }

@@ -268,6 +268,7 @@ Utilisateur a = new Utilisateur();
                     a.setEnabled(rs.getInt("enabled"));
                     a.setAdresse(rs.getString("adresse"));
                   a.setRoles(rs.getString("roles"));
+                  a.setCin(rs.getInt("cin"));
                   ListUtilisateur.add(a);
                 }
 

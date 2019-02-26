@@ -156,8 +156,7 @@ public class WinnerService implements IWinnerService {
       
         
         
-        //userWinner = executeDBQuery("SELECT * from fos_user WHERE (id ='"+randomUserId+"');");
-        System.err.println(a.getCin());
+        
         
         return a.getCin();
     }
@@ -288,8 +287,24 @@ public class WinnerService implements IWinnerService {
     }
 
     @Override
-    public Utilisateur findbydate(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Winner findbyusername(int userId) {
+        
+         Winner winner = null;
+      String req = "select * from winner where id_userwinner =?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = conn.prepareStatement(req);
+            preparedStatement.setInt(1, userId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+             while(resultSet.next()){
+              winner = new Winner(resultSet.getInt(1),resultSet.getDate(2),resultSet.getInt(3)) ;
+             }
+    }   catch (SQLException ex) {
+            Logger.getLogger(WinnerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        return winner;
     }
 
     @Override

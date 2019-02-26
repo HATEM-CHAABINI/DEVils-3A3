@@ -8,6 +8,7 @@ package Controller;
 import Entities.Utilisateur;
 import Entities.Reclamation;
 import Entities.Salle;
+import Services.CarteFideliteService;
 import Services.ReclamationService;
 import Services.SalleService;
 import java.net.URL;
@@ -41,6 +42,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import org.controlsfx.control.Notifications;
+import utilitaire.ConnectedUser;
+import utilitaire.UserSession;
 import validation.TextFieldValidation;
 /**
  * FXML Controller class
@@ -128,7 +131,17 @@ public class GestionRecCController implements Initializable {
            
         }
         
-                 ObservableList<Reclamation> li = SS.displayallR();
+        ReclamationService sa = null ;
+        try {
+            sa = new ReclamationService();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GestionRecCController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             UserSession session=new UserSession();
+        Utilisateur u= new Utilisateur();
+            u=session.getUser();
+          
+                 ObservableList<Reclamation> li =  sa.findByUsername(u.getUsername());
                     
     
         
@@ -167,15 +180,18 @@ int index=0;
             SalleRec.setItems(listSalle2);
         try {
             java.sql.Date d=new java.sql.Date(2018, 01, 16);
-            Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
+            
             ReclamationService sa = new ReclamationService() ;
-           
-            table.setItems(sa.findByUsername(c3.getUsername()));
+             UserSession session=new UserSession();
+    
+            Utilisateur u= new Utilisateur();
+            u=session.getUser();
+            table.setItems(sa.findByUsername(u.getUsername()));
           
           
            
                     
-        } catch (NoSuchAlgorithmException | ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
           
         }
            
@@ -194,7 +210,10 @@ int index=0;
         if(isTypeEmpty && (typeR.getSelectionModel().getSelectedIndex()!=-1)){
         try {
              java.sql.Date d=new java.sql.Date(2018, 01, 16);
-            Utilisateur c3=new Utilisateur("hatem4", "Hatem4@gmail.com", "aa", "AA", "Chaabini","Hatem", "Tunis", d,"Rades Foret",2040, "Homme",50459936,40009484);
+           UserSession session=new UserSession();
+    
+            Utilisateur u= new Utilisateur();
+            u=session.getUser();
             SalleService SS = null;
         try {
             SS = new SalleService();
@@ -210,16 +229,19 @@ int index=0;
             r = new Reclamation (t,txtrr,s);
           
             ReclamationService sa =new ReclamationService();
-            sa.addR(r, c3);
+            sa.addR(r, u);
+            CarteFideliteService aaa = new CarteFideliteService();
+            aaa.update(u.getUsername());
             TextR.clear();
             label1.setText("");
             label3.setText("");
-            table.setItems(sa.findByUsername(c3.getUsername()));
+            table.setItems(sa.findByUsername(u.getUsername()));
+            System.out.println(u.getUsername());
             Notifications.create()
                     .title("Notification ")
                     .text("Votre réclamation a ete ajoute avec succes").darkStyle()
                     .showWarning();
-        } catch (ClassNotFoundException | NoSuchAlgorithmException ex) {
+        } catch (ClassNotFoundException ex) {
            
         }
         }

@@ -57,7 +57,7 @@
               <items>
                 <MenuItem fx:id="res" mnemonicParsing="false" onAction="#reser" text="mes reservation" />
                 <MenuItem fx:id="idMiseAJourCompte" mnemonicParsing="false" onAction="#MiseAJourCompte" text="configurer mon compte" />
-                  <MenuItem mnemonicParsing="false" text="carte fidelité" />
+                  <MenuItem fx:id="CarteF" mnemonicParsing="false" onAction="#CFC" text="carte fidelité" />
                   <MenuItem fx:id="pe" mnemonicParsing="false" onAction="#proposer" text="proposez des evenements" />
               </items>
             </MenuButton>
@@ -89,5 +89,6 @@
          </children>
       </AnchorPane>
       <Button fx:id="bb" layoutX="296.0" layoutY="227.0" mnemonicParsing="false" onAction="#sentToBienvenu" prefHeight="150.0" prefWidth="160.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="Reclamation" layoutX="712.0" layoutY="500.0" mnemonicParsing="false" onAction="#Reclamation" prefHeight="117.0" prefWidth="115.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

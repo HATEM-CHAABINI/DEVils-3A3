@@ -9,6 +9,7 @@ import Entities.CarteFidelite;
 import Entities.Utilisateur;
 import Services.CarteFideliteService;
 import Services.UtilisateurService;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
@@ -24,8 +25,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -36,6 +41,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 /**
@@ -60,16 +66,10 @@ public class GestionCFideliteController implements Initializable {
     @FXML
     private Label lbTitulo1;
     @FXML
-    private TextField txtPesquisar;
-    @FXML
     private ToggleGroup menu;
     @FXML
-    private ComboBox<Utilisateur> cbIdclient;
-    @FXML
-    private DatePicker txtdatecarte;
-    @FXML
-    private TextField nbpoints;
-    
+    private Button TGB;
+   
 
     /**
      * Initializes the controller class.
@@ -80,7 +80,7 @@ public class GestionCFideliteController implements Initializable {
             UtilisateurService iu = new UtilisateurService ();
             ObservableList<Utilisateur> ListC = FXCollections.observableArrayList(iu.tousLesUtilisateurs());
             
-            cbIdclient.setItems(ListC);
+        
             
             TableCarteF.getSelectionModel().selectedItemProperty().
                     addListener((observable, oldValue, newValue) -> {
@@ -93,53 +93,26 @@ public class GestionCFideliteController implements Initializable {
 
     }    
 
-    @FXML
-    private void rechercherB(ActionEvent event) {
-      
-       
-        try {
-            CarteFideliteService aaa = new CarteFideliteService();
-            
-            TableCarteF.setItems(aaa.findCartebyID(txtPesquisar.getText()));
-            
-            tbnbrpoint.setCellValueFactory(new PropertyValueFactory<>("nb_point"));
-            tbdatecreation.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
-            
-           
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GestionCFideliteController.class.getName()).log(Level.SEVERE, null, ex);
-        }}
-
-    
-
-    @FXML
-    private void ajouter(ActionEvent event) throws ParseException {
-        try {
-            CarteFideliteService aaa = new CarteFideliteService();
-            int x =Integer.parseInt((nbpoints.getText()));
-            Date date = Date.valueOf(LocalDate.now());
+//    @FXML
+//    private void rechercherB(ActionEvent event) {
+//      
+//       
+//        try {
+//            CarteFideliteService aaa = new CarteFideliteService();
 //            
-            CarteFidelite b = new CarteFidelite(x,date,cbIdclient.getSelectionModel().getSelectedItem());
-           
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("done with success");
-            Optional<ButtonType> result = alert.showAndWait();        
-            if (result.get() == ButtonType.OK){
-                
-                aaa.add(b);
-                nbpoints.clear();
-//                //// cbPosition.setValue("Veuillez choirsir la position");
-//                
-            }
-            afficher();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GestionCFideliteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-    }
+//            TableCarteF.setItems(aaa.findCartebyID(txtPesquisar.getText()));
+//            
+//            tbnbrpoint.setCellValueFactory(new PropertyValueFactory<>("nb_point"));
+//            tbdatecreation.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
+//            
+//           
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(GestionCFideliteController.class.getName()).log(Level.SEVERE, null, ex);
+//        }}
 
     
 
+   
     @FXML
     private void supprimerCarte(ActionEvent event) {
         try {
@@ -189,8 +162,22 @@ public class GestionCFideliteController implements Initializable {
         }} 
 
     @FXML
-    private void modifier(ActionEvent event) {
+    private void TG(ActionEvent event) {
+        FXMLLoader loader=new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/Winner.fxml"));
+            try{
+            loader.load();
+            }catch (IOException ex){
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+
+            }
+
+                    Parent p =loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(p));
+                    stage.showAndWait();
     }
+
  
     
 }

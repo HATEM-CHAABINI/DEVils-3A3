@@ -19,7 +19,7 @@ import java.util.List;
 public interface IWinnerService  {
     
       int findbydate(String date);
-    Utilisateur findbydate(int userId);
+    Winner findbyusername(int userId);
     int winnerOfTheDay();
     Date maxwinnerdate ();
      String identifywithrole( String r);

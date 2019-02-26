@@ -72,7 +72,7 @@ public static String convert(java.sql.Date d) {
             UtilisateurService us = new UtilisateurService();
           
             Utilisateur user = us.rechercheUtilisateurParCin(win.winnerOfTheDay());
-            System.out.println(user);
+           
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
               Date date = Date.valueOf(LocalDate.now());
             

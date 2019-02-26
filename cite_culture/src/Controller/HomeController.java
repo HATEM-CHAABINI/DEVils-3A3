@@ -363,6 +363,20 @@ public class HomeController implements Initializable {
             
         }
 
+     @FXML
+    private void GCF(ActionEvent event) {
+        try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/GestionCFideliteFXML.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/GestionCFideliteFXML.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+
         
         
     }

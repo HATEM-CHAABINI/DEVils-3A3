@@ -17,7 +17,7 @@ public interface ICarteFideliteService {
         public void update(String username) ;
         public void remove(Integer r);
         public ObservableList<CarteFidelite> displayall();
-        public ObservableList<CarteFidelite> findCartebyID(String search);
+        public CarteFidelite findCartebyID(String search);
 //    public ObservableList<CarteFidelite> displayall();
 //    public ObservableList<CarteFidelite> findCartebyID(Integer search);
     

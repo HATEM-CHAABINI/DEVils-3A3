@@ -94,30 +94,30 @@ public class CarteFideliteService implements ICarteFideliteService {
     }
     
     @Override
-    public ObservableList<CarteFidelite> findCartebyID(String search) {
+    public CarteFidelite findCartebyID(String search) {
                  ObservableList<CarteFidelite> listeCarte=FXCollections.observableArrayList();
         String req= "select * from carte_fidelite where id_user =? ";
         PreparedStatement preparedStatement;
-        
+        CarteFidelite c = null;
         try {
             preparedStatement=conn.prepareStatement(req);
             preparedStatement.setString(1, search);
             ResultSet resultSet=preparedStatement.executeQuery();
             while(resultSet.next()){
-             CarteFidelite carteFidelite = null;
+             
                 try {
                      Utilisateur cl =new UtilisateurService().rechercheUtilisateurParUsername(resultSet.getString(4));
-                    carteFidelite = new CarteFidelite(resultSet.getInt(1),resultSet.getInt(2),resultSet.getDate(3), cl);
+                    c = new CarteFidelite(resultSet.getInt(1),resultSet.getInt(2),resultSet.getDate(3), cl);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(CarteFideliteService.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                boolean add = listeCarte.add(carteFidelite);
+              
                 
             }
         } catch (SQLException ex) {
            System.err.println("SQLException: " + ex.getMessage());
         }
-        return listeCarte;
+        return c;
     }
 
     @Override

@@ -5,12 +5,18 @@
  */
 package Controller;
 
+import Entities.CarteFidelite;
 import Entities.Utilisateur;
+import Entities.Winner;
+import Services.CarteFideliteService;
+import Services.WinnerService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,6 +40,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
+import tray.notification.TrayNotification;
 import utilitaire.UserSession;
 
 /**
@@ -63,6 +71,10 @@ public class FrontPageController implements Initializable {
     @FXML
     private MenuItem pe;
 Utilisateur u = new Utilisateur();
+    @FXML
+    private MenuItem CarteF;
+    @FXML
+    private Button Reclamation;
 
     /**
      * Initializes the controller class.
@@ -82,6 +94,36 @@ Utilisateur u = new Utilisateur();
         idimageuser.setImage(image1);
         
         idLabelCompte.setText(u.getUsername());
+        WinnerService win = null;
+        try {
+            win = new WinnerService();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FrontPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Winner w =win.findbyusername(u.getId());
+           
+            if(w == null){  String title = "Sorry sir";
+            String message = "You are not the winner" ;
+           
+            
+            TrayNotification tray = new TrayNotification();
+            tray.setTitle(title);
+            tray.setMessage(message);
+           
+            tray.showAndWait();
+            }
+            else if(!(w == null))
+            {
+                String title = "Congrats sir";
+            String message = "You are the winner" ;
+           
+            
+            TrayNotification tray = new TrayNotification();
+            tray.setTitle(title);
+            tray.setMessage(message);
+           
+            tray.showAndWait();
+            }
        
         }
 
@@ -215,6 +257,60 @@ FXMLLoader loader=new FXMLLoader();
         //alert.showAndWait();
         }
          }
+
+    @FXML
+    private void CFC(ActionEvent event) throws ClassNotFoundException {
+         UserSession session=new UserSession();
+        Utilisateur u= new Utilisateur();
+            u=session.getUser();
+            System.out.println(u.getId());
+            CarteFideliteService cf= new CarteFideliteService();
+             CarteFidelite c= cf.findCartebyID(String.valueOf(u.getUsername()));
+            if(c!=null)
+            {Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+           
+            alert2.setHeaderText("Vous avez deja une carte et vous avez ="+c.getNb_point());
+            Optional<ButtonType> result1 = alert2.showAndWait(); 
+            }
+            else{Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Vous n'avez pas une carte voulez vous le creer");
+            Optional<ButtonType> result = alert.showAndWait();        
+            if (result.get() == ButtonType.OK){
+                Date date = Date.valueOf(LocalDate.now());
+            
+            CarteFidelite b = new CarteFidelite(1000,date,u);
+                cf.add(b);
+                  Notifications.create()
+                    .title("Notification ")
+                    .text("Votre Carte a ete Cree avec succes").darkStyle()
+                    .showWarning();
+//                  
+              
+            
+            }
+            
+            } 
+    }
+
+    
+
+    @FXML
+    private void Reclamation(ActionEvent event) {
+         FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/GestionRecC.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+        GestionRecCController display=loader.getController();
+       
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+                stage.showAndWait();
+    }
     }
         
 
