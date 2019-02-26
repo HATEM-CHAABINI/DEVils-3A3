@@ -259,7 +259,21 @@ String sql = "INSERT INTO `evenement`(`titre`, `description`, `dateD`, `dateF`, 
         }     }
     
 
+ public void setEtatR(PropositionEvent f) {
+         String sql1 = "UPDATE propositionevent SET `etat`='refusé' WHERE `idPEvent`='"+f.getIdPEvent()+"'";
+         
+          try {
+            Statement stl = conn.createStatement();
+           int rs =stl.executeUpdate(sql1);
 
+                   } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+            System.err.println("SQLState: " + ex.getSQLState());
+            System.err.println("VendorError: " + ex.getErrorCode());
+            System.err.println("sql: " + sql1);
+        }
+           
+    }
 
 
 }

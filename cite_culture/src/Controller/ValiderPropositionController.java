@@ -279,7 +279,7 @@ String username;
         //String trailer1=this.trailer.getText();
 //        java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
 //        java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
-        String salle1=this.salle.getText();
+        String salle1=this.salle1.getValue();
         float prixEnfant=Integer.valueOf(this.prixenfant.getText());
         float prixAdulte=Integer.valueOf(this.prixadulte.getText());
         float prixEtudiant=Integer.valueOf(this.prixetudiant.getText());
@@ -357,7 +357,7 @@ String username;
         //String trailer1=this.trailer.getText();
 //        java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
 //        java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
-        String salle1=this.salle.getText();
+        String salle1=this.salle1.getValue();
         float prixEnfant=Integer.valueOf(this.prixenfant.getText());
         float prixAdulte=Integer.valueOf(this.prixadulte.getText());
         float prixEtudiant=Integer.valueOf(this.prixetudiant.getText());
@@ -434,7 +434,7 @@ String username;
         //String trailer1=this.trailer.getText();
 //        java.sql.Date dated = java.sql.Date.valueOf(datedebut.getValue());
 //        java.sql.Date datef = java.sql.Date.valueOf(datefin.getValue());
-        String salle1=this.salle.getText();
+        String salle1=this.salle1.getValue();
         float prixEnfant=Integer.valueOf(this.prixenfant.getText());
         float prixAdulte=Integer.valueOf(this.prixadulte.getText());
         float prixEtudiant=Integer.valueOf(this.prixetudiant.getText());
@@ -504,6 +504,9 @@ String username;
 
     @FXML
     private void refuserP(ActionEvent event) throws ClassNotFoundException {
+                PropositionEventService fS=new PropositionEventService();
+
+        fS.setEtatR(p1);
         UtilisateurService us=new UtilisateurService();
         Utilisateur uemail=new Utilisateur();
         uemail=us.rechercheUtilisateurParUsername(this.username);

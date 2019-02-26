@@ -7,6 +7,7 @@ package Controller;
 
 import Entities.Conference;
 import Entities.Theatre;
+import Entities.Utilisateur;
 import Services.RatingService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -19,19 +20,31 @@ import com.restfb.types.FacebookType;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
+import utilitaire.UserSession;
 
 /**
  * FXML Controller class
@@ -70,6 +83,8 @@ public class VoirConferenceController implements Initializable {
     private Label moyenne;
     @FXML
     private JFXButton fb;
+    Utilisateur u = new Utilisateur();
+
         
         
         void setConference(Conference f){
@@ -102,7 +117,9 @@ public class VoirConferenceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       UserSession session=new UserSession();
+    
+            u=session.getUser();
         // TODO
     }    
 
@@ -111,11 +128,11 @@ public class VoirConferenceController implements Initializable {
     }
 
     @FXML
-    private void ajouterRating(MouseEvent event) {
+    private void ajouterRating(MouseEvent event) throws IOException {
         
          int note;
       
-
+if(u.getNom()!=null){
           rating.ratingProperty().addListener(new ChangeListener<Number>(){
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number t, Number t1) {
@@ -127,17 +144,53 @@ public class VoirConferenceController implements Initializable {
          if (i==0){
            
                 RatingService fS=new RatingService();
-                fS.ajouterRate(50,idEvent,t1.intValue());
+                fS.ajouterRate(u.getId(),idEvent,t1.intValue());
                 System.out.println("**************");
         i++;
          } }
             
             
-        });
+        });}   else{
+        Alert alert =new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("vous n'etes pas connecté");
+        alert.setHeaderText("veuillez vous connecter");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+  Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/connection.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/connection.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        
+
+        stage2.close();
+                 stage.show();
+    }
+        //alert.showAndWait();
+        }
+
     }
 
     @FXML
-    private void partager(ActionEvent event) throws FileNotFoundException, MalformedURLException {
+    private void partager(ActionEvent event) throws FileNotFoundException, MalformedURLException, IOException {
+        if(u.getNom()!=null){
         ima=imageURI.replace('/', '\\'); 
         String file = new URL(ima).getPath();
         System.out.println("/////////////////////////");
@@ -156,6 +209,49 @@ public class VoirConferenceController implements Initializable {
         FileInputStream f= new FileInputStream(new File(ima.replace("file:\\","")));
         FacebookType r= fbC.publish("me/photos",FacebookType.class , BinaryAttachment.with(file,f),Parameter.with("message",info));
         System.out.println("fb.com/"+r.getId());
+    }else{
+        Alert alert =new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("vous n'etes pas connecté");
+        alert.setHeaderText("veuillez vous connecter");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+  Stage primaryStage= new Stage();
+      
+         Parent root = FXMLLoader.load(getClass().getResource("/View/connection.fxml"));
+        Scene scene = new Scene(root);
+       
+FXMLLoader loader=new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/connection.fxml"));
+        try{
+        loader.load();
+        }catch (IOException ex){
+        Logger.getLogger(Connect.class.getName()).log(Level.SEVERE,null,ex);
+        
+        }
+                Parent p =loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(p));
+              
+        
+               
+
+         final Node source =(Node) event.getSource();
+        final Stage stage2= (Stage)source.getScene().getWindow();
+        
+
+        stage2.close();
+                 stage.show();
     }
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    }
+    
     
 }

@@ -13,17 +13,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FilmController">
    <children>
-      <Label layoutX="24.0" layoutY="278.0" prefHeight="17.0" prefWidth="98.0" text="titre" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="314.0" prefHeight="17.0" prefWidth="98.0" text="description" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="447.0" prefHeight="17.0" prefWidth="98.0" text="date debut" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="492.0" prefHeight="17.0" prefWidth="98.0" text="date fin" textFill="#5caceb" />
+      <Label layoutX="24.0" layoutY="278.0" prefHeight="17.0" prefWidth="98.0" text="titre" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="314.0" prefHeight="17.0" prefWidth="98.0" text="description" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="447.0" prefHeight="17.0" prefWidth="98.0" text="date debut" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="492.0" prefHeight="17.0" prefWidth="98.0" text="date fin" textFill="#255c86" />
       <DatePicker fx:id="datedebut" layoutX="130.0" layoutY="448.0" promptText="date_debut" />
       <DatePicker fx:id="datefin" layoutX="131.0" layoutY="495.0" prefHeight="25.0" prefWidth="174.0" promptText="date_fin" />
-      <Label layoutX="24.0" layoutY="536.0" prefHeight="17.0" prefWidth="98.0" text="salle" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="582.0" prefHeight="17.0" prefWidth="98.0" text="prix enfant" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="622.0" prefHeight="17.0" prefWidth="98.0" text="prix adulte" textFill="#5caceb" />
-      <Label layoutX="330.0" layoutY="273.0" prefHeight="17.0" prefWidth="98.0" text="prix etudiant" textFill="#5caceb" />
-      <Label layoutX="334.0" layoutY="356.0" prefHeight="17.0" prefWidth="98.0" text="time" textFill="#5caceb" />
+      <Label layoutX="24.0" layoutY="536.0" prefHeight="17.0" prefWidth="98.0" text="salle" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="582.0" prefHeight="17.0" prefWidth="98.0" text="prix enfant" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="622.0" prefHeight="17.0" prefWidth="98.0" text="prix adulte" textFill="#255c86" />
+      <Label layoutX="330.0" layoutY="280.0" prefHeight="17.0" prefWidth="98.0" text="prix etudiant" textFill="#255c86" />
+      <Label layoutX="334.0" layoutY="456.0" prefHeight="17.0" prefWidth="98.0" text="time" textFill="#255c86" />
       <TableView fx:id="tab" layoutX="24.0" layoutY="54.0" prefHeight="200.0" prefWidth="590.0">
          <columns>
             <TableColumn fx:id="idf" prefWidth="75.0" text="idFilm" />
@@ -42,26 +42,26 @@
             <TableColumn fx:id="idnb" prefWidth="75.0" text="nbrPlace" />
          </columns>
       </TableView>
-      <Label layoutX="24.0" layoutY="362.0" prefHeight="17.0" prefWidth="98.0" text="image" textFill="#5caceb" />
-      <Label layoutX="24.0" layoutY="408.0" prefHeight="17.0" prefWidth="98.0" text="trailer" textFill="#5caceb" />
-      <Label layoutX="330.0" layoutY="314.0" prefHeight="17.0" prefWidth="98.0" text="nombre place" textFill="#5caceb" />
-      <Button fx:id="ajouterI_B" layoutX="318.0" layoutY="397.0" mnemonicParsing="false" onAction="#ajouterFichier" text="ajouter_image" />
-      <Button fx:id="ajouterT_B" layoutX="318.0" layoutY="443.0" mnemonicParsing="false" onAction="#ajouterVideo" prefHeight="25.0" prefWidth="92.0" text="ajouter_video" />
+      <Label layoutX="24.0" layoutY="362.0" prefHeight="17.0" prefWidth="98.0" text="image" textFill="#255c86" />
+      <Label layoutX="24.0" layoutY="408.0" prefHeight="17.0" prefWidth="98.0" text="trailer" textFill="#255c86" />
+      <Label layoutX="330.0" layoutY="321.0" prefHeight="17.0" prefWidth="98.0" text="nombre place" textFill="#255c86" />
+      <Button fx:id="ajouterI_B" layoutX="312.0" layoutY="363.0" mnemonicParsing="false" onAction="#ajouterFichier" text="ajouter_image" textFill="#255c86" />
+      <Button fx:id="ajouterT_B" layoutX="312.0" layoutY="404.0" mnemonicParsing="false" onAction="#ajouterVideo" prefHeight="25.0" prefWidth="92.0" text="ajouter_video" textFill="#255c86" />
       <Label layoutX="24.0" layoutY="273.0" prefHeight="17.0" prefWidth="42.0" text="id film" visible="false" />
       <JFXButton fx:id="ajouterB" layoutX="419.0" layoutY="508.0" onAction="#ajouter" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="ajouter" />
       <JFXButton fx:id="modifierB" layoutX="420.0" layoutY="568.0" onAction="#modifier" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="modifier" />
       <JFXButton fx:id="supprimerB" layoutX="419.0" layoutY="626.0" onAction="#supprimer" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="supprimer" />
       <JFXTextField fx:id="idFilm" layoutX="129.0" layoutY="269.0" prefHeight="25.0" prefWidth="174.0" promptText="id film" visible="false" />
-      <JFXTextField fx:id="titre" layoutX="129.0" layoutY="269.0" prefHeight="25.0" prefWidth="174.0" promptText="titre" />
-      <JFXTextField fx:id="description" layoutX="129.0" layoutY="310.0" prefHeight="25.0" prefWidth="174.0" promptText="titre" />
-      <JFXTextField fx:id="image" layoutX="129.0" layoutY="354.0" prefHeight="25.0" prefWidth="174.0" promptText="image" />
-      <JFXTextField fx:id="trailer" layoutX="129.0" layoutY="398.0" prefHeight="25.0" prefWidth="174.0" promptText="trailer" />
-      <JFXTextField fx:id="prixenfant" layoutX="131.0" layoutY="578.0" prefHeight="25.0" prefWidth="174.0" promptText="prix enfant" />
-      <JFXTextField fx:id="prixadulte" layoutX="131.0" layoutY="619.0" prefHeight="25.0" prefWidth="174.0" promptText="prix adulte" />
-      <JFXTextField fx:id="prixetudiant" layoutX="415.0" layoutY="267.0" prefHeight="25.0" prefWidth="174.0" promptText="prix etudiant" />
-      <JFXTextField fx:id="nbrPlace" layoutX="418.0" layoutY="308.0" prefHeight="25.0" prefWidth="174.0" promptText="Prenom" text="nbr " />
-      <JFXTextField fx:id="time" layoutX="418.0" layoutY="350.0" prefHeight="25.0" prefWidth="174.0" promptText="time" />
-      <JFXTextField fx:id="Rid" layoutX="370.0" layoutY="14.0" onKeyReleased="#search" prefHeight="25.0" prefWidth="244.0" promptText="rechercher film par id" />
+      <JFXTextField fx:id="titre" layoutX="129.0" layoutY="269.0" prefHeight="25.0" prefWidth="174.0" promptText="titre" unFocusColor="#255c86" />
+      <JFXTextField fx:id="description" layoutX="129.0" layoutY="310.0" prefHeight="25.0" prefWidth="174.0" promptText="description" unFocusColor="#255c86" />
+      <JFXTextField fx:id="image" layoutX="129.0" layoutY="354.0" prefHeight="25.0" prefWidth="174.0" promptText="image" unFocusColor="#255c86" />
+      <JFXTextField fx:id="trailer" layoutX="129.0" layoutY="398.0" prefHeight="25.0" prefWidth="174.0" promptText="trailer" unFocusColor="#255c86" />
+      <JFXTextField fx:id="prixenfant" layoutX="131.0" layoutY="578.0" prefHeight="25.0" prefWidth="174.0" promptText="prix enfant" unFocusColor="#255c86" />
+      <JFXTextField fx:id="prixadulte" layoutX="131.0" layoutY="619.0" prefHeight="25.0" prefWidth="174.0" promptText="prix adulte" unFocusColor="#255c86" />
+      <JFXTextField fx:id="prixetudiant" layoutX="415.0" layoutY="271.0" prefHeight="25.0" prefWidth="174.0" promptText="prix etudiant" unFocusColor="#255c86" />
+      <JFXTextField fx:id="nbrPlace" layoutX="418.0" layoutY="312.0" prefHeight="25.0" prefWidth="174.0" promptText="Prenom" text="nbr " unFocusColor="#255c86" />
+      <JFXTextField fx:id="time" layoutX="415.0" layoutY="448.0" prefHeight="25.0" prefWidth="174.0" promptText="time" unFocusColor="#255c86" />
+      <JFXTextField fx:id="Rid" layoutX="370.0" layoutY="14.0" onKeyReleased="#search" prefHeight="25.0" prefWidth="244.0" promptText="rechercher film par id" unFocusColor="#255c86" />
       <Label layoutX="24.0" layoutY="18.0" prefHeight="17.0" prefWidth="244.0" text="Gestion Des films" textFill="#5caceb" underline="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />

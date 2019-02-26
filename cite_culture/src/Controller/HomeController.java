@@ -44,6 +44,10 @@ public class HomeController implements Initializable {
     private JFXButton idGestionEmploye;
     @FXML
     private JFXButton idBlockage;
+    @FXML
+    private JFXButton gs;
+    @FXML
+    private JFXButton gp;
     
     private void handleButtonAction(MouseEvent event) {        
        refreshNodes();
@@ -231,6 +235,34 @@ public class HomeController implements Initializable {
               
               FXMLLoader.load(getClass().getResource("/View/admin.fxml"));
               pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/admin.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+
+    @FXML
+    private void touslesgestions(ActionEvent event) {
+        try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/GestionDesEvenements.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/GestionDesEvenements.fxml")));
+          } catch (IOException ex) {
+              Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+
+    @FXML
+    private void touslespropositions(ActionEvent event) {
+         try {
+              pnl_scroll.getChildren().clear();
+              
+              
+              
+              FXMLLoader.load(getClass().getResource("/View/validerProposition.fxml"));
+              pnl_scroll.getChildren().add(FXMLLoader.load(getClass().getResource("/View/validerProposition.fxml")));
           } catch (IOException ex) {
               Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
           }

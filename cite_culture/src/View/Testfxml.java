@@ -34,12 +34,12 @@ public class Testfxml extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ClassNotFoundException {
-        UserSession us=new UserSession();
+        /*UserSession us=new UserSession();
         JournalisteService js=new JournalisteService();
         Utilisateur uti=new Utilisateur();
         //uti=js.rechercheJournalisteParCin(0);
         us.setUser(uti);
-        launch(args);
+       */ launch(args);
     }
     
 }

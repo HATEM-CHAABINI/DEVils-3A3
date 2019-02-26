@@ -74,7 +74,7 @@ public class FilmController implements Initializable {
     @FXML
     private TableView<Film> tab;
     @FXML
-    private TableColumn<?, ?> idf;
+    private TableColumn<Film, Integer> idf;
     @FXML
     private TableColumn<?, ?> idd;
     @FXML
@@ -155,6 +155,7 @@ public class FilmController implements Initializable {
         
        setCellValueFromTableToTextField();
         // TODO
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }    
 
     @FXML

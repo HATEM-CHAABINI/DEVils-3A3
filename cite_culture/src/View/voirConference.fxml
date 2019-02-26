@@ -13,13 +13,13 @@
       <ImageView fx:id="im" fitHeight="300.0" fitWidth="217.0" layoutX="34.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="date" layoutX="293.0" layoutY="249.0" />
       <JFXButton fx:id="reserver" layoutX="370.0" layoutY="311.0" onAction="#ajouterProposition" prefHeight="39.0" prefWidth="105.0" stylesheets="@CSS/dark-theme.css" text="reserver" />
-      <JFXTextField fx:id="titre" layoutX="305.0" layoutY="44.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="titre" />
-      <JFXTextField fx:id="time" layoutX="305.0" layoutY="273.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="time" />
-      <JFXTextArea fx:id="descr" layoutX="306.0" layoutY="99.0" prefHeight="79.0" prefWidth="234.0" promptText="description" />
-      <Rating fx:id="rating" layoutX="48.0" layoutY="350.0" onMouseClicked="#ajouterRating" prefHeight="17.0" prefWidth="83.0" />
-      <Label fx:id="msg" layoutX="267.0" layoutY="358.0" prefHeight="17.0" prefWidth="92.0" />
-      <JFXTextField fx:id="d" layoutX="308.0" layoutY="223.0" prefHeight="25.0" prefWidth="234.0" promptText="date" text="date" />
-      <Label fx:id="moyenne" layoutX="548.0" layoutY="372.0" text="Label" />
+      <JFXTextField fx:id="titre" layoutX="305.0" layoutY="44.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="titre" unFocusColor="#255c86" />
+      <JFXTextField fx:id="time" layoutX="305.0" layoutY="273.0" prefHeight="25.0" prefWidth="234.0" promptText="description" text="time" unFocusColor="#255c86" />
+      <JFXTextArea fx:id="descr" layoutX="306.0" layoutY="99.0" prefHeight="79.0" prefWidth="234.0" promptText="description" unFocusColor="#255c86" />
+      <Rating fx:id="rating" layoutX="36.0" layoutY="350.0" onMouseClicked="#ajouterRating" prefHeight="17.0" prefWidth="83.0" />
+      <Label fx:id="msg" layoutX="267.0" layoutY="358.0" prefHeight="17.0" prefWidth="92.0" visible="false" />
+      <JFXTextField fx:id="d" layoutX="308.0" layoutY="223.0" prefHeight="25.0" prefWidth="234.0" promptText="date" text="date" unFocusColor="#255c86" />
+      <Label fx:id="moyenne" layoutX="548.0" layoutY="372.0" text="Label" visible="false" />
       <JFXButton fx:id="fb" layoutX="323.0" layoutY="353.0" onAction="#partager" prefHeight="39.0" prefWidth="198.0" stylesheets="@CSS/dark-theme.css" text="partager sur facebook" />
    </children>
 </AnchorPane>

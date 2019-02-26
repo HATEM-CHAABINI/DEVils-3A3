@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GestionDesEvenementsController">
+   <children>
+      <JFXButton fx:id="film" layoutX="137.0" layoutY="148.0" onAction="#sendToFilm" prefHeight="56.0" prefWidth="151.0" stylesheets="@CSS/dark-theme.css" text="Film" />
+      <JFXButton fx:id="theatre" layoutX="316.0" layoutY="148.0" onAction="#sendToTheatre" prefHeight="56.0" prefWidth="151.0" stylesheets="@CSS/dark-theme.css" text="Theatre" />
+      <JFXButton fx:id="conference" layoutX="137.0" layoutY="252.0" onAction="#sendToConference" prefHeight="56.0" prefWidth="151.0" stylesheets="@CSS/dark-theme.css" text="Conference" />
+      <JFXButton fx:id="galerie" layoutX="316.0" layoutY="252.0" onAction="#sendToGalerie" prefHeight="56.0" prefWidth="151.0" stylesheets="@CSS/dark-theme.css" text="Galerie" />
+      <Label layoutX="192.0" layoutY="46.0" prefHeight="17.0" prefWidth="244.0" text="Gestion Des Evenements" textAlignment="CENTER" textFill="#5caceb" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
