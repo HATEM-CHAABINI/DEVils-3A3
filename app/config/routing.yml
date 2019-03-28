@@ -1,0 +1,21 @@
+event_evenement:
+    resource: "@EventBundle/Controller/EvenementController.php"
+    type:     annotation
+
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /Event
+
+bibliotheque_bibliotheque:
+    resource: "@BibliothequeBundle/Controller/BibliothequeController.php"
+    type:     annotation
+
+bibliotheque:
+    resource: "@BibliothequeBundle/Resources/config/routing.yml"
+    prefix:   /Bibliotheque
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

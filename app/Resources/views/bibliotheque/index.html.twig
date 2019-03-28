@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bibliotheques list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombibliotheque</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bibliotheque in bibliotheques %}
+            <tr>
+                <td><a href="{{ path('bibliotheque_show', { 'id': bibliotheque.id }) }}">{{ bibliotheque.id }}</a></td>
+                <td>{{ bibliotheque.nomBibliotheque }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bibliotheque_show', { 'id': bibliotheque.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bibliotheque_edit', { 'id': bibliotheque.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bibliotheque_new') }}">Create a new bibliotheque</a>
+        </li>
+    </ul>
+{% endblock %}

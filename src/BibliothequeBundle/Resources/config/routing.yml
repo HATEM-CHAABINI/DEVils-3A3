@@ -1,0 +1,6 @@
+bibliotheque_homepage:
+    path:     /
+    defaults: { _controller: BibliothequeBundle:Default:index }
+bibliotheque_home2page:
+    path:     /home
+    defaults: { _controller: BibliothequeBundle:Default:home2 }
