@@ -1,0 +1,37 @@
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+    <h1>Location</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Images</th>
+              <td> <img class="card-img-top" src="{{ asset('uploads/images/' ~ location.livre.image) }}" height="150px" alt="Card image" hspace="20">
+                </td>
+            </tr>
+            <tr>
+                <th>Datelocation</th>
+                <td>{% if location.dateLocation %}{{ location.dateLocation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateretour</th>
+                <td>{% if location.dateRetour %}{{ location.dateRetour|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('location_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('location_edit', { 'id': location.id }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
+{% endblock %}

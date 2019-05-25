@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CommentaireLivre
  *
- * @ORM\Table(name="commentaire_livre", indexes={@ORM\Index(name="fk_commentaire_livre", columns={"id_livre"}), @ORM\Index(name="fk_commentaire_username", columns={"username_locateur"})})
- * @ORM\Entity
+ * @ORM\Table(name="commentaire_livre")
+ * @ORM\Entity(repositoryClass="BibliothequeBundle\Repository\CommentaireLivreRepository")
  */
 class CommentaireLivre
 {
@@ -24,30 +24,23 @@ class CommentaireLivre
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="Commentaire", type="text", nullable=false)
      */
     private $commentaire;
 
+
+
     /**
-     * @var \Livre
-     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="locataire", referencedColumnName="id")
+     */
+    private $Locataire;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Livre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_livre", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="livre", referencedColumnName="id")
      */
-    private $idLivre;
-
-    /**
-     * @var \Location
-     *
-     * @ORM\ManyToOne(targetEntity="Location")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="username_locateur", referencedColumnName="username_locateur")
-     * })
-     */
-    private $usernameLocateur;
-
+    private $Livre;
 
 
     /**
@@ -85,50 +78,50 @@ class CommentaireLivre
     }
 
     /**
-     * Set idLivre
+     * Set locataire
      *
-     * @param \BibliothequeBundle\Entity\Livre $idLivre
+     * @param \AppBundle\Entity\User $locataire
      *
      * @return CommentaireLivre
      */
-    public function setIdLivre(\BibliothequeBundle\Entity\Livre $idLivre = null)
+    public function setLocataire(\AppBundle\Entity\User $locataire = null)
     {
-        $this->idLivre = $idLivre;
+        $this->Locataire = $locataire;
 
         return $this;
     }
 
     /**
-     * Get idLivre
+     * Get locataire
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getLocataire()
+    {
+        return $this->Locataire;
+    }
+
+    /**
+     * Set livre
+     *
+     * @param \BibliothequeBundle\Entity\Livre $livre
+     *
+     * @return CommentaireLivre
+     */
+    public function setLivre(\BibliothequeBundle\Entity\Livre $livre = null)
+    {
+        $this->Livre = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Get livre
      *
      * @return \BibliothequeBundle\Entity\Livre
      */
-    public function getIdLivre()
+    public function getLivre()
     {
-        return $this->idLivre;
-    }
-
-    /**
-     * Set usernameLocateur
-     *
-     * @param \BibliothequeBundle\Entity\Location $usernameLocateur
-     *
-     * @return CommentaireLivre
-     */
-    public function setUsernameLocateur(\BibliothequeBundle\Entity\Location $usernameLocateur = null)
-    {
-        $this->usernameLocateur = $usernameLocateur;
-
-        return $this;
-    }
-
-    /**
-     * Get usernameLocateur
-     *
-     * @return \BibliothequeBundle\Entity\Location
-     */
-    public function getUsernameLocateur()
-    {
-        return $this->usernameLocateur;
+        return $this->Livre;
     }
 }

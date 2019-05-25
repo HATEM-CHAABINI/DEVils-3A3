@@ -1,18 +1,33 @@
-event_evenement:
-    resource: "@EventBundle/Controller/EvenementController.php"
+bibliotheque_location:
+    resource: "@BibliothequeBundle/Controller/LocationController.php"
     type:     annotation
 
-event:
-    resource: "@EventBundle/Resources/config/routing.yml"
-    prefix:   /Event
+bibliotheque_location:
+    resource: "@BibliothequeBundle/Controller/LocationController.php"
+    type:     annotation
 
-bibliotheque_bibliotheque:
-    resource: "@BibliothequeBundle/Controller/BibliothequeController.php"
+bibliotheque_rating_livre:
+    resource: "@BibliothequeBundle/Controller/RatingLivreController.php"
+    type:     annotation
+
+bibliotheque_location:
+    resource: "@BibliothequeBundle/Controller/LocationController.php"
+    type:     annotation
+
+bibliotheque_commentaire_livre:
+    resource: "@BibliothequeBundle/Controller/CommentaireLivreController.php"
+    type:     annotation
+
+bibliotheque_livre:
+    resource: "@BibliothequeBundle/Controller/LivreController.php"
     type:     annotation
 
 bibliotheque:
     resource: "@BibliothequeBundle/Resources/config/routing.yml"
-    prefix:   /Bibliotheque
+    prefix:   /bibliotheque
+app_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
 
 app:
     resource: '@AppBundle/Controller/'

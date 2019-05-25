@@ -1,0 +1,105 @@
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+    <h1>Livre</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Titre</th>
+            <td>{{ livre.titre }}</td>
+        </tr>
+        <tr>
+            <th>Auteur</th>
+            <td>{{ livre.auteur }}</td>
+        </tr>
+        <tr>
+            <th>Genre</th>
+            <td>{{ livre.genre }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ livre.prix }}</td>
+        </tr>
+        <tr>
+            <th>Quantite</th>
+            <td>{{ livre.quantite }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ livre.description }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><img src="{{ asset('uploads/images/' ~ livre.image ) }}" width="200" height="200"></td>
+        </tr>
+        </tbody>
+    </table>
+{% if app.user %}
+
+    <form method="post" action="{{ path('Commenter_le_livre', { 'id': livre.id }) }}">
+
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
+        </div>
+
+        <input type="submit" name="louer" value="Commenter" class="btn btn-primary">
+        <input type="hidden" id="user" value="{{ app.user.username }}">
+
+    </form>
+{% endif %}
+    {% for co in commentaire %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                </div><!-- /col-sm-12 -->
+            </div><!-- /row -->
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo"
+                             src="{{ asset('uploads/images/' ~ co.Locataire.image ) }}">
+                    </div><!-- /thumbnail -->
+                </div><!-- /col-sm-1 -->
+
+                <div class="col-sm-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="hidden" name="username" value="{{ co.Locataire.username }}">
+                            <strong>{{ co.Locataire.username }}</strong>
+                        </div>
+                        <div class="panel-body">
+                            {{ co.commentaire }}
+                        </div><!-- /panel-body -->
+                    </div><!-- /panel panel-default -->
+                </div><!-- /col-sm-5 -->
+            </div><!-- /container -->
+            {% if app.user %}
+                {% if app.user.id == co.Locataire.id %}
+                    <div id="button">
+                        <a href="{{ path('comm_delete', {'id': co.id}) }}">
+                            <button value="supprimer" id="{{ co.id }}" class="butons">Suppprimer</button>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+
+    {% endfor %}
+
+
+
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script>
+        /*
+         $('button').each(function(){
+
+         var x = $(this).attr('id');
+
+         alert(x);
+         });
+         */    </script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+{% if app.user %}
+    <h1>Locations list</h1>
+
+    <table class="table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Datelocation</th>
+            <th>Dateretour</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td><a href="{{ path('location_show', { 'id': location.id }) }}">{{ location.id }}</a></td>
+                <td>{% if location.dateLocation %}{{ location.dateLocation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if location.dateRetour %}{{ location.dateRetour|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('location_show', { 'id': location.id }) }}">show</a>
+                        </li>
+                          </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<hr>
+ <!--   <div class="row">
+        <div class="col-md-offset-3">
+            <div id="div_chart"></div>
+
+        </div>
+    </div>
+-->
+    <hr>
+    <div class="row">
+        <div class="col-md-offset-8">
+            <div class="col-md-4">
+
+                <form method="post">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Search :</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="keyword"
+                               placeholder="Entrer keywords">
+                        <small id="emailHelp" class="form-text text-muted">Vous pouvez chercher par titre or
+                            description.
+                        </small>
+                    </div>
+                    <button class="btn btn-success" type="submit"> Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                {% for livre in livres %}
+                    <div class="col-md-3">
+                        <div class="card" style="width:400px">
+                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ livre.image) }}" height="150px"
+                                 alt="Card image">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ livre.titre }}</h4>
+                                <p class="card-text">Description :
+                                    <br> {{ livre.description|length > 20 ? livre.description|slice(0, 20) ~ '...' : livre.description }}
+                                </p>
+                                <a href="{{ path("livre_show", {'id' : livre.id}) }}" class="btn btn-primary">Voir
+                                    plus</a>
+                                <a href="{{ path("livre_commenter", {'id' : livre.id}) }}" class="btn btn-primary">Commenter</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <hr style="margin-top: 10px;">
+        <div class="col-md-offset-6">
+            <div class="navigation">
+                {{ knp_pagination_render(livres) }}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+   <!-- <ul>
+        <li>
+            <a href="{{ path('location_new') }}">Create a new location</a>
+        </li>
+    </ul>
+-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(piechart, 'div_chart') }}
+    </script>
+{% endblock %}
+
+

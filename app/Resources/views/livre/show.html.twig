@@ -1,0 +1,61 @@
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+
+<h1>Livre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ livre.auteur }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ livre.genre }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ livre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ livre.quantite }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ livre.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img src="{{ asset('uploads/images/' ~ livre.image )}}" width="200" height="200"></td>
+            </tr>
+        </tbody>
+    </table>
+{% if app.user %}
+
+    <form method="post" action="{{ path('louer_livre', { 'id':livre.id }) }}" >
+
+    <div class="form-group">
+        <label for="">Date Debut</label>
+        <input type="date" name="dated" class="form-control">
+    </div>
+    Date Fin
+    <div class="form-group">
+        <label for="">Date Fin</label>
+        <input type="date" name="datef" class="form-control">
+    </div>
+
+    <input type="submit" name="louer" value="Louer" class="btn btn-primary">
+</form>
+
+{% endif %}
+{% endblock %}

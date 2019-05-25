@@ -9,8 +9,32 @@
     <meta name="author" content="" />
 
     <title>Cité de la culture - ADMIN22</title>
+{##}
 
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {#<!-- Bootstrap 3.3.7 -->#}
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+    {#<!-- Font Awesome -->#}
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css')}}">
+    {#<!-- Ionicons -->#}
+    <link rel="stylesheet" href="{{ asset('assets/ower_components/Ionicons/css/ionicons.min.css')}}">
+    {#<!-- DataTables -->#}
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+    {#<!-- Theme style -->#}
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/AdminLTE.min.css')}}">
+    {#<!-- AdminLTE Skins. Choose a skin from the css/skins#}
+         {#folder instead of downloading all of them to reduce the load. -->#}
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/skins/_all-skins.min.css')}}">
 
+    {#<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->#}
+    {#<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->#}
+    {#<!--[if lt IE 9]>#}
+    <script src="{{ asset('https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
+    <link rel="stylesheet"
+          href="{{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic') }}">
+
+    {##}
     <link rel="stylesheet" href="{{ asset('assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-icons/entypo/css/entypo.css') }}">
     <link rel="stylesheet" href="{{ asset('http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic') }}">
@@ -40,13 +64,25 @@
 
     <div class="sidebar-menu">
 
+<header>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
 
+    {% for message in app.flashes('warning') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+</header>
         <header class="logo-env">
 
             <!-- logo -->
             <div class="logo">
 
-                    <img src="{{ asset('assets/images/logoC.png') }}" width="120" alt="" />
+                <img src="{{ asset('assets/images/logoC.png') }}" width="120" alt="" />
 
             </div>
 
@@ -85,22 +121,36 @@
                 </a>
 
             </li>
-            <li>
-                <a href="" >
-                    <i class="entypo-monitor"></i>
+            //
+            <li class="active active root-level has-sub" >
+                <a href="">
+                    <i class="entypo-gauge"></i>
                     <span>Gestion de bibliothèque</span>
                 </a>
+                <ul>
+                    <li>
+                        <a>
+                        <span>
+                    <li><a href="{{ path('livre_index') }}">Ajout Livre/ Envoie mail de recuperation</a></li>
+                    <li><a href="{{ path('ValideLocationAdmin') }}">Valider Location</a></li>
+
+                        </span>
+                        </a>
+                    </li>
+                </ul>
+
             </li>
+            //
+            {#<li>#}
+                {#<a href="" >#}
+                    {#<i class="entypo-monitor"></i>#}
+                    {#<span>Gestion de bibliothèque</span>#}
+                {#</a>#}
+            {#</li>#}
             <li>
                 <a href="">
                     <i class="entypo-newspaper"></i>
                     <span>Gestion des Réservations</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="entypo-mail"></i>
-                    <span>Gestion des Réclamations</span>
                 </a>
             </li>
             <li>
@@ -126,7 +176,11 @@
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ asset('assets/images/thumb-1@2x.png') }}" alt="" class="img-circle" width="44" />
-                            Art Ramadani
+                            {% if app.user %}
+
+                            {{ app.user.username }}
+                            {% endif %}
+
                         </a>
 
                         <ul class="dropdown-menu">
@@ -489,13 +543,11 @@
 
                     <li>
                         <div>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                {{ 'Votre nom'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
 
-                            {% endif %}
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'Log out'|trans({}, 'FOSUserBundle') }}<i class="entypo-logout right"></i>
+                            </a>
+
                         </div>
                         {% if app.request.hasPreviousSession %}
                             {% for type, messages in app.session.flashbag.all() %}
@@ -593,7 +645,9 @@
 
         <link rel="stylesheet" href="{{ asset('assets/js/jvectormap/jquery-jvectormap-1.2.2.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/js/rickshaw/rickshaw.min.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('assets/js/datatables/responsive/css/datatables.responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/js/select2/select2.css') }}">
         <!-- Bottom Scripts -->
         <script src="{{ asset('assets/js/gsap/main-gsap.js') }}"></script>
         <script src="{{ asset('assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
@@ -612,6 +666,7 @@
         <script src="{{ asset('assets/js/neon-chat.js') }}"></script>
         <script src="{{ asset('assets/js/neon-custom.js') }}"></script>
         <script src="{{ asset('assets/js/neon-demo.js') }}"></script>
+
 
 </body>
 </html>

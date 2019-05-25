@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Locked</th>
+                <td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Expired</th>
+                <td>{% if user.expired %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Expiresat</th>
+                <td>{% if user.expiresAt %}{{ user.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Credentialsexpired</th>
+                <td>{% if user.credentialsExpired %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Credentialsexpireat</th>
+                <td>{% if user.credentialsExpireAt %}{{ user.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ user.departement }}</td>
+            </tr>
+            <tr>
+                <th>Qr</th>
+                <td>{{ user.qr }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ user.image }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ user.ville }}</td>
+            </tr>
+            <tr>
+                <th>Datenaissance</th>
+                <td>{% if user.dateNaissance %}{{ user.dateNaissance|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bio</th>
+                <td>{{ user.bio }}</td>
+            </tr>
+            <tr>
+                <th>Domaine</th>
+                <td>{{ user.domaine }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ user.note }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Codepostal</th>
+                <td>{{ user.codePostal }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ user.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ user.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ user.cin }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

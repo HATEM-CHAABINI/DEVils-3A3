@@ -1,0 +1,34 @@
+{% extends 'baseB.html.twig' %}
+
+{% block body %}
+
+    <h1>Locations list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Datelocation</th>
+            <th>Dateretour</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td><a href="{{ path('location_show', { 'id': location.id }) }}">{{ location.id }}</a></td>
+                <td>{% if location.dateLocation %}{{ location.dateLocation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if location.dateRetour %}{{ location.dateRetour|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('location_rendue', { 'id': location.id }) }}">Rendue</a>
+                        </li>
+                         </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

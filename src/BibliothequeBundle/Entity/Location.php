@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Location
  *
- * @ORM\Table(name="location", indexes={@ORM\Index(name="fk_locataire", columns={"username_locateur"}), @ORM\Index(name="fk_livre", columns={"id_livre"})})
- * @ORM\Entity
+ * @ORM\Table(name="location")
+ * @ORM\Entity(repositoryClass="BibliothequeBundle\Repository\LocationRepository")
  */
 class Location
 {
@@ -31,31 +31,29 @@ class Location
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_a_rendre", type="date", nullable=false)
+     * @ORM\Column(name="date_retour", type="date", nullable=false)
      */
-    private $dateARendre;
+    private $dateRetour;
+
 
     /**
-     * @var \Livre
-     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="locataire", referencedColumnName="id")
+     */
+    private $Locataire;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Livre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_livre", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="livre", referencedColumnName="id")
      */
-    private $idLivre;
+    private $Livre;
 
     /**
-     * @var \FosUser
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="FosUser")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="username_locateur", referencedColumnName="username_canonical")
-     * })
+     * @ORM\Column(name="Etat", type="string", length=255, nullable=false)
      */
-    private $usernameLocateur;
-
-
+    private $etat;
 
     /**
      * Get id
@@ -92,74 +90,98 @@ class Location
     }
 
     /**
-     * Set dateARendre
+     * Set dateRetour
      *
-     * @param \DateTime $dateARendre
+     * @param \DateTime $dateRetour
      *
      * @return Location
      */
-    public function setDateARendre($dateARendre)
+    public function setDateRetour($dateRetour)
     {
-        $this->dateARendre = $dateARendre;
+        $this->dateRetour = $dateRetour;
 
         return $this;
     }
 
     /**
-     * Get dateARendre
+     * Get dateRetour
      *
      * @return \DateTime
      */
-    public function getDateARendre()
+    public function getDateRetour()
     {
-        return $this->dateARendre;
+        return $this->dateRetour;
     }
 
     /**
-     * Set idLivre
+     * Set locataire
      *
-     * @param \BibliothequeBundle\Entity\Livre $idLivre
+     * @param \AppBundle\Entity\User $locataire
      *
      * @return Location
      */
-    public function setIdLivre(\BibliothequeBundle\Entity\Livre $idLivre = null)
+    public function setLocataire(\AppBundle\Entity\User $locataire = null)
     {
-        $this->idLivre = $idLivre;
+        $this->Locataire = $locataire;
 
         return $this;
     }
 
     /**
-     * Get idLivre
+     * Get locataire
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getLocataire()
+    {
+        return $this->Locataire;
+    }
+
+    /**
+     * Set livre
+     *
+     * @param \BibliothequeBundle\Entity\Livre $livre
+     *
+     * @return Location
+     */
+    public function setLivre(\BibliothequeBundle\Entity\Livre $livre = null)
+    {
+        $this->Livre = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Get livre
      *
      * @return \BibliothequeBundle\Entity\Livre
      */
-    public function getIdLivre()
+    public function getLivre()
     {
-        return $this->idLivre;
+        return $this->Livre;
     }
 
     /**
-     * Set usernameLocateur
+     * Set etat
      *
-     * @param \BibliothequeBundle\Entity\FosUser $usernameLocateur
+     * @param string $etat
      *
      * @return Location
      */
-    public function setUsernameLocateur(\BibliothequeBundle\Entity\FosUser $usernameLocateur = null)
+    public function setEtat($etat)
     {
-        $this->usernameLocateur = $usernameLocateur;
+        $this->etat = $etat;
 
         return $this;
     }
 
     /**
-     * Get usernameLocateur
+     * Get etat
      *
-     * @return \BibliothequeBundle\Entity\FosUser
+     * @return string
      */
-    public function getUsernameLocateur()
+    public function getEtat()
     {
-        return $this->usernameLocateur;
+        return $this->etat;
     }
 }

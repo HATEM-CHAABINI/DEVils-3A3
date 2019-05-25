@@ -3,12 +3,13 @@
 namespace BibliothequeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Livre
  *
  * @ORM\Table(name="livre")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BibliothequeBundle\Repository\LivreRepository")
  */
 class Livre
 {
@@ -24,53 +25,57 @@ class Livre
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Titre", type="string", length=255, nullable=false)
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="auteur", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Auteur", type="string", length=255, nullable=false)
      */
     private $auteur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Genre", type="string", length=255, nullable=false)
      */
     private $genre;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="Prix", type="float", precision=10, scale=0, nullable=false)
      */
     private $prix;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="quantite", type="integer", nullable=false)
+     * @ORM\Column(name="Quantite", type="integer", nullable=false)
      */
     private $quantite;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="Description", type="text", nullable=false)
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="donner la couverture")
+     * @Assert\Image()
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
     private $image;
 
-
+    public function __toString()
+    {
+    return (string) $this->id;
+    }
 
     /**
      * Get id

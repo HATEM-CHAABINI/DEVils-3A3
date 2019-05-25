@@ -59,21 +59,21 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="departement", type="string", length=255)
+     * @ORM\Column(name="departement", type="string", length=255,nullable=true)
      */
     protected $departement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="qr", type="string", length=1000, nullable=false)
+     * @ORM\Column(name="qr", type="string", length=1000, nullable=true)
      */
     protected $qr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=500, nullable=false)
+     * @ORM\Column(name="image", type="string", length=500, nullable=true)
      */
     protected $image;
 
@@ -93,70 +93,70 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=50, nullable=false)
+     * @ORM\Column(name="ville", type="string", length=50, nullable=true)
      */
     protected $ville;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_naissance", type="date", nullable=false)
+     * @ORM\Column(name="date_naissance", type="date", nullable=true)
      */
     protected $dateNaissance;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="text", length=16777215, nullable=false)
+     * @ORM\Column(name="bio", type="text", length=16777215, nullable=true)
      */
     protected $bio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="domaine", type="string", length=200, nullable=false)
+     * @ORM\Column(name="domaine", type="string", length=200, nullable=true)
      */
     protected $domaine;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="note", type="integer", nullable=false)
+     * @ORM\Column(name="note", type="integer", nullable=true)
      */
     protected $note;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=100, nullable=false)
+     * @ORM\Column(name="adresse", type="string", length=100, nullable=true)
      */
     protected $adresse;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="code_postal", type="integer", nullable=false)
+     * @ORM\Column(name="code_postal", type="integer", nullable=true)
      */
     protected $codePostal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sexe", type="string", length=5, nullable=false)
+     * @ORM\Column(name="sexe", type="string", length=5, nullable=true)
      */
     protected $sexe;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="telephone", type="integer", nullable=false)
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     protected $telephone;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cin", type="integer", nullable=false)
+     * @ORM\Column(name="cin", type="integer", nullable=true)
      */
     protected $cin;
 

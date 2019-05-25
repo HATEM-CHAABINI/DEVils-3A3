@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * RatingLivre
  *
- * @ORM\Table(name="rating_livre", indexes={@ORM\Index(name="fkk_livre", columns={"id_livre"}), @ORM\Index(name="fkk_user", columns={"username_locateur"})})
+ * @ORM\Table(name="rating_livre")
  * @ORM\Entity
  */
 class RatingLivre
@@ -28,25 +28,18 @@ class RatingLivre
      */
     private $note;
 
-    /**
-     * @var \Livre
-     *
-     * @ORM\ManyToOne(targetEntity="Livre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_livre", referencedColumnName="id")
-     * })
-     */
-    private $idLivre;
 
     /**
-     * @var \FosUser
-     *
-     * @ORM\ManyToOne(targetEntity="FosUser")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="username_locateur", referencedColumnName="username_canonical")
-     * })
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="locataire", referencedColumnName="id")
      */
-    private $usernameLocateur;
+    private $Locataire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Livre")
+     * @ORM\JoinColumn(name="livre", referencedColumnName="id")
+     */
+    private $Livre;
 
 
 
@@ -85,50 +78,50 @@ class RatingLivre
     }
 
     /**
-     * Set idLivre
+     * Set locataire
      *
-     * @param \BibliothequeBundle\Entity\Livre $idLivre
+     * @param \AppBundle\Entity\User $locataire
      *
      * @return RatingLivre
      */
-    public function setIdLivre(\BibliothequeBundle\Entity\Livre $idLivre = null)
+    public function setLocataire(\AppBundle\Entity\User $locataire = null)
     {
-        $this->idLivre = $idLivre;
+        $this->Locataire = $locataire;
 
         return $this;
     }
 
     /**
-     * Get idLivre
+     * Get locataire
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getLocataire()
+    {
+        return $this->Locataire;
+    }
+
+    /**
+     * Set livre
+     *
+     * @param \BibliothequeBundle\Entity\Livre $livre
+     *
+     * @return RatingLivre
+     */
+    public function setLivre(\BibliothequeBundle\Entity\Livre $livre = null)
+    {
+        $this->Livre = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Get livre
      *
      * @return \BibliothequeBundle\Entity\Livre
      */
-    public function getIdLivre()
+    public function getLivre()
     {
-        return $this->idLivre;
-    }
-
-    /**
-     * Set usernameLocateur
-     *
-     * @param \BibliothequeBundle\Entity\FosUser $usernameLocateur
-     *
-     * @return RatingLivre
-     */
-    public function setUsernameLocateur(\BibliothequeBundle\Entity\FosUser $usernameLocateur = null)
-    {
-        $this->usernameLocateur = $usernameLocateur;
-
-        return $this;
-    }
-
-    /**
-     * Get usernameLocateur
-     *
-     * @return \BibliothequeBundle\Entity\FosUser
-     */
-    public function getUsernameLocateur()
-    {
-        return $this->usernameLocateur;
+        return $this->Livre;
     }
 }

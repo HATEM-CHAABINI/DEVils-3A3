@@ -1,0 +1,60 @@
+{% extends 'baseB.html.twig' %}
+
+{% block body %}
+                                    {% if app.user %}
+
+<h1>Livre</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ livre.id }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ livre.titre }}</td>
+        </tr>
+        <tr>
+            <th>Auteur</th>
+            <td>{{ livre.auteur }}</td>
+        </tr>
+        <tr>
+            <th>Genre</th>
+            <td>{{ livre.genre }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ livre.prix }}</td>
+        </tr>
+        <tr>
+            <th>Quantite</th>
+            <td>{{ livre.quantite }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ livre.description }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td><img src="{{ asset('uploads/images/' ~ livre.image )}}" width="200" height="200"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('livre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('livre_edit', { 'id': livre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+                                    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% block body %}
+
+    {% for e in location %}
+<br>
+        <div class="col-md-80" style="display:table-cell; vertical-align:middle; text-align:center; padding-top: 5%; padding-bottom: 5%" >
+
+    <div class="col-md-80" style="display:table-cell; vertical-align:middle; text-align:center; padding-top: 5%; padding-bottom: 5%" >
+
+
+        <img class="card-img-top" src="C:\wamp64\www\front\web\uploads\images\{{ e.Livre.image }}" height="150px" alt="Card image" hspace="20">
+        <div class="card-body">
+            <hr>
+            <h4 class="card-title">{{ e.Livre.Titre }}</h4>
+            <h4 class="card-title">{{ e.DateLocation|date('Y-m-d') }}</h4>
+            <h4 class="card-title">{{ e.dateRetour|date('Y-m-d') }}</h4>
+
+
+        </div>
+    </div>
+</div>
+        <br>
+    {% endfor %}
+
+    <h1 class="card-title">Prix Total :{{ prix }}</h1>
+
+
+{% endblock %}

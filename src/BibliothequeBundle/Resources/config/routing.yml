@@ -1,6 +1,33 @@
 bibliotheque_homepage:
-    path:     /
+    path:     /rendre
     defaults: { _controller: BibliothequeBundle:Default:index }
 bibliotheque_home2page:
     path:     /home
-    defaults: { _controller: BibliothequeBundle:Default:home2 }
+    defaults: { _controller: BibliothequeBundle:Default:home2}
+AfficherLivres:
+    path:     /Livre/all
+    defaults: { _controller: BibliothequeBundle:Mobile:AfficherLivres }
+newLocation:
+    path:     /Location/new
+    defaults: { _controller: BibliothequeBundle:Mobile:louer }
+AfficherCommentaire:
+    path:     /Commentaire/all
+    defaults: { _controller: BibliothequeBundle:Mobile:AfficherCommentaire }
+DeleteCommentaire:
+    path:     /Commentaire/delete
+    defaults: { _controller: BibliothequeBundle:Mobile:DeleteCommentaire }
+AjoutCommentaire:
+    path:     /Commentaire/new
+    defaults: { _controller: BibliothequeBundle:Mobile:AjoutCommentaire }
+AfficherMesLocation:
+    path:     /MesLocation/show
+    defaults: { _controller: BibliothequeBundle:Mobile:AfficherMesLocation }
+AnnulerLocation:
+    path:     /Location/Annuler
+    defaults: { _controller: BibliothequeBundle:Mobile:AnnulerLocation }
+AfficherLivre:
+    path:     /Livre
+    defaults: { _controller: BibliothequeBundle:Mobile:AfficherLivre }
+Stat:
+    path:     /Stat
+    defaults: { _controller: BibliothequeBundle:Mobile:Stat }
